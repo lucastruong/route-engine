@@ -1,0 +1,88 @@
+{
+    "options": {
+        "polylines": false, 
+        "squash_durations": 0, 
+        "distance_type": "straight_line/distance_travelled", 
+        "balance": true, 
+        "max_iterations": 250,  
+        "max_duration": 3,
+        "traffic": "faster/fast/normal/slow/very slow/bike"
+    },
+    "fleet": {
+        "f1": {
+            "shift_start": "0:00",
+            "shift_end": "17:00",
+            "start_location": {
+                "id": "driver_start",
+                "lat": 10.753441612594347,
+                "lng": 106.66826244595111
+            },
+            "capacity": {
+                "weight": 20,
+                "volum": 20
+            },
+            "type": ["A","B"],
+
+            "speed": "faster/fast/normal/slow/very slow/bike",
+            "strict_start": false,
+            "order": [1, 2, 3]
+        }
+    },
+    "visits": {
+        "v1": {
+            "load": {
+                "weight": 1,
+                "volum": 2
+            },
+            "location": {
+                "lat": 10.76784,
+                "lng": 106.688535,
+                "name": "200 Nguyễn Trãi, Phường Phạm Ngũ Lão, Quận 1, Hồ Chí Minh, Vietnam"
+            },
+            "start": "0:00",
+            "end": "17:00",
+            "duration": 10
+        },
+        "v2": {
+            "load": {
+                "weight": 3,
+                "volum": 4
+            },
+            "location": {
+                "lat": 10.7531127,
+                "lng": 106.6683666,
+                "name": "400 Trần Phú, Phường 7, Quận 5, Hồ Chí Minh, Vietnam"
+            },
+            "start": "0:00",
+            "end": "17:00",
+            "duration": 10
+        },
+        "v3": {
+            "load": {
+                "weight": 3,
+                "volum": 6
+            },
+            "location": {
+                "lat": 10.7866322,
+                "lng": 106.7015952,
+                "name": "Nguyễn Thị Minh Khai, Đa Kao, Quận 1, Hồ Chí Minh, Vietnam"
+            },
+            "start": "0:00",
+            "end": "17:00"
+        },
+        "v4": {
+            "load": {
+                "weight": 1,
+                "volum": 8
+            },
+            "location": {
+                "lat": 10.798808,
+                "lng": 106.646946,
+                "name": "Chợ hoàng hoa thám"
+            },
+            "start": "0:00",
+            "end": "17:00",
+            "duration": 10
+        }
+    }
+}

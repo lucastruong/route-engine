@@ -1,0 +1,40 @@
+{
+    "f1": [
+        {
+            "location_id": "driver_start",
+            "location_name": "driver_start",
+            "arrival_time": "0:00:00",
+            "finish_time": "0:00:00"
+        },
+        {
+            "location_id": "v2",
+            "location_name": "400 Trần Phú, Phường 7, Quận 5, Hồ Chí Minh, Vietnam",
+            "arrival_time": "0:00:03",
+            "finish_time": "0:10:03"
+        },
+        {
+            "location_id": "v1",
+            "location_name": "200 Nguyễn Trãi, Phường Phạm Ngũ Lão, Quận 1, Hồ Chí Minh, Vietnam",
+            "arrival_time": "0:14:10",
+            "finish_time": "0:24:10"
+        },
+        {
+            "location_id": "v3",
+            "location_name": "Nguyễn Thị Minh Khai, Đa Kao, Quận 1, Hồ Chí Minh, Vietnam",
+            "arrival_time": "0:27:57",
+            "finish_time": "0:27:57"
+        },
+        {
+            "location_id": "v4",
+            "location_name": "Chợ hoàng hoa thám",
+            "arrival_time": "0:37:08",
+            "finish_time": "0:47:08"
+        },
+        {
+            "location_id": "driver_start",
+            "location_name": "driver_start",
+            "arrival_time": "0:55:28",
+            "finish_time": "0:55:28"
+        }
+    ]
+}
