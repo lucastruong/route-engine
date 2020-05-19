@@ -1,120 +1,15 @@
+from core_object import Problem_Adapter
+from core_helper import distance_two_points
+from core_data import create_data_all_locations, create_data_locations, create_data_times, create_data_capacities, create_data_service_times
+
 import traceback
 import time
 import datetime
 import json
-import math
-from math import atan2, cos, radians, sin, sqrt
 from functools import partial
 from six.moves import xrange
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
-
-class Location:
-    def __init__(self, key, name, lat, lng):
-        self.id = key
-        self.name = name
-        self.lat = float(lat)
-        self.lng = float(lng)
-
-class Time:
-    def __init__(self, hhmm, default_hhmm='00:00'):
-        time_str = hhmm
-        if hhmm is None: time_str = default_hhmm
-        try:
-            time_obj = datetime.datetime.strptime(time_str, '%H:%M').time()
-        except:
-            time_obj = datetime.datetime.strptime(default_hhmm, '%H:%M').time()
-
-        self.hhmm = time_obj.strftime('%H:%M')
-        self.seconds = datetime.timedelta(hours=time_obj.hour, minutes=time_obj.minute, seconds=time_obj.second).total_seconds()
-        self.seconds = int(self.seconds)
-
-class Duration:
-    def __init__(self, minutes):
-        duration = minutes
-        if minutes is None: duration = 0
-        self.minutes = int(duration)
-
-class Capacity:
-    def __init__(self, items, default = 0):
-        demands = {}
-        if items is None:
-            demands['default'] = default
-        elif type(items) == dict:
-            for key, value in items.items():
-                demands[key] = int(value)
-        else:
-            demands['default'] = int(items)
-        self.demands = demands
-    
-    def __get__(self, instance, owner):
-        return self.demands
-
-class Visit:
-    def __init__(self, key, location, start_time, end_time, duration, loads):
-        self.id = key
-        self.location = location
-        self.start_time = start_time
-        self.end_time = end_time
-        self.duration = duration
-        self.loads = loads
-
-class Vehicle:
-    def __init__(self, key, start_location, start_time, end_time, capacities, skills):
-        self.id = key
-        self.location = start_location
-        self.start_time = start_time
-        self.end_time = end_time
-        self.capacities = capacities
-        self.skills = skills
-
-class Problem_Adapter:
-    def __init__(self, problem):
-        self.problem = problem
-        self.visits = []
-        self.vehicles = []
-
-    def _create_location(self, key, location):
-        name = location.get('name')
-        if name is None: name = key
-        return Location(key, name, location.get('lat'), location.get('lng'))
-
-    def transform_routific(self):
-        self._routific_format_visits()
-        self._routific_format_fleets()
-
-    def _routific_format_visits(self):
-        visits = self.problem.get('visits')
-        for key in visits:
-            visit = visits[key]
-            visit = self._routific_format_visit(key, visit)
-            self.visits.append(visit)
-
-    def _routific_format_fleets(self):
-        fleets = self.problem.get('fleet')
-        for key in fleets:
-            fleet = fleets[key]
-            vehicle = self._routific_format_fleet(key, fleet)
-            self.vehicles.append(vehicle)
-
-    def _routific_format_visit(self, key, visit):
-        location = self._create_location(key, visit.get('location'))
-        start_time = Time(visit.get('start'))
-        end_time = Time(visit.get('end'), '23:59')
-        duration = Duration(visit.get('duration'))
-        loads = Capacity(visit.get('load'))
-        return Visit(key, location, start_time, end_time, duration, loads)
-    
-    def _routific_format_fleet(self, key, fleet):
-        start_location = fleet.get('start_location')
-        key_start = start_location.get('id')
-        if key_start is None: key_start = key + '_start'
-        start_location = self._create_location(key_start, start_location)
-
-        start_time = Time(fleet.get('shift_start'))
-        end_time = Time(fleet.get('shift_end'), '23:59')
-        capacities = Capacity(fleet.get('capacity'), 99)
-        return Vehicle(key, start_location, start_time, end_time, capacities)
 
 def read_problem_json():
     f = open("problem.json", "r")
@@ -132,43 +27,6 @@ def prepare_adapter():
     adapter = Problem_Adapter(problem)
     adapter.transform_routific()
     return adapter
-
-def distance_two_points(start, end):
-    """approximate radius of earth in km"""
-    R = 6373.0
-
-    lat1 = radians(start.lat)
-    lon1 = radians(start.lng)
-    lat2 = radians(end.lat)
-    lon2 = radians(end.lng)
-
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
-    c = 2 * atan2(sqrt(a), sqrt(1 - a))
-
-    distance = R * c
-    return distance
-
-def kmph_to_mps(kmph):
-    base = 0.27777777777778
-    return kmph * base
-
-def create_data_all_locations(adapter):
-    locations = []
-    for vehicle in adapter.vehicles:
-        locations.append(vehicle)
-    for visit in adapter.visits:
-        locations.append(visit)
-    return locations
-
-def create_data_locations(adapter):
-    locations = []
-    for vehicle in adapter.vehicles:
-        locations.append((vehicle.location))
-    for visit in adapter.visits:
-        locations.append((visit.location))
-    return locations
 
 def compute_time_matrix(locations):
     """Creates callback to return time between points."""
@@ -197,14 +55,6 @@ def compute_time_matrix(locations):
 
     return {'distances': distances, 'times': time_matrix}
 
-def create_data_times(adapter):
-    times = []
-    for vehicle in adapter.vehicles:
-        times.append((vehicle.start_time, vehicle.end_time))
-    for visit in adapter.visits:
-        times.append((visit.start_time, visit.end_time))
-    return times
-
 def compute_time_windows(times):
     windows = []
     for counter, node in enumerate(times):
@@ -212,46 +62,6 @@ def compute_time_windows(times):
         end_time = node[1]
         windows.append((start_time.seconds, end_time.seconds))
     return windows
-
-def create_data_capacities(adapter):
-    capacities = []
-    for vehicle in adapter.vehicles:
-        for capacity_key in vehicle.capacities.demands:
-            if capacity_key not in capacities:
-                capacities.append(capacity_key)
-    for visit in adapter.visits:
-        for capacity_key in visit.loads.demands:
-            if capacity_key not in capacities:
-                capacities.append(capacity_key)
-    
-    demands = {}
-    vehicle_capacities = {}
-    for capacity_key in capacities:
-        sub_demands = []
-        sub_vehicle_capacities = []
-        for vehicle in adapter.vehicles:
-            sub_demands.append(0)
-            if capacity_key in vehicle.capacities.demands:
-                sub_vehicle_capacities.append(vehicle.capacities.demands.get(capacity_key))
-            else:
-                sub_vehicle_capacities.append(0)
-        for visit in adapter.visits:
-            if capacity_key in visit.loads.demands:
-                sub_demands.append(visit.loads.demands.get(capacity_key))
-            else:
-                sub_demands.append(0)
-        demands[capacity_key] = sub_demands
-        vehicle_capacities[capacity_key] = sub_vehicle_capacities
-
-    return {'capacities': capacities, 'demands': demands, 'vehicle_capacities': vehicle_capacities}
-
-def create_data_service_times(adapter):
-    times = []
-    for vehicle in adapter.vehicles:
-        times.append(0)
-    for visit in adapter.visits:
-        times.append(visit.duration.minutes * 60)
-    return times
     
 def create_data_model():
     adapter = prepare_adapter()

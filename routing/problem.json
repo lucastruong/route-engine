@@ -25,7 +25,20 @@
 
             "speed": "faster/fast/normal/slow/very slow/bike",
             "strict_start": false,
-            "order": [1, 2, 3]
+            "order": [1, 2, 3], 
+            "breaks": [
+                {
+                    "id": "lunch",
+                    "start": "12:00",
+                    "end": "13:00"
+                },
+                {
+                    "id": "client call",
+                    "start": "15:00",
+                    "end": "15:30",
+                    "in_transit": true
+                }
+            ]
         }
     },
     "visits": {
@@ -55,7 +68,8 @@
             },
             "start": "0:00",
             "end": "17:00",
-            "duration": 10
+            "duration": 10,
+            "type": ["A", "B"]
         },
         "v3": {
             "load": {
