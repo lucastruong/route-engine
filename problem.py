@@ -250,7 +250,14 @@ def get_routes(manager, routing, solution, num_routes):
     return routes
 
 def print_solution(data, manager, routing, assignment):
-    solution = {}
+    output = {
+        "num_unserved": 0,
+        "unserved": [],
+        "solution": {},
+        "polylines": {},
+        "total_distance": 0,
+        "total_travel_time": 0,
+    }
     plan = {}
 
     """Prints assignment on console."""
@@ -262,7 +269,11 @@ def print_solution(data, manager, routing, assignment):
         if routing.IsStart(node) or routing.IsEnd(node):
             continue
         if assignment.Value(routing.NextVar(node)) == node:
-            dropped_nodes += ' {}'.format(manager.IndexToNode(node))
+            node_index = manager.IndexToNode(node)
+            dropped_nodes += ' {}'.format(node_index)
+            item = data['locations'][node_index]
+            output['unserved'].append(item.location.id)
+            output['num_unserved'] += 1
     print(dropped_nodes)
 
     # Display routes
@@ -385,18 +396,22 @@ def print_solution(data, manager, routing, assignment):
                 "location_name": item.location.name,
                 "arrival_time": arrival_time,
                 "finish_time": finish_time,
+                "distance": round(distance),
+                "duration": duration_time,
             })
         print(plan_output)
         item = data['locations'][node_index]
-        solution[item.id] = route_solution
+        output['solution'][item.id] = route_solution
         total_time = total_time - item.start_time.seconds
 
+        output['total_distance'] = round(total_distance)
+        output['total_travel_time'] = total_time
         print('Total distance of route: {} km'.format(total_distance / 1000))
         print('Total time of route: {}'.format(str(datetime.timedelta(seconds=total_time))))
         print('Total loads of route: {}'.format(load_output))
 
-    with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(solution, f, ensure_ascii=False, indent=4)
+    with open('output.json', 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=4)
 
 def main():
     """Solve the CVRP problem."""
