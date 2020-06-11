@@ -12,8 +12,8 @@ from six.moves import xrange
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
 def read_problem_json():
-    f = open("problem.json", "r")
-    # f = open("large.json", "r")
+    f = open("data/problem.json", "r")
+    # f = open("data/large.json", "r")
     json = f.read()
     f.close()
     return json

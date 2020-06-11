@@ -1,9 +1,11 @@
 {
     "options": {
-        "polylines": false, 
+        "polylines": false,
+        "balance": true,
+
+
         "squash_durations": 0, 
         "distance_type": "straight_line/distance_travelled", 
-        "balance": true, 
         "max_iterations": 250,  
         "max_duration": 3,
         "traffic": "faster/fast/normal/slow/very slow/bike"
@@ -23,6 +25,7 @@
             },
             "type": ["A","B"],
 
+            
             "speed": "faster/fast/normal/slow/very slow/bike",
             "strict_start": false,
             "order": [1, 2, 3], 
