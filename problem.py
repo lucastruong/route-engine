@@ -258,6 +258,7 @@ def get_routes(manager, routing, solution, num_routes):
 
 def print_solution(data, manager, routing, assignment):
     output = {
+        "callback_url": data['adapter'].callback_url,
         "num_unserved": 0,
         "unserved": [],
         "solution": {},
@@ -406,8 +407,13 @@ def print_solution(data, manager, routing, assignment):
                 "finish_time": finish_time,
                 "distance": round(distance),
                 "duration": duration_time,
+                "lat": item.location.lat,
+                "lng": item.location.lng,
             })
-        print(plan_output)
+        if (len(route_solution)):
+            route_solution[len(route_solution) - 1]['location_id'] = 'driver_end'
+            route_solution[len(route_solution) - 1]['location_name'] = 'driver_end'
+        # print(plan_output)
         item = data['locations'][node_index]
         output['solution'][item.id] = route_solution
         total_time = total_time - item.start_time.seconds
@@ -420,8 +426,7 @@ def print_solution(data, manager, routing, assignment):
 
     with open('output.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=4)
-    callback_url = data['adapter'].callback_url  
-    requests.post(callback_url, data = output)
+    requests.post(output['callback_url'], json = { "output": output })
 
 def main():
     """Solve the CVRP problem."""
@@ -475,6 +480,7 @@ def main():
 
 if __name__ == '__main__':
     start_time = time.time()
+    print("--- ROUTE-ENGINE: ---")
     main()
     end_time = int(time.time() - start_time)
     end_time = str(datetime.timedelta(seconds=end_time))
