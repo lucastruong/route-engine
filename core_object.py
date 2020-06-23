@@ -79,6 +79,7 @@ class Vehicle:
 class Problem_Adapter:
     def __init__(self, problem):
         self.problem = problem
+        self.callback_url = problem.get('callback_url')
         self.visits = []
         self.vehicles = []
 

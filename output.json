@@ -55,5 +55,6 @@
     },
     "polylines": {},
     "total_distance": 16996,
-    "total_travel_time": 3328
+    "total_travel_time": 3328,
+    "total_idle_time": 0
 }

@@ -2,26 +2,32 @@ from core_object import Problem_Adapter
 from core_helper import distance_two_points
 from core_data import create_data_all_locations, create_data_locations, create_data_times, create_data_capacities, create_data_service_times
 
-import traceback
-import time
-import datetime
-import json
+import traceback, time, datetime, json
 from functools import partial
 from six.moves import xrange
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
+import os, sys, requests
+
+def read_in():
+    lines = sys.stdin.readlines()
+    #Since our input would only be having one line, parse our JSON data from that
+    return json.loads(lines[0])
 
 def read_problem_json():
-    f = open("data/problem.json", "r")
+    # dir_path = os.path.dirname(os.path.realpath(__file__))
     # f = open("data/large.json", "r")
-    json = f.read()
-    f.close()
+    # f = open(dir_path + "/data/problem.json", "r")
+    # json = json.loads(f.read())
+    # f.close()
+
+    # Get our data as an array from read_in()
+    json = read_in()
     return json
 
 def prepare_adapter():
     """Read problem json"""
-    problem_raw = read_problem_json()
-    problem = json.loads(problem_raw)
+    problem = read_problem_json()
 
     """Format problem"""
     adapter = Problem_Adapter(problem)
@@ -73,6 +79,7 @@ def create_data_model():
 
     """Stores the data for the problem."""
     data = {}
+    data['adapter'] = adapter
     data['distance_matrix'] = matrix.get('distances')
     data['time_matrix'] = matrix.get('times')
     data['time_windows'] = compute_time_windows(times)
@@ -257,6 +264,7 @@ def print_solution(data, manager, routing, assignment):
         "polylines": {},
         "total_distance": 0,
         "total_travel_time": 0,
+        "total_idle_time": 0, #TODO: Code later
     }
     plan = {}
 
@@ -412,6 +420,8 @@ def print_solution(data, manager, routing, assignment):
 
     with open('output.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=4)
+    callback_url = data['adapter'].callback_url  
+    requests.post(callback_url, data = output)
 
 def main():
     """Solve the CVRP problem."""
@@ -420,7 +430,6 @@ def main():
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']), data['num_vehicles'], data['starts'], data['ends'])
-    # manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']), data['num_vehicles'], 0)
 
     # Create Routing Model.
     routing = pywrapcp.RoutingModel(manager)
