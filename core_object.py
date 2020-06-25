@@ -1,5 +1,9 @@
 import datetime
 
+class Options:
+    def __init__(self, speed = 30):
+        self.speed = speed
+
 class Location:
     def __init__(self, key, name, lat, lng):
         self.id = key
@@ -12,15 +16,18 @@ class Time:
         time_str = hhmm
         if hhmm is None:
             time_str = default_hhmm
-        try:
-            time_obj = datetime.datetime.strptime(time_str, '%H:%M').time()
-        except:
-            time_obj = datetime.datetime.strptime(default_hhmm, '%H:%M').time()
+        time_arr = time_str.split(':')
+        self.hhmm = time_str
+        self.seconds = (int(time_arr[0]) * 3600) + (int(time_arr[1]) * 60)
+        # try:
+        #     time_obj = datetime.datetime.strptime(time_str, '%H:%M').time()
+        # except:
+        #     time_obj = datetime.datetime.strptime(default_hhmm, '%H:%M').time()
 
-        self.hhmm = time_obj.strftime('%H:%M')
-        self.seconds = datetime.timedelta(
-            hours=time_obj.hour, minutes=time_obj.minute, seconds=time_obj.second).total_seconds()
-        self.seconds = int(self.seconds)
+        # self.hhmm = time_obj.strftime('%H:%M')
+        # self.seconds = datetime.timedelta(
+        #     hours=time_obj.hour, minutes=time_obj.minute, seconds=time_obj.second).total_seconds()
+        # self.seconds = int(self.seconds)
 
 class Duration:
     def __init__(self, minutes):
@@ -82,6 +89,8 @@ class Problem_Adapter:
         self.callback_url = problem.get('callback_url')
         self.visits = []
         self.vehicles = []
+        options = problem.get('options')
+        self.options = Options(options.get('speed', 30))
 
     def _create_location(self, key, location):
         name = location.get('name')
@@ -110,7 +119,7 @@ class Problem_Adapter:
     def _routific_format_visit(self, key, visit):
         location = self._create_location(key, visit.get('location'))
         start_time = Time(visit.get('start'))
-        end_time = Time(visit.get('end'), '23:59')
+        end_time = Time(visit.get('end'), '99:99')
         duration = Duration(visit.get('duration'))
         loads = Capacity(visit.get('load'))
         required_skills = Skill(visit.get('type'))
@@ -124,7 +133,7 @@ class Problem_Adapter:
         start_location = self._create_location(key_start, start_location)
 
         start_time = Time(fleet.get('shift_start'))
-        end_time = Time(fleet.get('shift_end'), '23:59')
-        capacities = Capacity(fleet.get('capacity'), 99)
+        end_time = Time(fleet.get('shift_end'), '99:99')
+        capacities = Capacity(fleet.get('capacity'), 99999)
         skills = Skill(fleet.get('type'))
         return Vehicle(key, start_location, start_time, end_time, capacities, skills)

@@ -33,7 +33,7 @@ def prepare_adapter():
     adapter.transform_routific()
     return adapter
 
-def compute_time_matrix(locations):
+def compute_time_matrix(locations, speed = 30):
     """Creates callback to return time between points."""
     distances = {}
     times = {}
@@ -46,7 +46,7 @@ def compute_time_matrix(locations):
                 times[from_counter][to_counter] = 0
             else:
                 distance_km = distance_two_points(from_node, to_node)
-                speed_hour = 40; # 40km/h
+                speed_hour = speed; # 40km/h
                 time_hour = distance_km / speed_hour
                 times[from_counter][to_counter] = int(time_hour * 60 * 60)  # To seconds
                 distances[from_counter][to_counter] = distance_km * 1000  # To meters
@@ -73,7 +73,7 @@ def create_data_model():
     locations = create_data_locations(adapter)
     times = create_data_times(adapter)
     capacities = create_data_capacities(adapter)
-    matrix = compute_time_matrix(locations)
+    matrix = compute_time_matrix(locations, adapter.options.speed)
     service_times = create_data_service_times(adapter)
 
     """Stores the data for the problem."""
@@ -195,7 +195,7 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
     routing.AddDimension(
         time_evaluator_index,
         24 * 60 * 60,  # allow waiting time
-        24 * 60 * 60,  # maximum time per vehicle
+        24 * 60 * 60 * 7,  # maximum time per vehicle
         False,  # Don't force start cumul to zero.
         dimension_name)
     time_dimension = routing.GetDimensionOrDie(dimension_name)
@@ -425,7 +425,10 @@ def print_solution(data, manager, routing, assignment):
 
     with open('output.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=4)
-    requests.post(output['callback_url'], json = { "output": output })
+
+    if (output['callback_url']):
+        requests.post(output['callback_url'], json = { "output": output })
+    
 
 def main():
     """Solve the CVRP problem."""
