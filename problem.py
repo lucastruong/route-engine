@@ -15,13 +15,13 @@ def read_in():
     return json.loads(lines[0])
 
 def read_problem_json():
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    f = open(dir_path + "/data/example.json", "r")
-    json_obj = json.loads(f.read())
-    f.close()
+    # dir_path = os.path.dirname(os.path.realpath(__file__))
+    # f = open(dir_path + "/data/example.json", "r")
+    # json_obj = json.loads(f.read())
+    # f.close()
 
     # Get our data as an array from read_in()
-    # json_obj = read_in()
+    json_obj = read_in()
     return json_obj
 
 def prepare_adapter():
