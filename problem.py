@@ -428,8 +428,8 @@ def print_solution(data, manager, routing, assignment):
         print('Total time of route: {}'.format(str(datetime.timedelta(seconds=total_time))))
         print('Total loads of route: {}'.format(load_output))
 
-    with open('output.json', 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=4)
+    # with open('output.json', 'w', encoding='utf-8') as f:
+    #     json.dump(output, f, ensure_ascii=False, indent=4)
 
     if (output['callback_url']):
         requests.post(output['callback_url'], json = { "output": output })
