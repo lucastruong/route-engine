@@ -1,7 +1,7 @@
 import datetime
 
 class Options:
-    def __init__(self, balance = false, speed = 30):
+    def __init__(self, balance = False, speed = 30):
         self.balance = balance
         self.speed = speed
 
