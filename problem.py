@@ -213,8 +213,11 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
         index = routing.Start(vehicle_id)
         time_dimension.CumulVar(index).SetRange(data['time_windows'][vehicle_id][0],
                                                 data['time_windows'][vehicle_id][1])
+        index = routing.End(vehicle_id)
+        time_dimension.CumulVar(index).SetRange(data['time_windows'][vehicle_id][0],
+                                                data['time_windows'][vehicle_id][1])
 
-    # Add resource constraints at the depot.
+    # # Add resource constraints at the depot.
     # solver = routing.solver()
     # intervals = []
     # for i in range(data['num_vehicles']):
@@ -229,10 +232,9 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
     #             time_dimension.CumulVar(routing.End(i)),
     #             data['vehicle_unload_time'], 'depot_interval'))
 
+    # # [START depot_capacity]
     # depot_usage = [1 for i in range(len(intervals))]
-    # solver.Add(
-    #     solver.Cumulative(intervals, depot_usage, data['depot_capacity'],
-    #                       'depot'))
+    # solver.Add(solver.Cumulative(intervals, depot_usage, data['depot_capacity'], 'depot'))
 
     # Instantiate route start and end times to produce feasible times.
     for i in range(data['num_vehicles']):
@@ -428,7 +430,6 @@ def print_solution(data, manager, routing, assignment):
 
     if (output['callback_url']):
         requests.post(output['callback_url'], json = { "output": output })
-    
 
 def main():
     """Solve the CVRP problem."""
