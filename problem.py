@@ -200,6 +200,9 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
         dimension_name)
     time_dimension = routing.GetDimensionOrDie(dimension_name)
 
+    if (data['adapter'].options.balance):
+        time_dimension.SetGlobalSpanCostCoefficient(data['global_span'])
+
     # Add time window constraints for each location except depot.
     for location_idx, time_window in enumerate(data['time_windows']):
         if location_idx < data['num_vehicles']:

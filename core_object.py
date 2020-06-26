@@ -1,7 +1,8 @@
 import datetime
 
 class Options:
-    def __init__(self, speed = 30):
+    def __init__(self, balance = false, speed = 30):
+        self.balance = balance
         self.speed = speed
 
 class Location:
@@ -90,7 +91,7 @@ class Problem_Adapter:
         self.visits = []
         self.vehicles = []
         options = problem.get('options')
-        self.options = Options(options.get('speed', 30))
+        self.options = Options(options.get('balance', false), options.get('speed', 30))
 
     def _create_location(self, key, location):
         name = location.get('name')
