@@ -91,7 +91,7 @@ class Problem_Adapter:
         self.visits = []
         self.vehicles = []
         options = problem.get('options')
-        self.options = Options(options.get('balance', false), options.get('speed', 30))
+        self.options = Options(options.get('balance', False), options.get('speed', 30))
 
     def _create_location(self, key, location):
         name = location.get('name')
