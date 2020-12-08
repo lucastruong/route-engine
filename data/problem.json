@@ -22,7 +22,7 @@
             },
             "capacity": {
                 "weight": 20,
-                "volum": 20
+                "volume": 20
             },
             "type": ["A","B"],
 
@@ -49,7 +49,7 @@
         "v1": {
             "load": {
                 "weight": 1,
-                "volum": 2
+                "volume": 2
             },
             "location": {
                 "lat": 10.76784,
@@ -63,7 +63,7 @@
         "v2": {
             "load": {
                 "weight": 3,
-                "volum": 4
+                "volume": 4
             },
             "location": {
                 "lat": 10.7531127,
@@ -78,7 +78,7 @@
         "v3": {
             "load": {
                 "weight": 3,
-                "volum": 6
+                "volume": 6
             },
             "location": {
                 "lat": 10.7866322,
@@ -91,7 +91,7 @@
         "v4": {
             "load": {
                 "weight": 1,
-                "volum": 8
+                "volume": 8
             },
             "location": {
                 "lat": 10.798808,

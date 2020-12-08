@@ -1,39 +1,48 @@
-from core_object import Problem_Adapter
-from core_helper import distance_two_points
-from core_data import create_data_all_locations, create_data_locations, create_data_times, create_data_capacities, create_data_service_times
-
-import traceback, time, datetime, json
+import datetime
+import json
+import os
+import requests
+import sys
+import time
 from functools import partial
-from six.moves import xrange
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
-import os, sys, requests
+from six.moves import xrange
+
+from core.core_data import create_data_all_locations, create_data_locations, create_data_times, create_data_capacities, \
+    create_data_service_times
+from src.problem.problem_helper import distance_two_points
+from src.problem.problem_adapter import ProblemAdapter
+
 
 def read_in():
     lines = sys.stdin.readlines()
-    #Since our input would only be having one line, parse our JSON data from that
+    # Since our input would only be having one line, parse our JSON data from that
     return json.loads(lines[0])
 
+
 def read_problem_json():
-    # dir_path = os.path.dirname(os.path.realpath(__file__))
-    # f = open(dir_path + "/data/example.json", "r")
-    # json_obj = json.loads(f.read())
-    # f.close()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    f = open(dir_path + "/data/problem.json", "r")
+    json_obj = json.loads(f.read())
+    f.close()
 
     # Get our data as an array from read_in()
-    json_obj = read_in()
+    # json_obj = read_in()
     return json_obj
+
 
 def prepare_adapter():
     """Read problem json"""
     problem = read_problem_json()
 
     """Format problem"""
-    adapter = Problem_Adapter(problem)
+    adapter = ProblemAdapter(problem)
     adapter.transform_routific()
     return adapter
 
-def compute_time_matrix(locations, speed = 30):
+
+def compute_time_matrix(locations, speed=30):
     """Creates callback to return time between points."""
     distances = {}
     times = {}
@@ -46,7 +55,7 @@ def compute_time_matrix(locations, speed = 30):
                 times[from_counter][to_counter] = 0
             else:
                 distance_km = distance_two_points(from_node, to_node)
-                speed_hour = speed; # 40km/h
+                speed_hour = speed  # 40km/h
                 time_hour = distance_km / speed_hour
                 times[from_counter][to_counter] = int(time_hour * 60 * 60)  # To seconds
                 distances[from_counter][to_counter] = distance_km * 1000  # To meters
@@ -60,6 +69,7 @@ def compute_time_matrix(locations, speed = 30):
 
     return {'distances': distances, 'times': time_matrix}
 
+
 def compute_time_windows(times):
     windows = []
     for counter, node in enumerate(times):
@@ -67,7 +77,8 @@ def compute_time_windows(times):
         end_time = node[1]
         windows.append((start_time.seconds, end_time.seconds))
     return windows
-    
+
+
 def create_data_model():
     adapter = prepare_adapter()
     locations = create_data_locations(adapter)
@@ -108,6 +119,7 @@ def create_data_model():
 
     return data
 
+
 def add_distance_dimension(routing, distance_evaluator_index, data):
     # Add Distance constraint.
     dimension_name = 'Distance'
@@ -122,6 +134,7 @@ def add_distance_dimension(routing, distance_evaluator_index, data):
     # /!\ It doesn't mean the standard deviation is minimized
     # distance_dimension.SetGlobalSpanCostCoefficient(data['global_span'])
 
+
 def create_demand_callback(demands):
     # Add Capacity constraint.
     def demand_callback(manager, from_index):
@@ -131,6 +144,7 @@ def create_demand_callback(demands):
         return demands[from_node]
 
     return demand_callback
+
 
 def add_capacities_constraints(routing, manager, data):
     capacities = data['capacities']
@@ -152,12 +166,14 @@ def add_capacities_constraints(routing, manager, data):
             True,  # start cumul to zero
             capacity)
 
+
 def allow_drop_visits(routing, manager, data):
     # Allow to drop nodes.
     penalty = 10000
     for node in range(1, len(data['time_matrix'])):
         index = manager.NodeToIndex(node)
         routing.AddDisjunction([index], penalty)
+
 
 def create_time_evaluator(data):
     """Creates callback to get total times between locations."""
@@ -182,13 +198,15 @@ def create_time_evaluator(data):
             if from_node == to_node:
                 _total_time[from_node][to_node] = 0
             else:
-                _total_time[from_node][to_node] = int(service_time(data, from_node) + travel_time(data, from_node, to_node))
+                _total_time[from_node][to_node] = int(
+                    service_time(data, from_node) + travel_time(data, from_node, to_node))
 
     def time_evaluator(manager, from_node, to_node):
         """Returns the total time between the two nodes"""
         return _total_time[manager.IndexToNode(from_node)][manager.IndexToNode(to_node)]
 
     return time_evaluator
+
 
 def add_time_window_constraints(routing, manager, data, time_evaluator_index):
     dimension_name = 'Time'
@@ -200,8 +218,8 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
         dimension_name)
     time_dimension = routing.GetDimensionOrDie(dimension_name)
 
-    if (data['adapter'].options.balance):
-        time_dimension.SetGlobalSpanCostCoefficient(data['global_span'])
+    # if (data['adapter'].options.balance):
+    #     time_dimension.SetGlobalSpanCostCoefficient(100)
 
     # Add time window constraints for each location except depot.
     for location_idx, time_window in enumerate(data['time_windows']):
@@ -246,6 +264,7 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
         routing.AddVariableMinimizedByFinalizer(
             time_dimension.CumulVar(routing.End(i)))
 
+
 def get_routes(manager, routing, solution, num_routes):
     """Get vehicle routes from a solution and store them in an array."""
     # Get vehicle routes and store them in a two dimensional array whose
@@ -260,6 +279,7 @@ def get_routes(manager, routing, solution, num_routes):
         routes.append(route)
     return routes
 
+
 def print_solution(data, manager, routing, assignment):
     output = {
         "callback_url": data['adapter'].callback_url,
@@ -269,7 +289,7 @@ def print_solution(data, manager, routing, assignment):
         "polylines": {},
         "total_distance": 0,
         "total_travel_time": 0,
-        "total_idle_time": 0, #TODO: Code later
+        "total_idle_time": 0,  # TODO: Code later
     }
     plan = {}
 
@@ -297,9 +317,9 @@ def print_solution(data, manager, routing, assignment):
         capacity_dimension = routing.GetDimensionOrDie('Capacity' + capacity_key)
         capacities_dimension[capacity_key] = capacity_dimension
         route_load_init[capacity_key] = 0
-    
+
     time_dimension = routing.GetDimensionOrDie('Time')
-    
+
     for vehicle_id in range(data['num_vehicles']):
         index = routing.Start(vehicle_id)
         start_index = index
@@ -309,7 +329,7 @@ def print_solution(data, manager, routing, assignment):
         distance_next = 0
         while not routing.IsEnd(index):
             node_index = manager.IndexToNode(index)
-       
+
             # For route
             route_detail = {}
             route_detail['index'] = index
@@ -428,11 +448,15 @@ def print_solution(data, manager, routing, assignment):
         print('Total time of route: {}'.format(str(datetime.timedelta(seconds=total_time))))
         print('Total loads of route: {}'.format(load_output))
 
-    # with open('output.json', 'w', encoding='utf-8') as f:
-    #     json.dump(output, f, ensure_ascii=False, indent=4)
+    with open('output.json', 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=4)
 
     if (output['callback_url']):
-        requests.post(output['callback_url'], json = { "output": output })
+        try:
+            requests.post(output['callback_url'], json={"output": output})
+        except:
+            print("Callback URL have a problem!")
+
 
 def main():
     """Solve the CVRP problem."""
@@ -469,7 +493,7 @@ def main():
     # Creates capacities constraints for each vehicle.
     add_capacities_constraints(routing, manager, data)
     allow_drop_visits(routing, manager, data)
-    
+
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
@@ -480,9 +504,10 @@ def main():
 
     # Print solution on console.
     if assignment:
-        print_solution(data, manager, routing, assignment)  
+        print_solution(data, manager, routing, assignment)
     else:
         print('No solution found !')
+
 
 if __name__ == '__main__':
     start_time = time.time()

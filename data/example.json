@@ -1,0 +1,4188 @@
+{
+    "fleet": {
+        "driver_1": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_1_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_1_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_2": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_2_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_2_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_3": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_3_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_3_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_4": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_4_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_4_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_5": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_5_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_5_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_6": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_6_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_6_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_7": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_7_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_7_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_8": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_8_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_8_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_9": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_9_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_9_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_10": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_10_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_10_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_11": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_11_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_11_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_12": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_12_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_12_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_13": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_13_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_13_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_14": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_14_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_14_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_15": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_15_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_15_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_16": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_16_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_16_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_17": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_17_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_17_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_18": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_18_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_18_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_19": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_19_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_19_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_20": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_20_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_20_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_21": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_21_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_21_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_22": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_22_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_22_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_23": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_23_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_23_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_24": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_24_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_24_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_25": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_25_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_25_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_26": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_26_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_26_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_27": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_27_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_27_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_28": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_28_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_28_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_29": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_29_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_29_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_30": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_30_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_30_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_31": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_31_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_31_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_32": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_32_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_32_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_33": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_33_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_33_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_34": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_34_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_34_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_35": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_35_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_35_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_36": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_36_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_36_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_37": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_37_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_37_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_38": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_38_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_38_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_39": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_39_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_39_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_40": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_40_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_40_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_41": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_41_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_41_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_42": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_42_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_42_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_43": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_43_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_43_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_44": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_44_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_44_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        },
+        "driver_45": {
+            "shift_start": "08:00",
+            "shift_end": "18:00",
+            "start_location": {
+                "id": "driver_45_start",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            },
+            "end_location": {
+                "id": "driver_45_end",
+                "name": "Pukehina, Western Bay of Plenty 3186, New Zealand",
+                "lat": -37.896179,
+                "lng": 176.508367
+            }
+        }
+    },
+    "visits": {
+        "stop_0": {
+            "location": {
+                "name": "stop_0",
+                "lat": -37.851084,
+                "lng": 176.307786
+            }
+        },
+        "stop_1": {
+            "location": {
+                "name": "stop_1",
+                "lat": -37.836161,
+                "lng": 176.356777
+            }
+        },
+        "stop_2": {
+            "location": {
+                "name": "stop_2",
+                "lat": -37.841015,
+                "lng": 176.369253
+            }
+        },
+        "stop_3": {
+            "location": {
+                "name": "stop_3",
+                "lat": -37.841015,
+                "lng": 176.369253
+            }
+        },
+        "stop_4": {
+            "location": {
+                "name": "stop_4",
+                "lat": -37.846179,
+                "lng": 176.508367
+            }
+        },
+        "stop_5": {
+            "location": {
+                "name": "stop_5",
+                "lat": -37.846179,
+                "lng": 176.508367
+            }
+        },
+        "stop_6": {
+            "location": {
+                "name": "stop_6",
+                "lat": -37.85641,
+                "lng": 176.513117
+            }
+        },
+        "stop_7": {
+            "location": {
+                "name": "stop_7",
+                "lat": -37.85641,
+                "lng": 176.513117
+            }
+        },
+        "stop_8": {
+            "location": {
+                "name": "stop_8",
+                "lat": -37.690352,
+                "lng": 175.988035
+            }
+        },
+        "stop_9": {
+            "location": {
+                "name": "stop_9",
+                "lat": -37.690352,
+                "lng": 175.988035
+            }
+        },
+        "stop_10": {
+            "location": {
+                "name": "stop_10",
+                "lat": -37.832416,
+                "lng": 176.379886
+            }
+        },
+        "stop_11": {
+            "location": {
+                "name": "stop_11",
+                "lat": -37.832416,
+                "lng": 176.379886
+            }
+        },
+        "stop_12": {
+            "location": {
+                "name": "stop_12",
+                "lat": -37.832416,
+                "lng": 176.379886
+            }
+        },
+        "stop_13": {
+            "location": {
+                "name": "stop_13",
+                "lat": -37.832416,
+                "lng": 176.379886
+            }
+        },
+        "stop_14": {
+            "location": {
+                "name": "stop_14",
+                "lat": -37.826741,
+                "lng": 176.314001
+            }
+        },
+        "stop_15": {
+            "location": {
+                "name": "stop_15",
+                "lat": -37.826741,
+                "lng": 176.314001
+            }
+        },
+        "stop_16": {
+            "location": {
+                "name": "stop_16",
+                "lat": -37.830003,
+                "lng": 176.362355
+            }
+        },
+        "stop_17": {
+            "location": {
+                "name": "stop_17",
+                "lat": -37.830003,
+                "lng": 176.362355
+            }
+        },
+        "stop_18": {
+            "location": {
+                "name": "stop_18",
+                "lat": -37.997388,
+                "lng": 177.426381
+            }
+        },
+        "stop_19": {
+            "location": {
+                "name": "stop_19",
+                "lat": -37.997388,
+                "lng": 177.426381
+            }
+        },
+        "stop_20": {
+            "location": {
+                "name": "stop_20",
+                "lat": -38.05758,
+                "lng": 177.265614
+            }
+        },
+        "stop_21": {
+            "location": {
+                "name": "stop_21",
+                "lat": -37.947582,
+                "lng": 177.494021
+            }
+        },
+        "stop_22": {
+            "location": {
+                "name": "stop_22",
+                "lat": -38.01984,
+                "lng": 177.208696
+            }
+        },
+        "stop_23": {
+            "location": {
+                "name": "stop_23",
+                "lat": -38.01984,
+                "lng": 177.208696
+            }
+        },
+        "stop_24": {
+            "location": {
+                "name": "stop_24",
+                "lat": -37.792478,
+                "lng": 176.089897
+            }
+        },
+        "stop_25": {
+            "location": {
+                "name": "stop_25",
+                "lat": -37.792478,
+                "lng": 176.089897
+            }
+        },
+        "stop_26": {
+            "location": {
+                "name": "stop_26",
+                "lat": -37.805507,
+                "lng": 176.075795
+            }
+        },
+        "stop_27": {
+            "location": {
+                "name": "stop_27",
+                "lat": -37.805507,
+                "lng": 176.075795
+            }
+        },
+        "stop_28": {
+            "location": {
+                "name": "stop_28",
+                "lat": -37.58142,
+                "lng": 175.894696
+            }
+        },
+        "stop_29": {
+            "location": {
+                "name": "stop_29",
+                "lat": -37.58142,
+                "lng": 175.894696
+            }
+        },
+        "stop_30": {
+            "location": {
+                "name": "stop_30",
+                "lat": -37.624726,
+                "lng": 175.947383
+            }
+        },
+        "stop_31": {
+            "location": {
+                "name": "stop_31",
+                "lat": -37.624726,
+                "lng": 175.947383
+            }
+        },
+        "stop_32": {
+            "location": {
+                "name": "stop_32",
+                "lat": -37.799415,
+                "lng": 176.070636
+            }
+        },
+        "stop_33": {
+            "location": {
+                "name": "stop_33",
+                "lat": -37.799415,
+                "lng": 176.070636
+            }
+        },
+        "stop_34": {
+            "location": {
+                "name": "stop_34",
+                "lat": -37.799415,
+                "lng": 176.070636
+            }
+        },
+        "stop_35": {
+            "location": {
+                "name": "stop_35",
+                "lat": -37.799415,
+                "lng": 176.070636
+            }
+        },
+        "stop_36": {
+            "location": {
+                "name": "stop_36",
+                "lat": -37.841253,
+                "lng": 176.270764
+            }
+        },
+        "stop_37": {
+            "location": {
+                "name": "stop_37",
+                "lat": -37.841253,
+                "lng": 176.270764
+            }
+        },
+        "stop_38": {
+            "location": {
+                "name": "stop_38",
+                "lat": -37.990402,
+                "lng": 176.79137
+            }
+        },
+        "stop_39": {
+            "location": {
+                "name": "stop_39",
+                "lat": -37.990402,
+                "lng": 176.79137
+            }
+        },
+        "stop_40": {
+            "location": {
+                "name": "stop_40",
+                "lat": -38.009563,
+                "lng": 176.784261
+            }
+        },
+        "stop_41": {
+            "location": {
+                "name": "stop_41",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_42": {
+            "location": {
+                "name": "stop_42",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_43": {
+            "location": {
+                "name": "stop_43",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_44": {
+            "location": {
+                "name": "stop_44",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_45": {
+            "location": {
+                "name": "stop_45",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_46": {
+            "location": {
+                "name": "stop_46",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_47": {
+            "location": {
+                "name": "stop_47",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_48": {
+            "location": {
+                "name": "stop_48",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_49": {
+            "location": {
+                "name": "stop_49",
+                "lat": -38.052008,
+                "lng": 176.999882
+            }
+        },
+        "stop_50": {
+            "location": {
+                "name": "stop_50",
+                "lat": -38.052008,
+                "lng": 176.999882
+            }
+        },
+        "stop_51": {
+            "location": {
+                "name": "stop_51",
+                "lat": -38.048807,
+                "lng": 176.998304
+            }
+        },
+        "stop_52": {
+            "location": {
+                "name": "stop_52",
+                "lat": -38.048807,
+                "lng": 176.998304
+            }
+        },
+        "stop_53": {
+            "location": {
+                "name": "stop_53",
+                "lat": -37.982094,
+                "lng": 176.865203
+            }
+        },
+        "stop_54": {
+            "location": {
+                "name": "stop_54",
+                "lat": -37.982094,
+                "lng": 176.865203
+            }
+        },
+        "stop_55": {
+            "location": {
+                "name": "stop_55",
+                "lat": -37.982094,
+                "lng": 176.865203
+            }
+        },
+        "stop_56": {
+            "location": {
+                "name": "stop_56",
+                "lat": -37.982094,
+                "lng": 176.865203
+            }
+        },
+        "stop_57": {
+            "location": {
+                "name": "stop_57",
+                "lat": -38.015798,
+                "lng": 177.219023
+            }
+        },
+        "stop_58": {
+            "location": {
+                "name": "stop_58",
+                "lat": -38.015798,
+                "lng": 177.219023
+            }
+        },
+        "stop_59": {
+            "location": {
+                "name": "stop_59",
+                "lat": -38.02832,
+                "lng": 176.831241
+            }
+        },
+        "stop_60": {
+            "location": {
+                "name": "stop_60",
+                "lat": -38.02832,
+                "lng": 176.831241
+            }
+        },
+        "stop_61": {
+            "location": {
+                "name": "stop_61",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_62": {
+            "location": {
+                "name": "stop_62",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_63": {
+            "location": {
+                "name": "stop_63",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_64": {
+            "location": {
+                "name": "stop_64",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_65": {
+            "location": {
+                "name": "stop_65",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_66": {
+            "location": {
+                "name": "stop_66",
+                "lat": -37.629556,
+                "lng": 175.950679
+            }
+        },
+        "stop_67": {
+            "location": {
+                "name": "stop_67",
+                "lat": -38.02832,
+                "lng": 176.831241
+            }
+        },
+        "stop_68": {
+            "location": {
+                "name": "stop_68",
+                "lat": -38.02832,
+                "lng": 176.831241
+            }
+        },
+        "stop_69": {
+            "location": {
+                "name": "stop_69",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_70": {
+            "location": {
+                "name": "stop_70",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_71": {
+            "location": {
+                "name": "stop_71",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_72": {
+            "location": {
+                "name": "stop_72",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_73": {
+            "location": {
+                "name": "stop_73",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_74": {
+            "location": {
+                "name": "stop_74",
+                "lat": -37.503056,
+                "lng": 175.949477
+            }
+        },
+        "stop_75": {
+            "location": {
+                "name": "stop_75",
+                "lat": -37.5063,
+                "lng": 175.951932
+            }
+        },
+        "stop_76": {
+            "location": {
+                "name": "stop_76",
+                "lat": -37.5063,
+                "lng": 175.951932
+            }
+        },
+        "stop_77": {
+            "location": {
+                "name": "stop_77",
+                "lat": -37.830692,
+                "lng": 176.412057
+            }
+        },
+        "stop_78": {
+            "location": {
+                "name": "stop_78",
+                "lat": -37.830692,
+                "lng": 176.412057
+            }
+        },
+        "stop_79": {
+            "location": {
+                "name": "stop_79",
+                "lat": -37.830692,
+                "lng": 176.412057
+            }
+        },
+        "stop_80": {
+            "location": {
+                "name": "stop_80",
+                "lat": -37.830692,
+                "lng": 176.412057
+            }
+        },
+        "stop_81": {
+            "location": {
+                "name": "stop_81",
+                "lat": -37.557795,
+                "lng": 175.883701
+            }
+        },
+        "stop_82": {
+            "location": {
+                "name": "stop_82",
+                "lat": -37.669288,
+                "lng": 175.975693
+            }
+        },
+        "stop_83": {
+            "location": {
+                "name": "stop_83",
+                "lat": -37.680731,
+                "lng": 175.971198
+            }
+        },
+        "stop_84": {
+            "location": {
+                "name": "stop_84",
+                "lat": -37.667931,
+                "lng": 175.975616
+            }
+        },
+        "stop_85": {
+            "location": {
+                "name": "stop_85",
+                "lat": -37.863871,
+                "lng": 176.310648
+            }
+        },
+        "stop_86": {
+            "location": {
+                "name": "stop_86",
+                "lat": -37.863871,
+                "lng": 176.310648
+            }
+        },
+        "stop_87": {
+            "location": {
+                "name": "stop_87",
+                "lat": -37.823022,
+                "lng": 176.37175
+            }
+        },
+        "stop_88": {
+            "location": {
+                "name": "stop_88",
+                "lat": -37.823022,
+                "lng": 176.37175
+            }
+        },
+        "stop_89": {
+            "location": {
+                "name": "stop_89",
+                "lat": -37.998245,
+                "lng": 177.322037
+            }
+        },
+        "stop_90": {
+            "location": {
+                "name": "stop_90",
+                "lat": -37.995839,
+                "lng": 177.386212
+            }
+        },
+        "stop_91": {
+            "location": {
+                "name": "stop_91",
+                "lat": -37.807402,
+                "lng": 176.341416
+            }
+        },
+        "stop_92": {
+            "location": {
+                "name": "stop_92",
+                "lat": -37.807402,
+                "lng": 176.341416
+            }
+        },
+        "stop_93": {
+            "location": {
+                "name": "stop_93",
+                "lat": -37.807402,
+                "lng": 176.341416
+            }
+        },
+        "stop_94": {
+            "location": {
+                "name": "stop_94",
+                "lat": -37.807402,
+                "lng": 176.341416
+            }
+        },
+        "stop_95": {
+            "location": {
+                "name": "stop_95",
+                "lat": -37.705516,
+                "lng": 176.094102
+            }
+        },
+        "stop_96": {
+            "location": {
+                "name": "stop_96",
+                "lat": -37.705516,
+                "lng": 176.094102
+            }
+        },
+        "stop_97": {
+            "location": {
+                "name": "stop_97",
+                "lat": -37.705516,
+                "lng": 176.094102
+            }
+        },
+        "stop_98": {
+            "location": {
+                "name": "stop_98",
+                "lat": -37.705516,
+                "lng": 176.094102
+            }
+        },
+        "stop_99": {
+            "location": {
+                "name": "stop_99",
+                "lat": -38.037164,
+                "lng": 177.240858
+            }
+        },
+        "stop_100": {
+            "location": {
+                "name": "stop_100",
+                "lat": -38.037164,
+                "lng": 177.240858
+            }
+        },
+        "stop_101": {
+            "location": {
+                "name": "stop_101",
+                "lat": -37.859586,
+                "lng": 176.425697
+            }
+        },
+        "stop_102": {
+            "location": {
+                "name": "stop_102",
+                "lat": -37.859586,
+                "lng": 176.425697
+            }
+        },
+        "stop_103": {
+            "location": {
+                "name": "stop_103",
+                "lat": -37.859586,
+                "lng": 176.425697
+            }
+        },
+        "stop_104": {
+            "location": {
+                "name": "stop_104",
+                "lat": -37.859586,
+                "lng": 176.425697
+            }
+        },
+        "stop_105": {
+            "location": {
+                "name": "stop_105",
+                "lat": -37.842065,
+                "lng": 176.364095
+            }
+        },
+        "stop_106": {
+            "location": {
+                "name": "stop_106",
+                "lat": -37.509211,
+                "lng": 175.918159
+            }
+        },
+        "stop_107": {
+            "location": {
+                "name": "stop_107",
+                "lat": -37.509211,
+                "lng": 175.918159
+            }
+        },
+        "stop_108": {
+            "location": {
+                "name": "stop_108",
+                "lat": -38.010646,
+                "lng": 177.247571
+            }
+        },
+        "stop_109": {
+            "location": {
+                "name": "stop_109",
+                "lat": -38.010646,
+                "lng": 177.247571
+            }
+        },
+        "stop_110": {
+            "location": {
+                "name": "stop_110",
+                "lat": -38.010646,
+                "lng": 177.247571
+            }
+        },
+        "stop_111": {
+            "location": {
+                "name": "stop_111",
+                "lat": -38.010646,
+                "lng": 177.247571
+            }
+        },
+        "stop_112": {
+            "location": {
+                "name": "stop_112",
+                "lat": -37.992418,
+                "lng": 177.374329
+            }
+        },
+        "stop_113": {
+            "location": {
+                "name": "stop_113",
+                "lat": -37.992418,
+                "lng": 177.374329
+            }
+        },
+        "stop_114": {
+            "location": {
+                "name": "stop_114",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_115": {
+            "location": {
+                "name": "stop_115",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_116": {
+            "location": {
+                "name": "stop_116",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_117": {
+            "location": {
+                "name": "stop_117",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_118": {
+            "location": {
+                "name": "stop_118",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_119": {
+            "location": {
+                "name": "stop_119",
+                "lat": -37.990778,
+                "lng": 177.378198
+            }
+        },
+        "stop_120": {
+            "location": {
+                "name": "stop_120",
+                "lat": -37.82504,
+                "lng": 176.275372
+            }
+        },
+        "stop_121": {
+            "location": {
+                "name": "stop_121",
+                "lat": -37.82504,
+                "lng": 176.275372
+            }
+        },
+        "stop_122": {
+            "location": {
+                "name": "stop_122",
+                "lat": -37.820806,
+                "lng": 176.276025
+            }
+        },
+        "stop_123": {
+            "location": {
+                "name": "stop_123",
+                "lat": -37.820806,
+                "lng": 176.276025
+            }
+        },
+        "stop_124": {
+            "location": {
+                "name": "stop_124",
+                "lat": -37.999653,
+                "lng": 177.315619
+            }
+        },
+        "stop_125": {
+            "location": {
+                "name": "stop_125",
+                "lat": -37.999653,
+                "lng": 177.315619
+            }
+        },
+        "stop_126": {
+            "location": {
+                "name": "stop_126",
+                "lat": -38.017063,
+                "lng": 177.213519
+            }
+        },
+        "stop_127": {
+            "location": {
+                "name": "stop_127",
+                "lat": -38.017063,
+                "lng": 177.213519
+            }
+        },
+        "stop_128": {
+            "location": {
+                "name": "stop_128",
+                "lat": -37.812648,
+                "lng": 176.286524
+            }
+        },
+        "stop_129": {
+            "location": {
+                "name": "stop_129",
+                "lat": -37.812648,
+                "lng": 176.286524
+            }
+        },
+        "stop_130": {
+            "location": {
+                "name": "stop_130",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_131": {
+            "location": {
+                "name": "stop_131",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_132": {
+            "location": {
+                "name": "stop_132",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_133": {
+            "location": {
+                "name": "stop_133",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_134": {
+            "location": {
+                "name": "stop_134",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_135": {
+            "location": {
+                "name": "stop_135",
+                "lat": -37.822379,
+                "lng": 176.313756
+            }
+        },
+        "stop_136": {
+            "location": {
+                "name": "stop_136",
+                "lat": -37.788679,
+                "lng": 176.305716
+            }
+        },
+        "stop_137": {
+            "location": {
+                "name": "stop_137",
+                "lat": -37.788679,
+                "lng": 176.305716
+            }
+        },
+        "stop_138": {
+            "location": {
+                "name": "stop_138",
+                "lat": -37.864645,
+                "lng": 176.330229
+            }
+        },
+        "stop_139": {
+            "location": {
+                "name": "stop_139",
+                "lat": -37.864645,
+                "lng": 176.330229
+            }
+        },
+        "stop_140": {
+            "location": {
+                "name": "stop_140",
+                "lat": -37.864645,
+                "lng": 176.330229
+            }
+        },
+        "stop_141": {
+            "location": {
+                "name": "stop_141",
+                "lat": -37.864645,
+                "lng": 176.330229
+            }
+        },
+        "stop_142": {
+            "location": {
+                "name": "stop_142",
+                "lat": -37.847935,
+                "lng": 176.352278
+            }
+        },
+        "stop_143": {
+            "location": {
+                "name": "stop_143",
+                "lat": -37.847935,
+                "lng": 176.352278
+            }
+        },
+        "stop_144": {
+            "location": {
+                "name": "stop_144",
+                "lat": -37.854752,
+                "lng": 176.350191
+            }
+        },
+        "stop_145": {
+            "location": {
+                "name": "stop_145",
+                "lat": -37.854752,
+                "lng": 176.350191
+            }
+        },
+        "stop_146": {
+            "location": {
+                "name": "stop_146",
+                "lat": -37.672354,
+                "lng": 175.965627
+            }
+        },
+        "stop_147": {
+            "location": {
+                "name": "stop_147",
+                "lat": -37.672354,
+                "lng": 175.965627
+            }
+        },
+        "stop_148": {
+            "location": {
+                "name": "stop_148",
+                "lat": -37.847363,
+                "lng": 176.395437
+            }
+        },
+        "stop_149": {
+            "location": {
+                "name": "stop_149",
+                "lat": -37.636884,
+                "lng": 175.945869
+            }
+        },
+        "stop_150": {
+            "location": {
+                "name": "stop_150",
+                "lat": -37.83048,
+                "lng": 176.310504
+            }
+        },
+        "stop_151": {
+            "location": {
+                "name": "stop_151",
+                "lat": -37.998863,
+                "lng": 177.324904
+            }
+        },
+        "stop_152": {
+            "location": {
+                "name": "stop_152",
+                "lat": -37.998863,
+                "lng": 177.324904
+            }
+        },
+        "stop_153": {
+            "location": {
+                "name": "stop_153",
+                "lat": -37.768911,
+                "lng": 176.079582
+            }
+        },
+        "stop_154": {
+            "location": {
+                "name": "stop_154",
+                "lat": -37.768911,
+                "lng": 176.079582
+            }
+        },
+        "stop_155": {
+            "location": {
+                "name": "stop_155",
+                "lat": -37.995242,
+                "lng": 176.976971
+            }
+        },
+        "stop_156": {
+            "location": {
+                "name": "stop_156",
+                "lat": -38.004938,
+                "lng": 176.949779
+            }
+        },
+        "stop_157": {
+            "location": {
+                "name": "stop_157",
+                "lat": -37.873565,
+                "lng": 176.306835
+            }
+        },
+        "stop_158": {
+            "location": {
+                "name": "stop_158",
+                "lat": -37.873565,
+                "lng": 176.306835
+            }
+        },
+        "stop_159": {
+            "location": {
+                "name": "stop_159",
+                "lat": -37.618977,
+                "lng": 175.958191
+            }
+        },
+        "stop_160": {
+            "location": {
+                "name": "stop_160",
+                "lat": -37.618977,
+                "lng": 175.958191
+            }
+        },
+        "stop_161": {
+            "location": {
+                "name": "stop_161",
+                "lat": -37.800973,
+                "lng": 176.123509
+            }
+        },
+        "stop_162": {
+            "location": {
+                "name": "stop_162",
+                "lat": -37.874062,
+                "lng": 176.300997
+            }
+        },
+        "stop_163": {
+            "location": {
+                "name": "stop_163",
+                "lat": -37.874062,
+                "lng": 176.300997
+            }
+        },
+        "stop_164": {
+            "location": {
+                "name": "stop_164",
+                "lat": -37.874062,
+                "lng": 176.300997
+            }
+        },
+        "stop_165": {
+            "location": {
+                "name": "stop_165",
+                "lat": -37.874062,
+                "lng": 176.300997
+            }
+        },
+        "stop_166": {
+            "location": {
+                "name": "stop_166",
+                "lat": -37.870276,
+                "lng": 176.303386
+            }
+        },
+        "stop_167": {
+            "location": {
+                "name": "stop_167",
+                "lat": -37.870276,
+                "lng": 176.303386
+            }
+        },
+        "stop_168": {
+            "location": {
+                "name": "stop_168",
+                "lat": -37.785279,
+                "lng": 176.410796
+            }
+        },
+        "stop_169": {
+            "location": {
+                "name": "stop_169",
+                "lat": -37.785279,
+                "lng": 176.410796
+            }
+        },
+        "stop_170": {
+            "location": {
+                "name": "stop_170",
+                "lat": -37.684934,
+                "lng": 176.050245
+            }
+        },
+        "stop_171": {
+            "location": {
+                "name": "stop_171",
+                "lat": -37.684934,
+                "lng": 176.050245
+            }
+        },
+        "stop_172": {
+            "location": {
+                "name": "stop_172",
+                "lat": -37.684934,
+                "lng": 176.050245
+            }
+        },
+        "stop_173": {
+            "location": {
+                "name": "stop_173",
+                "lat": -37.684934,
+                "lng": 176.050245
+            }
+        },
+        "stop_174": {
+            "location": {
+                "name": "stop_174",
+                "lat": -37.687248,
+                "lng": 176.048847
+            }
+        },
+        "stop_175": {
+            "location": {
+                "name": "stop_175",
+                "lat": -37.687248,
+                "lng": 176.048847
+            }
+        },
+        "stop_176": {
+            "location": {
+                "name": "stop_176",
+                "lat": -37.831685,
+                "lng": 176.413596
+            }
+        },
+        "stop_177": {
+            "location": {
+                "name": "stop_177",
+                "lat": -37.63107,
+                "lng": 175.954561
+            }
+        },
+        "stop_178": {
+            "location": {
+                "name": "stop_178",
+                "lat": -37.63107,
+                "lng": 175.954561
+            }
+        },
+        "stop_179": {
+            "location": {
+                "name": "stop_179",
+                "lat": -37.667569,
+                "lng": 176.061005
+            }
+        },
+        "stop_180": {
+            "location": {
+                "name": "stop_180",
+                "lat": -37.667569,
+                "lng": 176.061005
+            }
+        },
+        "stop_181": {
+            "location": {
+                "name": "stop_181",
+                "lat": -37.677257,
+                "lng": 176.0557
+            }
+        },
+        "stop_182": {
+            "location": {
+                "name": "stop_182",
+                "lat": -37.772833,
+                "lng": 176.409941
+            }
+        },
+        "stop_183": {
+            "location": {
+                "name": "stop_183",
+                "lat": -37.677257,
+                "lng": 176.0557
+            }
+        },
+        "stop_184": {
+            "location": {
+                "name": "stop_184",
+                "lat": -37.786023,
+                "lng": 176.406172
+            }
+        },
+        "stop_185": {
+            "location": {
+                "name": "stop_185",
+                "lat": -37.775327,
+                "lng": 176.0803
+            }
+        },
+        "stop_186": {
+            "location": {
+                "name": "stop_186",
+                "lat": -37.775327,
+                "lng": 176.0803
+            }
+        },
+        "stop_187": {
+            "location": {
+                "name": "stop_187",
+                "lat": -37.782407,
+                "lng": 176.046471
+            }
+        },
+        "stop_188": {
+            "location": {
+                "name": "stop_188",
+                "lat": -37.782407,
+                "lng": 176.046471
+            }
+        },
+        "stop_189": {
+            "location": {
+                "name": "stop_189",
+                "lat": -37.782407,
+                "lng": 176.046471
+            }
+        },
+        "stop_190": {
+            "location": {
+                "name": "stop_190",
+                "lat": -37.782407,
+                "lng": 176.046471
+            }
+        },
+        "stop_191": {
+            "location": {
+                "name": "stop_191",
+                "lat": -37.782407,
+                "lng": 176.046471
+            }
+        },
+        "stop_192": {
+            "location": {
+                "name": "stop_192",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_193": {
+            "location": {
+                "name": "stop_193",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_194": {
+            "location": {
+                "name": "stop_194",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_195": {
+            "location": {
+                "name": "stop_195",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_196": {
+            "location": {
+                "name": "stop_196",
+                "lat": -37.667076,
+                "lng": 176.055525
+            }
+        },
+        "stop_197": {
+            "location": {
+                "name": "stop_197",
+                "lat": -37.692531,
+                "lng": 176.018571
+            }
+        },
+        "stop_198": {
+            "location": {
+                "name": "stop_198",
+                "lat": -37.69,
+                "lng": 176.07
+            }
+        },
+        "stop_199": {
+            "location": {
+                "name": "stop_199",
+                "lat": -37.793177,
+                "lng": 176.112956
+            }
+        },
+        "stop_200": {
+            "location": {
+                "name": "stop_200",
+                "lat": -37.590095,
+                "lng": 175.970916
+            }
+        },
+        "stop_201": {
+            "location": {
+                "name": "stop_201",
+                "lat": -37.590095,
+                "lng": 175.970916
+            }
+        },
+        "stop_202": {
+            "location": {
+                "name": "stop_202",
+                "lat": -37.51001,
+                "lng": 175.937872
+            }
+        },
+        "stop_203": {
+            "location": {
+                "name": "stop_203",
+                "lat": -37.400415,
+                "lng": 175.857161
+            }
+        },
+        "stop_204": {
+            "location": {
+                "name": "stop_204",
+                "lat": -37.772087,
+                "lng": 176.10552
+            }
+        },
+        "stop_205": {
+            "location": {
+                "name": "stop_205",
+                "lat": -37.664485,
+                "lng": 176.053525
+            }
+        },
+        "stop_206": {
+            "location": {
+                "name": "stop_206",
+                "lat": -37.791443,
+                "lng": 176.126987
+            }
+        },
+        "stop_207": {
+            "location": {
+                "name": "stop_207",
+                "lat": -37.762072,
+                "lng": 176.136288
+            }
+        },
+        "stop_208": {
+            "location": {
+                "name": "stop_208",
+                "lat": -37.777729,
+                "lng": 176.123458
+            }
+        },
+        "stop_209": {
+            "location": {
+                "name": "stop_209",
+                "lat": -37.782431,
+                "lng": 176.122575
+            }
+        },
+        "stop_210": {
+            "location": {
+                "name": "stop_210",
+                "lat": -37.784454,
+                "lng": 176.122943
+            }
+        },
+        "stop_211": {
+            "location": {
+                "name": "stop_211",
+                "lat": -37.7809,
+                "lng": 176.12297
+            }
+        },
+        "stop_212": {
+            "location": {
+                "name": "stop_212",
+                "lat": -37.779512,
+                "lng": 176.12423
+            }
+        },
+        "stop_213": {
+            "location": {
+                "name": "stop_213",
+                "lat": -37.780059,
+                "lng": 176.12722
+            }
+        },
+        "stop_214": {
+            "location": {
+                "name": "stop_214",
+                "lat": -37.508845,
+                "lng": 175.933779
+            }
+        },
+        "stop_215": {
+            "location": {
+                "name": "stop_215",
+                "lat": -37.755147,
+                "lng": 176.1304
+            }
+        },
+        "stop_216": {
+            "location": {
+                "name": "stop_216",
+                "lat": -37.802207,
+                "lng": 176.121132
+            }
+        },
+        "stop_217": {
+            "location": {
+                "name": "stop_217",
+                "lat": -37.400415,
+                "lng": 175.857161
+            }
+        },
+        "stop_218": {
+            "location": {
+                "name": "stop_218",
+                "lat": -37.400415,
+                "lng": 175.857161
+            }
+        },
+        "stop_219": {
+            "location": {
+                "name": "stop_219",
+                "lat": -37.772113,
+                "lng": 176.089087
+            }
+        },
+        "stop_220": {
+            "location": {
+                "name": "stop_220",
+                "lat": -37.772113,
+                "lng": 176.089087
+            }
+        },
+        "stop_221": {
+            "location": {
+                "name": "stop_221",
+                "lat": -37.821891,
+                "lng": 176.319301
+            }
+        },
+        "stop_222": {
+            "location": {
+                "name": "stop_222",
+                "lat": -37.787625,
+                "lng": 176.295714
+            }
+        },
+        "stop_223": {
+            "location": {
+                "name": "stop_223",
+                "lat": -37.787625,
+                "lng": 176.295714
+            }
+        },
+        "stop_224": {
+            "location": {
+                "name": "stop_224",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_225": {
+            "location": {
+                "name": "stop_225",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_226": {
+            "location": {
+                "name": "stop_226",
+                "lat": -38.012695,
+                "lng": 177.210511
+            }
+        },
+        "stop_227": {
+            "location": {
+                "name": "stop_227",
+                "lat": -38.012695,
+                "lng": 177.210511
+            }
+        },
+        "stop_228": {
+            "location": {
+                "name": "stop_228",
+                "lat": -38.012695,
+                "lng": 177.210511
+            }
+        },
+        "stop_229": {
+            "location": {
+                "name": "stop_229",
+                "lat": -38.012695,
+                "lng": 177.210511
+            }
+        },
+        "stop_230": {
+            "location": {
+                "name": "stop_230",
+                "lat": -37.834945,
+                "lng": 176.382462
+            }
+        },
+        "stop_231": {
+            "location": {
+                "name": "stop_231",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_232": {
+            "location": {
+                "name": "stop_232",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_233": {
+            "location": {
+                "name": "stop_233",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_234": {
+            "location": {
+                "name": "stop_234",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_235": {
+            "location": {
+                "name": "stop_235",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_236": {
+            "location": {
+                "name": "stop_236",
+                "lat": -38.076294,
+                "lng": 177.268034
+            }
+        },
+        "stop_237": {
+            "location": {
+                "name": "stop_237",
+                "lat": -37.659225,
+                "lng": 177.87155
+            }
+        },
+        "stop_238": {
+            "location": {
+                "name": "stop_238",
+                "lat": -37.679623,
+                "lng": 176.059675
+            }
+        },
+        "stop_239": {
+            "location": {
+                "name": "stop_239",
+                "lat": -37.679623,
+                "lng": 176.059675
+            }
+        },
+        "stop_240": {
+            "location": {
+                "name": "stop_240",
+                "lat": -37.684867,
+                "lng": 175.993921
+            }
+        },
+        "stop_241": {
+            "location": {
+                "name": "stop_241",
+                "lat": -37.684867,
+                "lng": 175.993921
+            }
+        },
+        "stop_242": {
+            "location": {
+                "name": "stop_242",
+                "lat": -37.684867,
+                "lng": 175.993921
+            }
+        },
+        "stop_243": {
+            "location": {
+                "name": "stop_243",
+                "lat": -37.684867,
+                "lng": 175.993921
+            }
+        },
+        "stop_244": {
+            "location": {
+                "name": "stop_244",
+                "lat": -37.689137,
+                "lng": 176.047807
+            }
+        },
+        "stop_245": {
+            "location": {
+                "name": "stop_245",
+                "lat": -38.033121,
+                "lng": 176.82865
+            }
+        },
+        "stop_246": {
+            "location": {
+                "name": "stop_246",
+                "lat": -38.033121,
+                "lng": 176.82865
+            }
+        },
+        "stop_247": {
+            "location": {
+                "name": "stop_247",
+                "lat": -37.847853,
+                "lng": 176.510964
+            }
+        },
+        "stop_248": {
+            "location": {
+                "name": "stop_248",
+                "lat": -37.847853,
+                "lng": 176.510964
+            }
+        },
+        "stop_249": {
+            "location": {
+                "name": "stop_249",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_250": {
+            "location": {
+                "name": "stop_250",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_251": {
+            "location": {
+                "name": "stop_251",
+                "lat": -37.996019,
+                "lng": 177.368592
+            }
+        },
+        "stop_252": {
+            "location": {
+                "name": "stop_252",
+                "lat": -37.996019,
+                "lng": 177.368592
+            }
+        },
+        "stop_253": {
+            "location": {
+                "name": "stop_253",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_254": {
+            "location": {
+                "name": "stop_254",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_255": {
+            "location": {
+                "name": "stop_255",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_256": {
+            "location": {
+                "name": "stop_256",
+                "lat": -37.612149,
+                "lng": 175.935417
+            }
+        },
+        "stop_257": {
+            "location": {
+                "name": "stop_257",
+                "lat": -37.870722,
+                "lng": 176.31561
+            }
+        },
+        "stop_258": {
+            "location": {
+                "name": "stop_258",
+                "lat": -37.870722,
+                "lng": 176.31561
+            }
+        },
+        "stop_259": {
+            "location": {
+                "name": "stop_259",
+                "lat": -37.805985,
+                "lng": 176.298241
+            }
+        },
+        "stop_260": {
+            "location": {
+                "name": "stop_260",
+                "lat": -37.805985,
+                "lng": 176.298241
+            }
+        },
+        "stop_261": {
+            "location": {
+                "name": "stop_261",
+                "lat": -37.834543,
+                "lng": 176.398827
+            }
+        },
+        "stop_262": {
+            "location": {
+                "name": "stop_262",
+                "lat": -37.834543,
+                "lng": 176.398827
+            }
+        },
+        "stop_263": {
+            "location": {
+                "name": "stop_263",
+                "lat": -37.797439,
+                "lng": 176.068427
+            }
+        },
+        "stop_264": {
+            "location": {
+                "name": "stop_264",
+                "lat": -37.797439,
+                "lng": 176.068427
+            }
+        },
+        "stop_265": {
+            "location": {
+                "name": "stop_265",
+                "lat": -37.670582,
+                "lng": 176.063964
+            }
+        },
+        "stop_266": {
+            "location": {
+                "name": "stop_266",
+                "lat": -37.670582,
+                "lng": 176.063964
+            }
+        },
+        "stop_267": {
+            "location": {
+                "name": "stop_267",
+                "lat": -38.035088,
+                "lng": 177.226999
+            }
+        },
+        "stop_268": {
+            "location": {
+                "name": "stop_268",
+                "lat": -37.791093,
+                "lng": 176.089573
+            }
+        },
+        "stop_269": {
+            "location": {
+                "name": "stop_269",
+                "lat": -37.791093,
+                "lng": 176.089573
+            }
+        },
+        "stop_270": {
+            "location": {
+                "name": "stop_270",
+                "lat": -37.811467,
+                "lng": 176.07354
+            }
+        },
+        "stop_271": {
+            "location": {
+                "name": "stop_271",
+                "lat": -37.811467,
+                "lng": 176.07354
+            }
+        },
+        "stop_272": {
+            "location": {
+                "name": "stop_272",
+                "lat": -38.037164,
+                "lng": 177.240858
+            }
+        },
+        "stop_273": {
+            "location": {
+                "name": "stop_273",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_274": {
+            "location": {
+                "name": "stop_274",
+                "lat": -37.76,
+                "lng": 177.69
+            }
+        },
+        "stop_275": {
+            "location": {
+                "name": "stop_275",
+                "lat": -38.015798,
+                "lng": 177.219023
+            }
+        },
+        "stop_276": {
+            "location": {
+                "name": "stop_276",
+                "lat": -37.837894,
+                "lng": 176.279272
+            }
+        },
+        "stop_277": {
+            "location": {
+                "name": "stop_277",
+                "lat": -37.837894,
+                "lng": 176.279272
+            }
+        },
+        "stop_278": {
+            "location": {
+                "name": "stop_278",
+                "lat": -37.829555,
+                "lng": 176.385286
+            }
+        },
+        "stop_279": {
+            "location": {
+                "name": "stop_279",
+                "lat": -37.829555,
+                "lng": 176.385286
+            }
+        },
+        "stop_280": {
+            "location": {
+                "name": "stop_280",
+                "lat": -37.635448,
+                "lng": 175.939059
+            }
+        },
+        "stop_281": {
+            "location": {
+                "name": "stop_281",
+                "lat": -37.635448,
+                "lng": 175.939059
+            }
+        },
+        "stop_282": {
+            "location": {
+                "name": "stop_282",
+                "lat": -38.041473,
+                "lng": 177.3111
+            }
+        },
+        "stop_283": {
+            "location": {
+                "name": "stop_283",
+                "lat": -38.041473,
+                "lng": 177.3111
+            }
+        },
+        "stop_284": {
+            "location": {
+                "name": "stop_284",
+                "lat": -38.041473,
+                "lng": 177.3111
+            }
+        },
+        "stop_285": {
+            "location": {
+                "name": "stop_285",
+                "lat": -38.041473,
+                "lng": 177.3111
+            }
+        },
+        "stop_286": {
+            "location": {
+                "name": "stop_286",
+                "lat": -37.776244,
+                "lng": 176.417523
+            }
+        },
+        "stop_287": {
+            "location": {
+                "name": "stop_287",
+                "lat": -37.776244,
+                "lng": 176.417523
+            }
+        },
+        "stop_288": {
+            "location": {
+                "name": "stop_288",
+                "lat": -37.698143,
+                "lng": 176.199281
+            }
+        },
+        "stop_289": {
+            "location": {
+                "name": "stop_289",
+                "lat": -37.803634,
+                "lng": 176.352844
+            }
+        },
+        "stop_290": {
+            "location": {
+                "name": "stop_290",
+                "lat": -37.803634,
+                "lng": 176.352844
+            }
+        },
+        "stop_291": {
+            "location": {
+                "name": "stop_291",
+                "lat": -37.823287,
+                "lng": 176.279886
+            }
+        },
+        "stop_292": {
+            "location": {
+                "name": "stop_292",
+                "lat": -37.823287,
+                "lng": 176.279886
+            }
+        },
+        "stop_293": {
+            "location": {
+                "name": "stop_293",
+                "lat": -37.575498,
+                "lng": 175.899147
+            }
+        },
+        "stop_294": {
+            "location": {
+                "name": "stop_294",
+                "lat": -37.575498,
+                "lng": 175.899147
+            }
+        },
+        "stop_295": {
+            "location": {
+                "name": "stop_295",
+                "lat": -37.715665,
+                "lng": 176.265528
+            }
+        },
+        "stop_296": {
+            "location": {
+                "name": "stop_296",
+                "lat": -37.715665,
+                "lng": 176.265528
+            }
+        },
+        "stop_297": {
+            "location": {
+                "name": "stop_297",
+                "lat": -37.794425,
+                "lng": 176.311689
+            }
+        },
+        "stop_298": {
+            "location": {
+                "name": "stop_298",
+                "lat": -37.794425,
+                "lng": 176.311689
+            }
+        },
+        "stop_299": {
+            "location": {
+                "name": "stop_299",
+                "lat": -37.899028,
+                "lng": 176.403581
+            }
+        },
+        "stop_300": {
+            "location": {
+                "name": "stop_300",
+                "lat": -37.899028,
+                "lng": 176.403581
+            }
+        },
+        "stop_301": {
+            "location": {
+                "name": "stop_301",
+                "lat": -37.710042,
+                "lng": 176.247276
+            }
+        },
+        "stop_302": {
+            "location": {
+                "name": "stop_302",
+                "lat": -37.710042,
+                "lng": 176.247276
+            }
+        },
+        "stop_303": {
+            "location": {
+                "name": "stop_303",
+                "lat": -37.710042,
+                "lng": 176.247276
+            }
+        },
+        "stop_304": {
+            "location": {
+                "name": "stop_304",
+                "lat": -37.710042,
+                "lng": 176.247276
+            }
+        },
+        "stop_305": {
+            "location": {
+                "name": "stop_305",
+                "lat": -37.83919,
+                "lng": 176.232903
+            }
+        },
+        "stop_306": {
+            "location": {
+                "name": "stop_306",
+                "lat": -37.83919,
+                "lng": 176.232903
+            }
+        },
+        "stop_307": {
+            "location": {
+                "name": "stop_307",
+                "lat": -37.83919,
+                "lng": 176.232903
+            }
+        },
+        "stop_308": {
+            "location": {
+                "name": "stop_308",
+                "lat": -37.789523,
+                "lng": 176.408599
+            }
+        },
+        "stop_309": {
+            "location": {
+                "name": "stop_309",
+                "lat": -37.792052,
+                "lng": 176.39318
+            }
+        },
+        "stop_310": {
+            "location": {
+                "name": "stop_310",
+                "lat": -37.821359,
+                "lng": 176.525787
+            }
+        },
+        "stop_311": {
+            "location": {
+                "name": "stop_311",
+                "lat": -37.821359,
+                "lng": 176.525787
+            }
+        },
+        "stop_312": {
+            "location": {
+                "name": "stop_312",
+                "lat": -37.837497,
+                "lng": 176.23819
+            }
+        },
+        "stop_313": {
+            "location": {
+                "name": "stop_313",
+                "lat": -37.837497,
+                "lng": 176.23819
+            }
+        },
+        "stop_314": {
+            "location": {
+                "name": "stop_314",
+                "lat": -37.837497,
+                "lng": 176.23819
+            }
+        },
+        "stop_315": {
+            "location": {
+                "name": "stop_315",
+                "lat": -38.037388,
+                "lng": 177.292351
+            }
+        },
+        "stop_316": {
+            "location": {
+                "name": "stop_316",
+                "lat": -38.037388,
+                "lng": 177.292351
+            }
+        },
+        "stop_317": {
+            "location": {
+                "name": "stop_317",
+                "lat": -37.801725,
+                "lng": 176.136273
+            }
+        },
+        "stop_318": {
+            "location": {
+                "name": "stop_318",
+                "lat": -37.801725,
+                "lng": 176.136273
+            }
+        },
+        "stop_319": {
+            "location": {
+                "name": "stop_319",
+                "lat": -37.836829,
+                "lng": 176.387272
+            }
+        },
+        "stop_320": {
+            "location": {
+                "name": "stop_320",
+                "lat": -37.830193,
+                "lng": 176.377068
+            }
+        },
+        "stop_321": {
+            "location": {
+                "name": "stop_321",
+                "lat": -37.830193,
+                "lng": 176.377068
+            }
+        },
+        "stop_322": {
+            "location": {
+                "name": "stop_322",
+                "lat": -37.830193,
+                "lng": 176.377068
+            }
+        },
+        "stop_323": {
+            "location": {
+                "name": "stop_323",
+                "lat": -37.886661,
+                "lng": 176.449745
+            }
+        },
+        "stop_324": {
+            "location": {
+                "name": "stop_324",
+                "lat": -38.029518,
+                "lng": 176.828013
+            }
+        },
+        "stop_325": {
+            "location": {
+                "name": "stop_325",
+                "lat": -37.806252,
+                "lng": 176.407211
+            }
+        },
+        "stop_326": {
+            "location": {
+                "name": "stop_326",
+                "lat": -37.806252,
+                "lng": 176.407211
+            }
+        },
+        "stop_327": {
+            "location": {
+                "name": "stop_327",
+                "lat": -37.938662,
+                "lng": 176.736501
+            }
+        },
+        "stop_328": {
+            "location": {
+                "name": "stop_328",
+                "lat": -37.7943,
+                "lng": 176.132545
+            }
+        },
+        "stop_329": {
+            "location": {
+                "name": "stop_329",
+                "lat": -37.792181,
+                "lng": 176.070183
+            }
+        },
+        "stop_330": {
+            "location": {
+                "name": "stop_330",
+                "lat": -37.836829,
+                "lng": 176.387272
+            }
+        },
+        "stop_331": {
+            "location": {
+                "name": "stop_331",
+                "lat": -37.862447,
+                "lng": 176.312026
+            }
+        },
+        "stop_332": {
+            "location": {
+                "name": "stop_332",
+                "lat": -37.801725,
+                "lng": 176.136273
+            }
+        },
+        "stop_333": {
+            "location": {
+                "name": "stop_333",
+                "lat": -37.836487,
+                "lng": 176.385134
+            }
+        },
+        "stop_334": {
+            "location": {
+                "name": "stop_334",
+                "lat": -37.867788,
+                "lng": 176.334563
+            }
+        },
+        "stop_335": {
+            "location": {
+                "name": "stop_335",
+                "lat": -37.867788,
+                "lng": 176.334563
+            }
+        },
+        "stop_336": {
+            "location": {
+                "name": "stop_336",
+                "lat": -37.85615,
+                "lng": 176.304842
+            }
+        },
+        "stop_337": {
+            "location": {
+                "name": "stop_337",
+                "lat": -37.816371,
+                "lng": 176.144457
+            }
+        },
+        "stop_338": {
+            "location": {
+                "name": "stop_338",
+                "lat": -37.844426,
+                "lng": 176.281118
+            }
+        },
+        "stop_339": {
+            "location": {
+                "name": "stop_339",
+                "lat": -37.990368,
+                "lng": 176.848292
+            }
+        },
+        "stop_340": {
+            "location": {
+                "name": "stop_340",
+                "lat": -37.8038,
+                "lng": 176.349251
+            }
+        },
+        "stop_341": {
+            "location": {
+                "name": "stop_341",
+                "lat": -37.8038,
+                "lng": 176.349251
+            }
+        },
+        "stop_342": {
+            "location": {
+                "name": "stop_342",
+                "lat": -37.813591,
+                "lng": 176.142981
+            }
+        },
+        "stop_343": {
+            "location": {
+                "name": "stop_343",
+                "lat": -37.857163,
+                "lng": 176.52344
+            }
+        },
+        "stop_344": {
+            "location": {
+                "name": "stop_344",
+                "lat": -37.836307,
+                "lng": 176.56852
+            }
+        },
+        "stop_345": {
+            "location": {
+                "name": "stop_345",
+                "lat": -37.836307,
+                "lng": 176.56852
+            }
+        },
+        "stop_346": {
+            "location": {
+                "name": "stop_346",
+                "lat": -37.836307,
+                "lng": 176.56852
+            }
+        },
+        "stop_347": {
+            "location": {
+                "name": "stop_347",
+                "lat": -37.836307,
+                "lng": 176.56852
+            }
+        },
+        "stop_348": {
+            "location": {
+                "name": "stop_348",
+                "lat": -37.513648,
+                "lng": 175.943458
+            }
+        },
+        "stop_349": {
+            "location": {
+                "name": "stop_349",
+                "lat": -37.513648,
+                "lng": 175.943458
+            }
+        },
+        "stop_350": {
+            "location": {
+                "name": "stop_350",
+                "lat": -37.847066,
+                "lng": 176.470374
+            }
+        },
+        "stop_351": {
+            "location": {
+                "name": "stop_351",
+                "lat": -37.806106,
+                "lng": 176.28798
+            }
+        },
+        "stop_352": {
+            "location": {
+                "name": "stop_352",
+                "lat": -37.806106,
+                "lng": 176.28798
+            }
+        },
+        "stop_353": {
+            "location": {
+                "name": "stop_353",
+                "lat": -37.806106,
+                "lng": 176.28798
+            }
+        },
+        "stop_354": {
+            "location": {
+                "name": "stop_354",
+                "lat": -37.806106,
+                "lng": 176.28798
+            }
+        },
+        "stop_355": {
+            "location": {
+                "name": "stop_355",
+                "lat": -37.824418,
+                "lng": 176.499975
+            }
+        },
+        "stop_356": {
+            "location": {
+                "name": "stop_356",
+                "lat": -37.738468,
+                "lng": 177.684431
+            }
+        },
+        "stop_357": {
+            "location": {
+                "name": "stop_357",
+                "lat": -37.738468,
+                "lng": 177.684431
+            }
+        },
+        "stop_358": {
+            "location": {
+                "name": "stop_358",
+                "lat": -37.730095,
+                "lng": 177.71248
+            }
+        },
+        "stop_359": {
+            "location": {
+                "name": "stop_359",
+                "lat": -37.730095,
+                "lng": 177.71248
+            }
+        },
+        "stop_360": {
+            "location": {
+                "name": "stop_360",
+                "lat": -37.730095,
+                "lng": 177.71248
+            }
+        },
+        "stop_361": {
+            "location": {
+                "name": "stop_361",
+                "lat": -37.730095,
+                "lng": 177.71248
+            }
+        },
+        "stop_362": {
+            "location": {
+                "name": "stop_362",
+                "lat": -37.858824,
+                "lng": 176.49351
+            }
+        },
+        "stop_363": {
+            "location": {
+                "name": "stop_363",
+                "lat": -37.858824,
+                "lng": 176.49351
+            }
+        },
+        "stop_364": {
+            "location": {
+                "name": "stop_364",
+                "lat": -37.683749,
+                "lng": 176.049113
+            }
+        },
+        "stop_365": {
+            "location": {
+                "name": "stop_365",
+                "lat": -37.683749,
+                "lng": 176.049113
+            }
+        },
+        "stop_366": {
+            "location": {
+                "name": "stop_366",
+                "lat": -37.683749,
+                "lng": 176.049113
+            }
+        },
+        "stop_367": {
+            "location": {
+                "name": "stop_367",
+                "lat": -37.683749,
+                "lng": 176.049113
+            }
+        },
+        "stop_368": {
+            "location": {
+                "name": "stop_368",
+                "lat": -37.858913,
+                "lng": 176.310426
+            }
+        },
+        "stop_369": {
+            "location": {
+                "name": "stop_369",
+                "lat": -37.858913,
+                "lng": 176.310426
+            }
+        },
+        "stop_370": {
+            "location": {
+                "name": "stop_370",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_371": {
+            "location": {
+                "name": "stop_371",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_372": {
+            "location": {
+                "name": "stop_372",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_373": {
+            "location": {
+                "name": "stop_373",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_374": {
+            "location": {
+                "name": "stop_374",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_375": {
+            "location": {
+                "name": "stop_375",
+                "lat": -37.83732,
+                "lng": 176.432187
+            }
+        },
+        "stop_376": {
+            "location": {
+                "name": "stop_376",
+                "lat": -37.831411,
+                "lng": 176.313549
+            }
+        },
+        "stop_377": {
+            "location": {
+                "name": "stop_377",
+                "lat": -37.831411,
+                "lng": 176.313549
+            }
+        },
+        "stop_378": {
+            "location": {
+                "name": "stop_378",
+                "lat": -37.630121,
+                "lng": 177.892452
+            }
+        },
+        "stop_379": {
+            "location": {
+                "name": "stop_379",
+                "lat": -37.630121,
+                "lng": 177.892452
+            }
+        },
+        "stop_380": {
+            "location": {
+                "name": "stop_380",
+                "lat": -38.041792,
+                "lng": 177.240573
+            }
+        },
+        "stop_381": {
+            "location": {
+                "name": "stop_381",
+                "lat": -38.041792,
+                "lng": 177.240573
+            }
+        },
+        "stop_382": {
+            "location": {
+                "name": "stop_382",
+                "lat": -37.795127,
+                "lng": 176.295362
+            }
+        },
+        "stop_383": {
+            "location": {
+                "name": "stop_383",
+                "lat": -37.795127,
+                "lng": 176.295362
+            }
+        },
+        "stop_384": {
+            "location": {
+                "name": "stop_384",
+                "lat": -37.764691,
+                "lng": 176.101406
+            }
+        },
+        "stop_385": {
+            "location": {
+                "name": "stop_385",
+                "lat": -37.764691,
+                "lng": 176.101406
+            }
+        },
+        "stop_386": {
+            "location": {
+                "name": "stop_386",
+                "lat": -37.642382,
+                "lng": 175.947224
+            }
+        },
+        "stop_387": {
+            "location": {
+                "name": "stop_387",
+                "lat": -37.642382,
+                "lng": 175.947224
+            }
+        },
+        "stop_388": {
+            "location": {
+                "name": "stop_388",
+                "lat": -37.672215,
+                "lng": 176.027012
+            }
+        },
+        "stop_389": {
+            "location": {
+                "name": "stop_389",
+                "lat": -37.795127,
+                "lng": 176.295362
+            }
+        },
+        "stop_390": {
+            "location": {
+                "name": "stop_390",
+                "lat": -37.62657,
+                "lng": 175.975358
+            }
+        },
+        "stop_391": {
+            "location": {
+                "name": "stop_391",
+                "lat": -37.741214,
+                "lng": 176.183383
+            }
+        },
+        "stop_392": {
+            "location": {
+                "name": "stop_392",
+                "lat": -37.670394,
+                "lng": 175.97786
+            }
+        },
+        "stop_393": {
+            "location": {
+                "name": "stop_393",
+                "lat": -37.670394,
+                "lng": 175.97786
+            }
+        },
+        "stop_394": {
+            "location": {
+                "name": "stop_394",
+                "lat": -37.648745,
+                "lng": 175.998142
+            }
+        },
+        "stop_395": {
+            "location": {
+                "name": "stop_395",
+                "lat": -38.051194,
+                "lng": 176.822813
+            }
+        },
+        "stop_396": {
+            "location": {
+                "name": "stop_396",
+                "lat": -37.658277,
+                "lng": 176.011302
+            }
+        },
+        "stop_397": {
+            "location": {
+                "name": "stop_397",
+                "lat": -37.653599,
+                "lng": 176.019379
+            }
+        },
+        "stop_398": {
+            "location": {
+                "name": "stop_398",
+                "lat": -37.688357,
+                "lng": 176.058127
+            }
+        },
+        "stop_399": {
+            "location": {
+                "name": "stop_399",
+                "lat": -37.675397,
+                "lng": 176.082009
+            }
+        },
+        "stop_400": {
+            "location": {
+                "name": "stop_400",
+                "lat": -37.575026,
+                "lng": 175.908423
+            }
+        },
+        "stop_401": {
+            "location": {
+                "name": "stop_401",
+                "lat": -37.575026,
+                "lng": 175.908423
+            }
+        },
+        "stop_402": {
+            "location": {
+                "name": "stop_402",
+                "lat": -37.732831,
+                "lng": 177.705348
+            }
+        },
+        "stop_403": {
+            "location": {
+                "name": "stop_403",
+                "lat": -37.732831,
+                "lng": 177.705348
+            }
+        },
+        "stop_404": {
+            "location": {
+                "name": "stop_404",
+                "lat": -37.510833,
+                "lng": 175.941371
+            }
+        },
+        "stop_405": {
+            "location": {
+                "name": "stop_405",
+                "lat": -37.510833,
+                "lng": 175.941371
+            }
+        },
+        "stop_406": {
+            "location": {
+                "name": "stop_406",
+                "lat": -37.510833,
+                "lng": 175.941371
+            }
+        },
+        "stop_407": {
+            "location": {
+                "name": "stop_407",
+                "lat": -37.510833,
+                "lng": 175.941371
+            }
+        },
+        "stop_408": {
+            "location": {
+                "name": "stop_408",
+                "lat": -37.51195,
+                "lng": 175.942262
+            }
+        },
+        "stop_409": {
+            "location": {
+                "name": "stop_409",
+                "lat": -37.51195,
+                "lng": 175.942262
+            }
+        },
+        "stop_410": {
+            "location": {
+                "name": "stop_410",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_411": {
+            "location": {
+                "name": "stop_411",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_412": {
+            "location": {
+                "name": "stop_412",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_413": {
+            "location": {
+                "name": "stop_413",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_414": {
+            "location": {
+                "name": "stop_414",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_415": {
+            "location": {
+                "name": "stop_415",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_416": {
+            "location": {
+                "name": "stop_416",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_417": {
+            "location": {
+                "name": "stop_417",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_418": {
+            "location": {
+                "name": "stop_418",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_419": {
+            "location": {
+                "name": "stop_419",
+                "lat": -37.678145,
+                "lng": 176.077467
+            }
+        },
+        "stop_420": {
+            "location": {
+                "name": "stop_420",
+                "lat": -37.778625,
+                "lng": 176.093142
+            }
+        },
+        "stop_421": {
+            "location": {
+                "name": "stop_421",
+                "lat": -37.778625,
+                "lng": 176.093142
+            }
+        },
+        "stop_422": {
+            "location": {
+                "name": "stop_422",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_423": {
+            "location": {
+                "name": "stop_423",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_424": {
+            "location": {
+                "name": "stop_424",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_425": {
+            "location": {
+                "name": "stop_425",
+                "lat": -37.859734,
+                "lng": 176.305161
+            }
+        },
+        "stop_426": {
+            "location": {
+                "name": "stop_426",
+                "lat": -37.670696,
+                "lng": 176.004093
+            }
+        },
+        "stop_427": {
+            "location": {
+                "name": "stop_427",
+                "lat": -37.670696,
+                "lng": 176.004093
+            }
+        },
+        "stop_428": {
+            "location": {
+                "name": "stop_428",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_429": {
+            "location": {
+                "name": "stop_429",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_430": {
+            "location": {
+                "name": "stop_430",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_431": {
+            "location": {
+                "name": "stop_431",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_432": {
+            "location": {
+                "name": "stop_432",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_433": {
+            "location": {
+                "name": "stop_433",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_434": {
+            "location": {
+                "name": "stop_434",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_435": {
+            "location": {
+                "name": "stop_435",
+                "lat": -37.86517,
+                "lng": 176.524234
+            }
+        },
+        "stop_436": {
+            "location": {
+                "name": "stop_436",
+                "lat": -37.800973,
+                "lng": 176.123509
+            }
+        },
+        "stop_437": {
+            "location": {
+                "name": "stop_437",
+                "lat": -37.800973,
+                "lng": 176.123509
+            }
+        },
+        "stop_438": {
+            "location": {
+                "name": "stop_438",
+                "lat": -37.800973,
+                "lng": 176.123509
+            }
+        },
+        "stop_439": {
+            "location": {
+                "name": "stop_439",
+                "lat": -37.800973,
+                "lng": 176.123509
+            }
+        },
+        "stop_440": {
+            "location": {
+                "name": "stop_440",
+                "lat": -37.937533,
+                "lng": 176.81685
+            }
+        },
+        "stop_441": {
+            "location": {
+                "name": "stop_441",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_442": {
+            "location": {
+                "name": "stop_442",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_443": {
+            "location": {
+                "name": "stop_443",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_444": {
+            "location": {
+                "name": "stop_444",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_445": {
+            "location": {
+                "name": "stop_445",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_446": {
+            "location": {
+                "name": "stop_446",
+                "lat": -37.799559,
+                "lng": 176.312613
+            }
+        },
+        "stop_447": {
+            "location": {
+                "name": "stop_447",
+                "lat": -37.823023,
+                "lng": 176.31601
+            }
+        },
+        "stop_448": {
+            "location": {
+                "name": "stop_448",
+                "lat": -37.823023,
+                "lng": 176.31601
+            }
+        },
+        "stop_449": {
+            "location": {
+                "name": "stop_449",
+                "lat": -37.823023,
+                "lng": 176.31601
+            }
+        },
+        "stop_450": {
+            "location": {
+                "name": "stop_450",
+                "lat": -37.823023,
+                "lng": 176.31601
+            }
+        },
+        "stop_451": {
+            "location": {
+                "name": "stop_451",
+                "lat": -37.509781,
+                "lng": 175.91973
+            }
+        },
+        "stop_452": {
+            "location": {
+                "name": "stop_452",
+                "lat": -37.509781,
+                "lng": 175.91973
+            }
+        },
+        "stop_453": {
+            "location": {
+                "name": "stop_453",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_454": {
+            "location": {
+                "name": "stop_454",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_455": {
+            "location": {
+                "name": "stop_455",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_456": {
+            "location": {
+                "name": "stop_456",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_457": {
+            "location": {
+                "name": "stop_457",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_458": {
+            "location": {
+                "name": "stop_458",
+                "lat": -37.813698,
+                "lng": 176.539938
+            }
+        },
+        "stop_459": {
+            "location": {
+                "name": "stop_459",
+                "lat": -37.83189,
+                "lng": 176.392144
+            }
+        },
+        "stop_460": {
+            "location": {
+                "name": "stop_460",
+                "lat": -37.83189,
+                "lng": 176.392144
+            }
+        },
+        "stop_461": {
+            "location": {
+                "name": "stop_461",
+                "lat": -37.83189,
+                "lng": 176.392144
+            }
+        },
+        "stop_462": {
+            "location": {
+                "name": "stop_462",
+                "lat": -37.83189,
+                "lng": 176.392144
+            }
+        },
+        "stop_463": {
+            "location": {
+                "name": "stop_463",
+                "lat": -37.715957,
+                "lng": 176.23425
+            }
+        },
+        "stop_464": {
+            "location": {
+                "name": "stop_464",
+                "lat": -37.715957,
+                "lng": 176.23425
+            }
+        },
+        "stop_465": {
+            "location": {
+                "name": "stop_465",
+                "lat": -37.718144,
+                "lng": 176.236422
+            }
+        },
+        "stop_466": {
+            "location": {
+                "name": "stop_466",
+                "lat": -37.718144,
+                "lng": 176.236422
+            }
+        },
+        "stop_467": {
+            "location": {
+                "name": "stop_467",
+                "lat": -37.669781,
+                "lng": 175.9612
+            }
+        },
+        "stop_468": {
+            "location": {
+                "name": "stop_468",
+                "lat": -37.669781,
+                "lng": 175.9612
+            }
+        },
+        "stop_469": {
+            "location": {
+                "name": "stop_469",
+                "lat": -37.511687,
+                "lng": 175.956038
+            }
+        },
+        "stop_470": {
+            "location": {
+                "name": "stop_470",
+                "lat": -37.511687,
+                "lng": 175.956038
+            }
+        },
+        "stop_471": {
+            "location": {
+                "name": "stop_471",
+                "lat": -37.811468,
+                "lng": 176.140997
+            }
+        },
+        "stop_472": {
+            "location": {
+                "name": "stop_472",
+                "lat": -37.811468,
+                "lng": 176.140997
+            }
+        },
+        "stop_473": {
+            "location": {
+                "name": "stop_473",
+                "lat": -37.703207,
+                "lng": 176.23827
+            }
+        },
+        "stop_474": {
+            "location": {
+                "name": "stop_474",
+                "lat": -37.703207,
+                "lng": 176.23827
+            }
+        },
+        "stop_475": {
+            "location": {
+                "name": "stop_475",
+                "lat": -37.715527,
+                "lng": 176.209145
+            }
+        },
+        "stop_476": {
+            "location": {
+                "name": "stop_476",
+                "lat": -37.715527,
+                "lng": 176.209145
+            }
+        },
+        "stop_477": {
+            "location": {
+                "name": "stop_477",
+                "lat": -38.042878,
+                "lng": 176.811962
+            }
+        },
+        "stop_478": {
+            "location": {
+                "name": "stop_478",
+                "lat": -38.042878,
+                "lng": 176.811962
+            }
+        },
+        "stop_479": {
+            "location": {
+                "name": "stop_479",
+                "lat": -38.042878,
+                "lng": 176.811962
+            }
+        },
+        "stop_480": {
+            "location": {
+                "name": "stop_480",
+                "lat": -38.042878,
+                "lng": 176.811962
+            }
+        },
+        "stop_481": {
+            "location": {
+                "name": "stop_481",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_482": {
+            "location": {
+                "name": "stop_482",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_483": {
+            "location": {
+                "name": "stop_483",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_484": {
+            "location": {
+                "name": "stop_484",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_485": {
+            "location": {
+                "name": "stop_485",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_486": {
+            "location": {
+                "name": "stop_486",
+                "lat": -37.638142,
+                "lng": 175.973596
+            }
+        },
+        "stop_487": {
+            "location": {
+                "name": "stop_487",
+                "lat": -37.832672,
+                "lng": 176.383481
+            }
+        },
+        "stop_488": {
+            "location": {
+                "name": "stop_488",
+                "lat": -37.99723,
+                "lng": 177.23994
+            }
+        },
+        "stop_489": {
+            "location": {
+                "name": "stop_489",
+                "lat": -37.99723,
+                "lng": 177.23994
+            }
+        },
+        "stop_490": {
+            "location": {
+                "name": "stop_490",
+                "lat": -37.805507,
+                "lng": 176.075795
+            }
+        },
+        "stop_491": {
+            "location": {
+                "name": "stop_491",
+                "lat": -37.805507,
+                "lng": 176.075795
+            }
+        },
+        "stop_492": {
+            "location": {
+                "name": "stop_492",
+                "lat": -37.764691,
+                "lng": 176.101406
+            }
+        },
+        "stop_493": {
+            "location": {
+                "name": "stop_493",
+                "lat": -37.764691,
+                "lng": 176.101406
+            }
+        }
+    },
+    "options": {
+        "polylines": false,
+        "balance": true
+    }
+}
