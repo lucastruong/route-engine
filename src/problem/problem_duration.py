@@ -4,3 +4,4 @@ class ProblemDuration:
         if minutes is None:
             duration = 0
         self.minutes = int(duration)
+        self.seconds = self.minutes * 60

@@ -1,7 +1,5 @@
 {
-    "callback_url": "http://xxx",
-    "num_unserved": 0,
-    "unserved": [],
+    "dropped_nodes": [],
     "solution": {
         "f1": [
             {
@@ -66,7 +64,6 @@
             }
         ]
     },
-    "polylines": {},
     "total_distance": 16996,
     "total_travel_time": 3836,
     "total_idle_time": 0

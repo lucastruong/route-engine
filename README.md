@@ -22,3 +22,6 @@ https://github.com/google/or-tools/blob/stable/ortools/constraint_solver/doc/VRP
 # venv
 pip list
 pip install wheel six ortools requests
+
+
+https://stackoverflow.com/questions/63112611/vehicle-routing-with-different-vehicle-speed-google-or-tools

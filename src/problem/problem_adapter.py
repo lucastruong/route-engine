@@ -1,6 +1,6 @@
 from src.problem.problem_options import ProblemOptions
-from src.problem.problem_vehicle import create_problem_vehicle
-from src.problem.problem_visit import create_problem_visit
+from src.problem.problem_vehicle import create_problem_vehicle, ProblemVehicle
+from src.problem.problem_visit import create_problem_visit, ProblemVisit
 
 
 def create_options(options: dict):
@@ -11,9 +11,9 @@ class ProblemAdapter:
     def __init__(self, problem: dict):
         self.problem = problem
         self.callback_url = problem.get('callback_url')
-        self.visits = []
-        self.vehicles = []
-        self.options = create_options(problem.get('options'))
+        self.visits: list[ProblemVisit] = []
+        self.vehicles: list[ProblemVehicle] = []
+        self.options = create_options(problem.get('options', {}))
 
     def transform_routific(self):
         self._reformat_visits()

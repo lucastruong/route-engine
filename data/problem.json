@@ -7,7 +7,7 @@
 
         "squash_durations": 0, 
         "distance_type": "straight_line/distance_travelled", 
-        "max_iterations": 250,  
+        "max_iterations": 250,
         "max_duration": 3,
         "traffic": "faster/fast/normal/slow/very slow/bike"
     },
