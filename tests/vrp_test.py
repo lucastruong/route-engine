@@ -18,10 +18,12 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_tsp.json')
         solution = main(problem_json)
 
+        expected_objective = 23830
         expected_routes = [[0, 1, 2, 0]]
         expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1']]
         expected_distances = [[0, 6965, 5249, 11616]]
 
+        self.assertEqual(expected_objective, solution.get('objective'))
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
         self.assertEqual(expected_distances, solution.get('distances'))
@@ -30,13 +32,39 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_tsp_end_location.json')
         solution = main(problem_json)
 
+        expected_objective = 15221
         expected_routes = [[0, 2, 3, 1]]
         expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1_end']]
         expected_distances = [[0, 6965, 5249, 3007]]
 
+        self.assertEqual(expected_objective, solution.get('objective'))
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
         self.assertEqual(expected_distances, solution.get('distances'))
+
+    def testVehicleCapacity(self):
+        problem_json = read_problem_json('vrp_capacity.json')
+        solution = main(problem_json)
+
+        expected_dropped_nodes = ['location_2']
+        expected_routes = [[0, 1, 0]]
+        expected_new_routes = [['vehicle_1', 'location_1', 'vehicle_1']]
+
+        self.assertEqual(expected_dropped_nodes, solution.get('dropped_nodes'))
+        self.assertEqual(expected_routes, solution.get('routes'))
+        self.assertEqual(expected_new_routes, solution.get('new_routes'))
+
+    def testVehicleCapacityIsString(self):
+        problem_json = read_problem_json('vrp_capacity_is_string.json')
+        solution = main(problem_json)
+
+        expected_dropped_nodes = ['location_2']
+        expected_routes = [[0, 1, 0]]
+        expected_new_routes = [['vehicle_1', 'location_1', 'vehicle_1']]
+
+        self.assertEqual(expected_dropped_nodes, solution.get('dropped_nodes'))
+        self.assertEqual(expected_routes, solution.get('routes'))
+        self.assertEqual(expected_new_routes, solution.get('new_routes'))
 
 
 if __name__ == '__main__':

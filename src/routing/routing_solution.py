@@ -192,7 +192,7 @@ def format_dropped_nodes(data, manager, routing, assignment):
         if assignment.Value(routing.NextVar(node)) == node:
             node_index = manager.IndexToNode(node)
             item = data['locations'][node_index]
-            dropped_nodes.append(item.location.id)
+            dropped_nodes.append(item.id)
     return dropped_nodes
 
 
@@ -332,7 +332,7 @@ def get_dimensions(data, routing):
 
 def format_solution(data, manager, routing, assignment):
     """Prints assignment on console."""
-    print('The Objective Value is {0}'.format(assignment.ObjectiveValue()))
+    print('Objective: {} meters'.format(assignment.ObjectiveValue()))
 
     # Display dropped nodes.
     dropped_nodes = format_dropped_nodes(data, manager, routing, assignment)
@@ -348,6 +348,7 @@ def format_solution(data, manager, routing, assignment):
 
     # Display solution
     solution = {
+        'objective': assignment.ObjectiveValue(),
         'routes': routes, 'new_routes': new_routes, 'distances': distances,
         'dropped_nodes': dropped_nodes
     }

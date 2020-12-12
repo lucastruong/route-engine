@@ -1,0 +1,27 @@
+{
+    "fleet": {
+        "vehicle_1": {
+            "start_location": {
+                "lat": 10.829012,
+                "lng": 106.774783
+            },
+            "capacity": 1
+        }
+    },
+    "visits": {
+        "location_1": {
+            "location": {
+                "lat": 10.794825,
+                "lng": 106.721362
+            },
+            "load": 1
+        },
+        "location_2": {
+            "location": {
+                "lat": 10.79753993119405,
+                "lng": 106.67339848433336
+            },
+            "load": 2
+        }
+    }
+}

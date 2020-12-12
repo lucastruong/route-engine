@@ -1,18 +1,19 @@
 from functools import partial
 
 
-def create_demand_callback(demands):
-    # Add Capacity constraint.
-    def demand_callback(manager, from_index):
-        """Returns the demand of the node."""
-        # Convert from routing variable Index to demands NodeIndex.
-        from_node = manager.IndexToNode(from_index)
-        return demands[from_node]
+def add_distance_constraint(routing, transit_callback_index):
+    dimension_name = 'Distance'
+    routing.AddDimension(
+        transit_callback_index,
+        0,  # no slack
+        99000,  # vehicle maximum travel distance (meters)
+        True,  # start cumul to zero
+        dimension_name)
+    distance_dimension = routing.GetDimensionOrDie(dimension_name)
+    distance_dimension.SetGlobalSpanCostCoefficient(0)
 
-    return demand_callback
 
-
-def add_capacities_constraints(routing, manager, data):
+def add_capacities_constraint(routing, manager, data):
     capacities = data['capacities']
     demands = data['demands']
     vehicle_capacities = data['vehicle_capacities']
@@ -31,6 +32,25 @@ def add_capacities_constraints(routing, manager, data):
             sub_vehicle_capacities,  # vehicle maximum capacities
             True,  # start cumul to zero
             capacity)
+
+
+def allow_drop_nodes(routing, manager, data):
+    # Allow to drop nodes.
+    penalty = 99000 # meters
+    for node in range(1, len(data['distance_matrix'])):
+        index = manager.NodeToIndex(node)
+        routing.AddDisjunction([index], penalty)
+
+
+def create_demand_callback(demands):
+    # Add Capacity constraint.
+    def demand_callback(manager, from_index):
+        """Returns the demand of the node."""
+        # Convert from routing variable Index to demands NodeIndex.
+        from_node = manager.IndexToNode(from_index)
+        return demands[from_node]
+
+    return demand_callback
 
 
 def add_time_window_constraints(routing, manager, data, time_evaluator_index):
@@ -71,9 +91,4 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
             time_dimension.CumulVar(routing.End(i)))
 
 
-def allow_drop_nodes(routing, manager, data):
-    # Allow to drop nodes.
-    penalty = 10000
-    for node in range(1, len(data['time_matrix'])):
-        index = manager.NodeToIndex(node)
-        routing.AddDisjunction([index], penalty)
+

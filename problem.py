@@ -9,6 +9,7 @@ from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from six.moves import xrange
 
 from src.problem.problem_adapter import ProblemAdapter
+from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
     compute_time_windows
 from src.routing.routing_solution import format_solution
@@ -157,17 +158,20 @@ def main(problem_json):
     distance_evaluator_index = routing.RegisterTransitCallback(partial(create_distance_evaluator(data), manager))
     routing.SetArcCostEvaluatorOfAllVehicles(distance_evaluator_index)
 
+    # Add Distance constraint.
+    add_distance_constraint(routing, distance_evaluator_index)
+
+    # Creates capacities constraints for each vehicle.
+    add_capacities_constraint(routing, manager, data)
+
+    # Allow to drop nodes.
+    allow_drop_nodes(routing, manager, data)
+
     # Register time callback
     # transit_callback_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
 
     # Add Time constraint.
     # add_time_window_constraints(routing, manager, data, transit_callback_index)
-
-    # Creates capacities constraints for each vehicle.
-    # add_capacities_constraints(routing, manager, data)
-
-    # Allow to drop nodes.
-    # allow_drop_nodes(routing, manager, data)
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()

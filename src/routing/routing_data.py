@@ -91,20 +91,6 @@ def create_data_capacities(adapter: ProblemAdapter):
     return {'capacities': capacities, 'demands': demands, 'vehicle_capacities': vehicle_capacities}
 
 
-def compute_distance_matrix(locations: list[ProblemLocation]):
-    """Creates callback to return distance between points."""
-    distances = {}
-    for from_counter, from_node in enumerate(locations):
-        distances[from_counter] = {}
-        for to_counter, to_node in enumerate(locations):
-            if from_counter == to_counter:
-                distances[from_counter][to_counter] = 0
-            else:
-                distance_km = distance_two_points(from_node, to_node)
-                distances[from_counter][to_counter] = distance_km
-    return distances
-
-
 def compute_data_matrix(locations: list[ProblemLocation], speed=30):
     """Creates callback to return time between points."""
     distances = {}
