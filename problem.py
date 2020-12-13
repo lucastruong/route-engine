@@ -4,6 +4,7 @@ import os
 import sys
 import time
 from functools import partial
+from pprint import pprint
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from six.moves import xrange
@@ -58,16 +59,16 @@ def create_data_model(problem_json):
     data['starts'] = starts
     data['ends'] = ends
 
-    data['adapter'] = adapter
-    data['time_matrix'] = matrix.get('times')
-    data['time_windows'] = time_windows
-    data['service_times'] = service_times
-
     # Capacity constraint.
     data['capacities'] = capacities.get('capacities')
     data['demands'] = capacities.get('demands')
     data['vehicle_capacities'] = capacities.get('vehicle_capacities')
     # End capacity constraint.
+
+    data['adapter'] = adapter
+    data['time_matrix'] = matrix.get('times')
+    data['time_windows'] = time_windows
+    data['service_times'] = service_times
 
     data['global_span'] = 100
     data['num_locations'] = len(data['locations'])
@@ -149,7 +150,7 @@ def main(problem_json):
     data = create_data_model(problem_json)
 
     # Create the routing index manager.
-    manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']), data['num_vehicles'],
+    manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
                                            data['starts'], data['ends'])
 
     # Create Routing Model.

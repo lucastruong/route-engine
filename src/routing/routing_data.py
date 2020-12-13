@@ -2,7 +2,7 @@ import sys
 
 from src.problem.problem_adapter import ProblemAdapter
 from src.problem.problem_helper import distance_two_points
-from src.problem.problem_location import ProblemLocation
+from src.problem.problem_location import ProblemLocation, create_problem_location
 from src.problem.problem_time import ProblemTime
 
 
@@ -12,6 +12,10 @@ def create_data_locations(adapter: ProblemAdapter):
     service_times = []
     starts = []
     ends = []
+
+    # Allowing arbitrary start and end locations
+    # depot_location = create_problem_location('depot', {'lat': 0, 'lng': 0})
+    # locations.append(depot_location)
 
     for vehicle in adapter.vehicles:
         locations.append(vehicle.location)
@@ -60,10 +64,14 @@ def create_data_capacities(adapter: ProblemAdapter):
     vehicle_capacities = {}
     for capacity_key in capacities:
         sub_demands = []
+        # sub_demands.append(0)  # For depot
         sub_vehicle_capacities = []
 
         for vehicle in adapter.vehicles:
             sub_demands.append(0)
+            if vehicle.end_location is not None:
+                sub_demands.append(0)
+
             if capacity_key in vehicle.capacities.demands:
                 sub_vehicle_capacities.append(vehicle.capacities.demands.get(capacity_key))
             elif capacity_key in vehicle.skills.demands:
@@ -99,7 +107,7 @@ def compute_data_matrix(locations: list[ProblemLocation], speed=30):
         distances[from_counter] = {}
         times[from_counter] = {}
         for to_counter, to_node in enumerate(locations):
-            if from_counter == to_counter:
+            if from_counter == to_counter or from_node.id == 'depot' or to_node.id == 'depot':
                 distances[from_counter][to_counter] = 0
                 times[from_counter][to_counter] = 0
             else:

@@ -66,6 +66,18 @@ class VrpTest(unittest.TestCase):
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
 
+    def testVehicleSkill(self):
+        problem_json = read_problem_json('vrp_skill.json')
+        solution = main(problem_json)
+
+        expected_dropped_nodes = ['location_3']
+        expected_routes = [[0, 1, 2, 0]]
+        expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1']]
+
+        self.assertEqual(expected_dropped_nodes, solution.get('dropped_nodes'))
+        self.assertEqual(expected_routes, solution.get('routes'))
+        self.assertEqual(expected_new_routes, solution.get('new_routes'))
+
 
 if __name__ == '__main__':
     unittest.main()

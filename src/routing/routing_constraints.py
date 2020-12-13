@@ -10,7 +10,7 @@ def add_distance_constraint(routing, transit_callback_index):
         True,  # start cumul to zero
         dimension_name)
     distance_dimension = routing.GetDimensionOrDie(dimension_name)
-    distance_dimension.SetGlobalSpanCostCoefficient(0)
+    # distance_dimension.SetGlobalSpanCostCoefficient(0)
 
 
 def add_capacities_constraint(routing, manager, data):
@@ -36,9 +36,11 @@ def add_capacities_constraint(routing, manager, data):
 
 def allow_drop_nodes(routing, manager, data):
     # Allow to drop nodes.
-    penalty = 99000 # meters
+    penalty = 99000  # meters
     for node in range(1, len(data['distance_matrix'])):
         index = manager.NodeToIndex(node)
+        if index < 0:
+            continue
         routing.AddDisjunction([index], penalty)
 
 
@@ -89,6 +91,3 @@ def add_time_window_constraints(routing, manager, data, time_evaluator_index):
             time_dimension.CumulVar(routing.Start(i)))
         routing.AddVariableMinimizedByFinalizer(
             time_dimension.CumulVar(routing.End(i)))
-
-
-
