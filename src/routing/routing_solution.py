@@ -4,7 +4,6 @@ from pprint import pprint
 
 import requests
 
-
 # def format_solution(data, manager, routing, assignment):
 #     output = {
 #         "callback_url": data['adapter'].callback_url,
@@ -206,7 +205,9 @@ def get_routes(solution, routing, manager):
         route = [manager.IndexToNode(index)]
         while not routing.IsEnd(index):
             index = solution.Value(routing.NextVar(index))
-            route.append(manager.IndexToNode(index))
+            route_index = manager.IndexToNode(index)
+            # if route_index == 0: continue  # Ignore depot
+            route.append(route_index)
         routes.append(route)
     return routes
 
@@ -222,16 +223,28 @@ def reformat_routes(routes, locations: list[ProblemLocation]):
     return visits
 
 
-def get_route_distances(routing, solution):
+def get_route_distances(routes, distance_matrix):
     distances = []
-    for vehicle_id in range(routing.vehicles()):
-        index = routing.Start(vehicle_id)
+    for i, route in enumerate(routes):
+        route_distances = [0]
+        pre_index = route[0]
+        for index in route[1:]:
+            route_distances.append(distance_matrix[pre_index][index])
+            pre_index = index
+        distances.append(route_distances)
+    return distances
+
+
+def get_route_distances2(solution, routing):
+    distances = []
+    for route_nbr in range(routing.vehicles()):
+        index = routing.Start(route_nbr)
         route_distances = [0]
         while not routing.IsEnd(index):
             previous_index = index
             index = solution.Value(routing.NextVar(index))
-            route_distance = routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
-            route_distances.append(route_distance)
+            distance = routing.GetArcCostForVehicle(previous_index, index, route_nbr)
+            route_distances.append(distance)
         distances.append(route_distances)
     return distances
 
@@ -344,7 +357,8 @@ def format_solution(data, manager, routing, assignment):
     new_routes = reformat_routes(routes, data['locations'])
 
     # Display distances
-    distances = get_route_distances(routing, assignment)
+    # distances = get_route_distances(routes, data['distance_matrix'])
+    distances = get_route_distances2(assignment, routing)
 
     # Display solution
     solution = {

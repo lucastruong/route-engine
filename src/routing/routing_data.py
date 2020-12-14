@@ -64,7 +64,7 @@ def create_data_capacities(adapter: ProblemAdapter):
     vehicle_capacities = {}
     for capacity_key in capacities:
         sub_demands = []
-        # sub_demands.append(0)  # For depot
+        # sub_demands.append(0)  # 0: For depot
         sub_vehicle_capacities = []
 
         for vehicle in adapter.vehicles:

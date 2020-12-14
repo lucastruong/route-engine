@@ -10,7 +10,7 @@ def add_distance_constraint(routing, transit_callback_index):
         True,  # start cumul to zero
         dimension_name)
     distance_dimension = routing.GetDimensionOrDie(dimension_name)
-    # distance_dimension.SetGlobalSpanCostCoefficient(0)
+    # distance_dimension.SetGlobalSpanCostCoefficient(100)
 
 
 def add_capacities_constraint(routing, manager, data):

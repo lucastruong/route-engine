@@ -46,10 +46,10 @@ def create_data_model(problem_json):
     starts = data.get('starts')
     ends = data.get('ends')
     matrix = compute_data_matrix(locations, adapter.options.speed)
+    capacities = create_data_capacities(adapter)
 
     times = data.get('times')
     service_times = data.get('service_times')
-    capacities = create_data_capacities(adapter)
     time_windows = compute_time_windows(times)
 
     """Stores the data for the problem."""
@@ -82,21 +82,6 @@ def create_data_model(problem_json):
     data['depot_capacity'] = 1
 
     return data
-
-
-def add_distance_dimension(routing, distance_evaluator_index, data):
-    # Add Distance constraint.
-    dimension_name = 'Distance'
-    routing.AddDimension(
-        distance_evaluator_index,
-        0,  # no slack
-        100 * 1000,  # vehicle maximum travel distance, maximum distance per vehicle
-        True,  # start cumul to zero
-        dimension_name)
-    distance_dimension = routing.GetDimensionOrDie(dimension_name)
-    # Try to minimize the max distance among vehicles.
-    # /!\ It doesn't mean the standard deviation is minimized
-    # distance_dimension.SetGlobalSpanCostCoefficient(data['global_span'])
 
 
 def create_time_evaluator(data):
@@ -148,6 +133,7 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
+    # pprint(data['distance_matrix'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
@@ -182,13 +168,11 @@ def main(problem_json):
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
 
-    return format_solution(data, manager, routing, assignment)
-
-    # # Print solution on console.
-    # if assignment:
-    #     format_solution(data, manager, routing, assignment)
-    # else:
-    #     print('No solution found!')
+    # Print solution on console.
+    if assignment:
+        return format_solution(data, manager, routing, assignment)
+    else:
+        print('No solution found!')
 
 
 if __name__ == '__main__':
