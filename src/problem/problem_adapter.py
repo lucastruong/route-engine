@@ -1,10 +1,6 @@
-from src.problem.problem_options import ProblemOptions
+from src.problem.problem_options import create_options
 from src.problem.problem_vehicle import create_problem_vehicle, ProblemVehicle
 from src.problem.problem_visit import create_problem_visit, ProblemVisit
-
-
-def create_options(options: dict):
-    return ProblemOptions(options.get('balance', False), options.get('speed', 30))
 
 
 class ProblemAdapter:
@@ -30,5 +26,5 @@ class ProblemAdapter:
         fleets = self.problem.get('fleet')
         for key in fleets:
             fleet = fleets[key]
-            vehicle = create_problem_vehicle(key, fleet)
+            vehicle = create_problem_vehicle(key, fleet, self.options)
             self.vehicles.append(vehicle)

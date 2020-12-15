@@ -25,9 +25,8 @@
                 "volume": 20
             },
             "type": ["A","B"],
-
-            
             "speed": "faster/fast/normal/slow/very slow/bike",
+
             "strict_start": false,
             "order": [1, 2, 3], 
             "breaks": [

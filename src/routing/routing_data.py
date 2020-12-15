@@ -2,7 +2,7 @@ import sys
 
 from src.problem.problem_adapter import ProblemAdapter
 from src.problem.problem_helper import distance_two_points
-from src.problem.problem_location import ProblemLocation, create_problem_location
+from src.problem.problem_location import ProblemLocation
 from src.problem.problem_time import ProblemTime
 
 
@@ -21,12 +21,14 @@ def create_data_locations(adapter: ProblemAdapter):
         locations.append(vehicle.location)
         starts.append(len(locations) - 1)
 
-        if vehicle.end_location is not None:
-            locations.append(vehicle.end_location)
-        ends.append(len(locations) - 1)
-
         times.append((vehicle.start_time, vehicle.end_time))
         service_times.append(0)
+
+        if vehicle.end_location is not None:
+            locations.append(vehicle.end_location)
+            service_times.append(0)
+
+        ends.append(len(locations) - 1)
 
     for visit in adapter.visits:
         locations.append(visit.location)
@@ -35,7 +37,8 @@ def create_data_locations(adapter: ProblemAdapter):
 
     return {
         'locations': locations, 'starts': starts, 'ends': ends,
-        'times': times, 'service_times': service_times
+        'service_times': service_times,
+        'times': times,
     }
 
 
@@ -90,41 +93,25 @@ def create_data_capacities(adapter: ProblemAdapter):
         demands[capacity_key] = sub_demands
         vehicle_capacities[capacity_key] = sub_vehicle_capacities
 
-    # 'capacities' = {list: 4}['CAP_WEIGHT', 'CAP_VOLUME', 'SKILL_A', 'SKILL_B']
-    # 'demands' = {dict: 4}
-    # {'CAP_WEIGHT': [0, 1, 3, 3, 1], 'CAP_VOLUME': [0, 2, 4, 6, 8], 'SKILL_A': [0, 0, 1, 0, 0],
-    #  'SKILL_B': [0, 0, 1, 0, 0]}
-    # 'vehicle_capacities' = {dict: 4}
-    # {'CAP_WEIGHT': [20], 'CAP_VOLUME': [20], 'SKILL_A': [9223372036854775807], 'SKILL_B': [9223372036854775807]}
+    # 'capacities' = {list: 2} ['CAP_WEIGHT', 'SKILL_A']
+    # 'demands' = {dict: 2} {'CAP_WEIGHT': [0, 1, 3, 3, 1], 'SKILL_A': [0, 0, 1, 0, 0]}
+    # 'vehicle_capacities' = {dict: 2} {'CAP_WEIGHT': [20], 'SKILL_A': [9223372036854775807]}
     return {'capacities': capacities, 'demands': demands, 'vehicle_capacities': vehicle_capacities}
 
 
-def compute_data_matrix(locations: list[ProblemLocation], speed=30):
+def compute_data_matrix(locations: list[ProblemLocation]):
     """Creates callback to return time between points."""
-    distances = {}
-    times = {}
+    distance_matrix = {}
     for from_counter, from_node in enumerate(locations):
-        distances[from_counter] = {}
-        times[from_counter] = {}
+        distance_matrix[from_counter] = {}
         for to_counter, to_node in enumerate(locations):
             if from_counter == to_counter or from_node.id == 'depot' or to_node.id == 'depot':
-                distances[from_counter][to_counter] = 0
-                times[from_counter][to_counter] = 0
+                distance_matrix[from_counter][to_counter] = 0
             else:
                 distance_km = distance_two_points(from_node, to_node)
-                speed_hour = speed  # 30km/h
-                time_hour = distance_km / speed_hour
-                times[from_counter][to_counter] = int(time_hour * 60 * 60)  # To seconds
-                distances[from_counter][to_counter] = int(distance_km * 1000)  # To meters
-
-    time_matrix = []
-    for times_sub in times.values():
-        time_matrix_sub = []
-        for time_value in times_sub.values():
-            time_matrix_sub.append(time_value)
-        time_matrix.append(time_matrix_sub)
-
-    return {'distances': distances, 'times': time_matrix}
+                distance_meters = int(distance_km * 1000)  # To meters
+                distance_matrix[from_counter][to_counter] = distance_meters
+    return distance_matrix
 
 
 def compute_time_windows(times: list[tuple[ProblemTime, ProblemTime]]):

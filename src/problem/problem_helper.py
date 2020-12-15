@@ -22,5 +22,6 @@ def distance_two_points(start: ProblemLocation, end: ProblemLocation):
 
 
 def kmph_to_mps(kmph):
+    """Convert km/h to m/s"""
     base = 0.27777777777778
     return kmph * base

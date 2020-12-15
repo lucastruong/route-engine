@@ -1,4 +1,7 @@
 {
+    "options": {
+        "traffic": "normal"
+    },
     "fleet": {
         "vehicle_1": {
             "start_location": {

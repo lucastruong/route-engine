@@ -7,10 +7,10 @@ from functools import partial
 from pprint import pprint
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
-from six.moves import xrange
 
 from src.problem.problem_adapter import ProblemAdapter
-from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes
+from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
+    add_time_windows_constraints
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
     compute_time_windows
 from src.routing.routing_solution import format_solution
@@ -43,35 +43,34 @@ def create_data_model(problem_json):
     adapter = prepare_adapter(problem_json)
     data = create_data_locations(adapter)
     locations = data.get('locations')
-    starts = data.get('starts')
-    ends = data.get('ends')
-    matrix = compute_data_matrix(locations, adapter.options.speed)
-    capacities = create_data_capacities(adapter)
-
-    times = data.get('times')
-    service_times = data.get('service_times')
-    time_windows = compute_time_windows(times)
+    distance_matrix = compute_data_matrix(locations)
 
     """Stores the data for the problem."""
     data['locations'] = locations
-    data['distance_matrix'] = matrix.get('distances')
+    data['distance_matrix'] = distance_matrix
     data['num_vehicles'] = len(adapter.vehicles)
+
+    # Start and end locations for routes
+    starts = data.get('starts')
+    ends = data.get('ends')
     data['starts'] = starts
     data['ends'] = ends
 
     # Capacity constraint.
+    capacities = create_data_capacities(adapter)
     data['capacities'] = capacities.get('capacities')
     data['demands'] = capacities.get('demands')
     data['vehicle_capacities'] = capacities.get('vehicle_capacities')
-    # End capacity constraint.
 
-    data['adapter'] = adapter
-    data['time_matrix'] = matrix.get('times')
-    data['time_windows'] = time_windows
-    data['service_times'] = service_times
-
-    data['global_span'] = 100
+    # Time Window constraint.
+    data['vehicle_speed'] = adapter.options.speed.mps  # Travel speed: meters/seconds
+    data['service_times'] = data.get('service_times')
+    data['time_windows'] = compute_time_windows(data.get('times'))
     data['num_locations'] = len(data['locations'])
+
+    # TMP
+    data['adapter'] = adapter
+    data['global_span'] = 100
     data['num_visits'] = len(adapter.visits)
 
     # The time required to load a vehicle
@@ -87,32 +86,22 @@ def create_data_model(problem_json):
 def create_time_evaluator(data):
     """Creates callback to get total times between locations."""
 
-    def service_time(data, node):
+    def service_time(from_node):
         """Gets the service time for the specified location."""
-        return data['service_times'][node]
+        return data['service_times'][from_node]
 
-    def travel_time(data, from_node, to_node):
+    def travel_time(from_node, to_node):
         """Gets the travel times between two locations."""
-        if from_node == to_node:
-            travel_time = 0
-        else:
-            travel_time = data['time_matrix'][from_node][to_node]
-        return travel_time
-
-    _total_time = {}
-    # precompute total time to have time callback in O(1)
-    for from_node in xrange(data['num_locations']):
-        _total_time[from_node] = {}
-        for to_node in xrange(data['num_locations']):
-            if from_node == to_node:
-                _total_time[from_node][to_node] = 0
-            else:
-                _total_time[from_node][to_node] = int(
-                    service_time(data, from_node) + travel_time(data, from_node, to_node))
+        travel_time_from_to = 0
+        if from_node != to_node:
+            travel_time_from_to = int(data['distance_matrix'][from_node][to_node] / data['vehicle_speed'])
+        return travel_time_from_to
 
     def time_evaluator(manager, from_node, to_node):
         """Returns the total time between the two nodes"""
-        return _total_time[manager.IndexToNode(from_node)][manager.IndexToNode(to_node)]
+        from_index = manager.IndexToNode(from_node)
+        to_index = manager.IndexToNode(to_node)
+        return travel_time(from_index, to_index) + service_time(from_index)
 
     return time_evaluator
 
@@ -133,7 +122,8 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
-    # pprint(data['distance_matrix'])
+    pprint(data['vehicle_speed'])
+    pprint(data['service_times'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
@@ -142,6 +132,7 @@ def main(problem_json):
     # Create Routing Model.
     routing = pywrapcp.RoutingModel(manager)
 
+    # Define weight of each edge
     distance_evaluator_index = routing.RegisterTransitCallback(partial(create_distance_evaluator(data), manager))
     routing.SetArcCostEvaluatorOfAllVehicles(distance_evaluator_index)
 
@@ -151,14 +142,12 @@ def main(problem_json):
     # Creates capacities constraints for each vehicle.
     add_capacities_constraint(routing, manager, data)
 
+    # Add Time Window constraint
+    time_evaluator_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
+    add_time_windows_constraints(routing, manager, data, time_evaluator_index)
+
     # Allow to drop nodes.
     allow_drop_nodes(routing, manager, data)
-
-    # Register time callback
-    # transit_callback_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
-
-    # Add Time constraint.
-    # add_time_window_constraints(routing, manager, data, transit_callback_index)
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
