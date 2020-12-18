@@ -305,7 +305,7 @@ def get_route_times(time_steps, data, routes):
             end = seconds_to_hhmm(end_seconds)
 
             route_time.append((start, end))
-            pre_time = time
+            pre_time = (start_seconds, end_seconds)
             pre_step_index = step_index
         times.append(route_time)
     return times

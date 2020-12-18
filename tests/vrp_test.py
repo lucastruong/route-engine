@@ -83,7 +83,7 @@ class VrpTest(unittest.TestCase):
         solution = main(problem_json)
 
         expected_times = [
-            [('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:10'), ('09:21', '09:21')]
+            [('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05'), ('09:26', '09:26')]
         ]
 
         self.assertEqual(expected_times, solution.get('times'))
