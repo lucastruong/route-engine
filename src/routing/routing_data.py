@@ -17,23 +17,30 @@ def create_data_locations(adapter: ProblemAdapter):
     # depot_location = create_problem_location('depot', {'lat': 0, 'lng': 0})
     # locations.append(depot_location)
 
+    start_time = ProblemTime('00:00')
+    end_time = ProblemTime('99:99')
+
     for vehicle in adapter.vehicles:
         locations.append(vehicle.location)
-        starts.append(len(locations) - 1)
 
+        starts.append(len(locations) - 1)
         times.append((vehicle.start_time, vehicle.end_time))
         service_times.append(0)
-
-        if vehicle.end_location is not None:
-            locations.append(vehicle.end_location)
-            service_times.append(0)
-
-        ends.append(len(locations) - 1)
 
     for visit in adapter.visits:
         locations.append(visit.location)
         times.append((visit.start_time, visit.end_time))
         service_times.append(visit.duration.seconds)
+
+    for vehicle_index in range(len(adapter.vehicles)):
+        vehicle = adapter.vehicles[vehicle_index]
+        if vehicle.end_location is not None:
+            locations.append(vehicle.end_location)
+            service_times.append(0)
+            times.append((start_time, end_time))
+            ends.append(len(locations) - 1)
+        else:
+            ends.append(vehicle_index)  # End same as Start
 
     return {
         'locations': locations, 'starts': starts, 'ends': ends,

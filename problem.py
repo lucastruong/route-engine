@@ -97,11 +97,12 @@ def create_time_evaluator(data):
             travel_time_from_to = int(data['distance_matrix'][from_node][to_node] / data['vehicle_speed'])
         return travel_time_from_to
 
-    def time_evaluator(manager, from_node, to_node):
+    def time_evaluator(manager, from_index, to_index):
         """Returns the total time between the two nodes"""
-        from_index = manager.IndexToNode(from_node)
-        to_index = manager.IndexToNode(to_node)
-        return travel_time(from_index, to_index) + service_time(from_index)
+        from_node = manager.IndexToNode(from_index)
+        to_node = manager.IndexToNode(to_index)
+        # return travel_time(from_node, to_node)
+        return travel_time(from_node, to_node) + service_time(to_node)
 
     return time_evaluator
 
@@ -122,8 +123,7 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
-    pprint(data['vehicle_speed'])
-    pprint(data['service_times'])
+    pprint(data['distance_matrix'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],

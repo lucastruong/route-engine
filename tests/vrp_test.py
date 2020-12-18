@@ -33,7 +33,7 @@ class VrpTest(unittest.TestCase):
         solution = main(problem_json)
 
         expected_objective = 15221
-        expected_routes = [[0, 2, 3, 1]]
+        expected_routes = [[0, 1, 2, 3]]
         expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1_end']]
         expected_distances = [[0, 6965, 5249, 3007]]
 
@@ -78,19 +78,15 @@ class VrpTest(unittest.TestCase):
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
 
-    def testSpeed(self):
-        problem_json = read_problem_json('vrp_speed.json')
+    def testTimeWindows(self):
+        problem_json = read_problem_json('vrp_time_windows.json')
         solution = main(problem_json)
 
-        expected_objective = 15221
-        expected_routes = [[0, 2, 3, 1]]
-        expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1_end']]
-        expected_distances = [[0, 6965, 5249, 3007]]
+        expected_times = [
+            [('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:10'), ('09:21', '09:21')]
+        ]
 
-        self.assertEqual(expected_objective, solution.get('objective'))
-        self.assertEqual(expected_routes, solution.get('routes'))
-        self.assertEqual(expected_new_routes, solution.get('new_routes'))
-        self.assertEqual(expected_distances, solution.get('distances'))
+        self.assertEqual(expected_times, solution.get('times'))
 
 if __name__ == '__main__':
     unittest.main()

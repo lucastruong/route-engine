@@ -41,12 +41,7 @@ def create_data_model():
             [(4, 4), # depot
              (2, 0), (8, 0), # locations to visit
              (0, 1), (1, 1),
-             (5, 2), (7, 2),
-             (3, 3), (6, 3),
-             (5, 5), (8, 5),
-             (1, 6), (2, 6),
-             (3, 7), (6, 7),
-             (0, 8), (7, 8)]
+             (5, 2), (7, 2)]
     # Compute locations in meters using the block dimension defined as follow
     # Manhattan average block: 750ft x 264ft -> 228m x 80m
     # here we use: 114m x 80m city block
@@ -57,22 +52,12 @@ def create_data_model():
           [(0, 0),
            (75, 85), (75, 85), # 1, 2
            (60, 70), (45, 55), # 3, 4
-           (0, 8), (50, 60), # 5, 6
-           (0, 10), (10, 20), # 7, 8
-           (0, 10), (75, 85), # 9, 10
-           (85, 95), (5, 15), # 11, 12
-           (15, 25), (10, 20), # 13, 14
-           (45, 55), (30, 40)] # 15, 16
+           (0, 8), (50, 60)] # 5, 6
     data['demands'] = \
           [0, # depot
            1, 1, # 1, 2
            2, 4, # 3, 4
-           2, 4, # 5, 6
-           8, 8, # 7, 8
-           1, 2, # 9,10
-           1, 2, # 11,12
-           4, 4, # 13, 14
-           8, 8] # 15, 16
+           2, 4] # 5, 6
     data['time_per_demand_unit'] = 5  # 5 minutes/unit
     data['num_vehicles'] = 4
     data['breaks'] = [(2, False), (2, False), (2, False), (2, False)]
@@ -309,7 +294,7 @@ def main():
         vehicle_break = data['breaks'][v]
         break_intervals[v] = [
             routing.solver().FixedDurationIntervalVar(
-                15, 100, vehicle_break[0], vehicle_break[1], 'Break for vehicle {}'.format(v))
+                0, 0, vehicle_break[0], vehicle_break[1], 'Break for vehicle {}'.format(v))
             ]
         time_dimension.SetBreakIntervalsOfVehicle(
             break_intervals[v], v, node_visit_transit)

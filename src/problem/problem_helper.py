@@ -25,3 +25,12 @@ def kmph_to_mps(kmph):
     """Convert km/h to m/s"""
     base = 0.27777777777778
     return kmph * base
+
+
+def seconds_to_hhmm(seconds):
+    seconds = seconds % (24 * 3600)
+    hour = seconds // 3600
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    return "%02d:%02d" % (hour, minutes)

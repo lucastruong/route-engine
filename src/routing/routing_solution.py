@@ -1,6 +1,7 @@
 import datetime
 import json
 from pprint import pprint
+from six.moves import xrange
 
 import requests
 
@@ -180,6 +181,7 @@ import requests
 #             requests.post(output['callback_url'], json={"output": output})
 #         except:
 #             print("Callback URL have a problem!")
+from src.problem.problem_helper import seconds_to_hhmm
 from src.problem.problem_location import ProblemLocation
 
 
@@ -247,6 +249,66 @@ def get_route_distances2(solution, routing):
             route_distances.append(distance)
         distances.append(route_distances)
     return distances
+
+
+def get_cumul_data(solution, routing, dimension):
+    """Get cumulative data from a dimension and store it in an array."""
+    cumul_data = []
+    for route_nbr in range(routing.vehicles()):
+        route_data = []
+        index = routing.Start(route_nbr)
+        dim_var = dimension.CumulVar(index)
+        slack_var = dimension.SlackVar(index)
+        route_data.append([
+            solution.Min(dim_var), solution.Max(dim_var),
+            # solution.Min(slack_var), solution.Max(slack_var)
+        ])
+        while not routing.IsEnd(index):
+            index = solution.Value(routing.NextVar(index))
+            dim_var = dimension.CumulVar(index)
+            slack_var = dimension.SlackVar(index)
+            route_data.append([
+                solution.Min(dim_var), solution.Max(dim_var),
+                # solution.Min(slack_var), solution.Max(slack_var),
+            ])
+        cumul_data.append(route_data)
+    return cumul_data
+
+
+def get_route_times(time_steps, data, routes):
+    time_windows = data['time_windows']
+    distance_matrix = data['distance_matrix']
+    service_times = data['service_times']
+    vehicle_speed = data['vehicle_speed']
+    times = []
+
+    for i in range(len(time_steps)):
+        time_window = time_steps[i]
+        route_step = routes[i]
+
+        route_time = []
+        pre_time = time_window[0]
+        pre_step_index = route_step[0]
+
+        for index in range(0, len(time_window)):
+            time = time_window[index]
+            step_index = route_step[index]
+
+            travel_time = int(distance_matrix[pre_step_index][step_index] / vehicle_speed)
+            start_seconds = pre_time[1] + travel_time
+            if start_seconds < time_windows[step_index][0]:
+                start_seconds = time_windows[step_index][0]
+            start = seconds_to_hhmm(start_seconds)
+
+            service_time = service_times[step_index]
+            end_seconds = start_seconds + service_time
+            end = seconds_to_hhmm(end_seconds)
+
+            route_time.append((start, end))
+            pre_time = time
+            pre_step_index = step_index
+        times.append(route_time)
+    return times
 
 
 def get_dimensions(data, routing):
@@ -347,6 +409,18 @@ def format_solution(data, manager, routing, assignment):
     """Prints assignment on console."""
     print('Objective: {} meters'.format(assignment.ObjectiveValue()))
 
+    # print('Breaks:')
+    # intervals = assignment.IntervalVarContainer()
+    # for i in xrange(intervals.Size()):
+    #     brk = intervals.Element(i)
+    #     if brk.PerformedValue() == 1:
+    #         print('{}: Start({}) Duration({})'.format(
+    #             brk.Var().Name(),
+    #             brk.StartValue(),
+    #             brk.DurationValue()))
+    #     else:
+    #         print('{}: Unperformed'.format(brk.Var().Name()))
+
     # Display dropped nodes.
     dropped_nodes = format_dropped_nodes(data, manager, routing, assignment)
 
@@ -360,11 +434,17 @@ def format_solution(data, manager, routing, assignment):
     # distances = get_route_distances(routes, data['distance_matrix'])
     distances = get_route_distances2(assignment, routing)
 
+    # Display times
+    time_dimension = routing.GetDimensionOrDie('Time')
+    times = get_cumul_data(assignment, routing, time_dimension)
+    times = get_route_times(times, data, routes)
+
     # Display solution
     solution = {
         'objective': assignment.ObjectiveValue(),
         'routes': routes, 'new_routes': new_routes, 'distances': distances,
-        'dropped_nodes': dropped_nodes
+        'dropped_nodes': dropped_nodes,
+        'times': times
     }
     pprint(solution)
 
