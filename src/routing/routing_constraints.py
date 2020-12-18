@@ -1,3 +1,4 @@
+import sys
 from functools import partial
 from six.moves import xrange
 
@@ -72,14 +73,12 @@ def add_time_windows_constraints(routing, manager, data, time_evaluator_index):
             continue
         index = manager.NodeToIndex(location_idx)
         time_dimension.CumulVar(index).SetRange(time_window[0], time_window[1])
-        routing.AddToAssignment(time_dimension.SlackVar(index))
 
     # Add time window constraints for each vehicle start node.
     for vehicle_id in range(data['num_vehicles']):
         index = routing.Start(vehicle_id)
         time_dimension.CumulVar(index).SetRange(data['time_windows'][vehicle_id][0],
                                                 data['time_windows'][vehicle_id][1])
-        routing.AddToAssignment(time_dimension.SlackVar(index))
 
     # # Add breaks
     # node_visit_transit = {}
@@ -106,3 +105,22 @@ def add_time_windows_constraints(routing, manager, data, time_evaluator_index):
             time_dimension.CumulVar(routing.Start(i)))
         routing.AddVariableMinimizedByFinalizer(
             time_dimension.CumulVar(routing.End(i)))
+
+
+def add_counter_constraints(routing, data, transit_callback_index):
+    balance = data['balance']
+    num_vehicles = data['num_vehicles']
+    num_visits = data['num_visits']
+    maximum = round(num_visits/num_vehicles) if balance else sys.maxsize
+
+    max_locations = []
+    for i in range(data['num_vehicles']):
+        max_locations.append(maximum)
+
+    dimension_name = 'Counter'
+    routing.AddDimensionWithVehicleCapacity(
+        transit_callback_index,
+        0,  # no slack
+        max_locations,  # maximum locations per vehicle [4,5,4,6]
+        True,  # start cumul to zero
+        dimension_name)

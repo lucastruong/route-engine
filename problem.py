@@ -10,7 +10,7 @@ from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
 from src.problem.problem_adapter import ProblemAdapter
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
-    add_time_windows_constraints
+    add_time_windows_constraints, add_counter_constraints
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
     compute_time_windows
 from src.routing.routing_solution import format_solution
@@ -68,17 +68,9 @@ def create_data_model(problem_json):
     data['time_windows'] = compute_time_windows(data.get('times'))
     data['num_locations'] = len(data['locations'])
 
-    # TMP
-    data['adapter'] = adapter
-    data['global_span'] = 100
+    # Options
+    data['balance'] = adapter.options.balance
     data['num_visits'] = len(adapter.visits)
-
-    # The time required to load a vehicle
-    data['vehicle_load_time'] = 1800
-    # The time required to unload a vehicle.
-    data['vehicle_unload_time'] = 1800
-    # The maximum number of vehicles that can load or unload at the same time.
-    data['depot_capacity'] = 1
 
     return data
 
@@ -101,7 +93,6 @@ def create_time_evaluator(data):
         """Returns the total time between the two nodes"""
         from_node = manager.IndexToNode(from_index)
         to_node = manager.IndexToNode(to_index)
-        # return travel_time(from_node, to_node)
         return travel_time(from_node, to_node) + service_time(to_node)
 
     return time_evaluator
@@ -117,6 +108,19 @@ def create_distance_evaluator(data):
             to_node)]
 
     return distance_evaluator
+
+
+def create_counter_evaluator(data):
+    starts = data['starts']
+    ends = data['ends']
+
+    def counter_callback(manager, from_index):
+        """Returns 1 for any locations except depot."""
+        # Convert from routing variable Index to user NodeIndex.
+        from_node = manager.IndexToNode(from_index)
+        return 0 if (from_node in starts or from_node in ends) else 1
+
+    return counter_callback
 
 
 def main(problem_json):
@@ -142,9 +146,13 @@ def main(problem_json):
     # Creates capacities constraints for each vehicle.
     add_capacities_constraint(routing, manager, data)
 
-    # Add Time Window constraint
+    # Add Time Window constraint.
     time_evaluator_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
     add_time_windows_constraints(routing, manager, data, time_evaluator_index)
+
+    # Balance constraint.
+    counter_evaluator_index = routing.RegisterUnaryTransitCallback(partial(create_counter_evaluator(data), manager))
+    add_counter_constraints(routing, data, counter_evaluator_index)
 
     # Allow to drop nodes.
     allow_drop_nodes(routing, manager, data)

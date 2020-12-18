@@ -88,5 +88,21 @@ class VrpTest(unittest.TestCase):
 
         self.assertEqual(expected_times, solution.get('times'))
 
+    def testBalance(self):
+        problem_json = read_problem_json('vrp_balance.json')
+        solution = main(problem_json)
+
+        expected_routes = [
+            [0, 2, 0],
+            [1, 3, 1],
+        ]
+        expected_new_routes = [
+            ['vehicle_1', 'location_1', 'vehicle_1'],
+            ['vehicle_2', 'location_2', 'vehicle_2'],
+        ]
+
+        self.assertEqual(expected_routes, solution.get('routes'))
+        self.assertEqual(expected_new_routes, solution.get('new_routes'))
+
 if __name__ == '__main__':
     unittest.main()
