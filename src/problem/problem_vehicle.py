@@ -23,11 +23,13 @@ def create_problem_vehicle(key: str, fleet: dict, options: ProblemOptions):
     capacities = ProblemCapacity(fleet.get('capacity'), sys.maxsize)
     skills = ProblemSkill(fleet.get('type'))
     speed = create_speed(fleet.get('speed', options.speed.traffic))
+    order = fleet.get('order', [])
+
     return ProblemVehicle(
         key, start_location, end_location,
         start_time, end_time,
         capacities, skills,
-        speed
+        speed, order
     )
 
 
@@ -37,7 +39,8 @@ class ProblemVehicle:
                  end_location: [ProblemLocation, None],
                  start_time: ProblemTime, end_time: ProblemTime,
                  capacities: ProblemCapacity, skills: ProblemSkill,
-                 speed: ProblemSpeed
+                 speed: ProblemSpeed,
+                 order: list
                  ):
         self.id = key
         self.location = start_location
@@ -47,3 +50,4 @@ class ProblemVehicle:
         self.capacities = capacities
         self.skills = skills
         self.speed = speed
+        self.order = order

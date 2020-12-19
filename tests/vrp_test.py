@@ -1,5 +1,7 @@
+import datetime
 import json
 import os
+import time
 import unittest
 
 from problem import main
@@ -100,6 +102,16 @@ class VrpTest(unittest.TestCase):
             ['vehicle_1', 'location_1', 'vehicle_1'],
             ['vehicle_2', 'location_2', 'vehicle_2'],
         ]
+
+        self.assertEqual(expected_routes, solution.get('routes'))
+        self.assertEqual(expected_new_routes, solution.get('new_routes'))
+
+    def testOrder(self):
+        problem_json = read_problem_json('vrp_order.json')
+        solution = main(problem_json)
+
+        expected_routes = [[0, 2, 3, 1, 0]]
+        expected_new_routes = [['vehicle_1', 'location_2', 'location_3', 'location_1', 'vehicle_1']]
 
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))

@@ -1,6 +1,5 @@
 import sys
 from functools import partial
-from six.moves import xrange
 
 
 def add_distance_constraint(routing, transit_callback_index):
@@ -124,3 +123,17 @@ def add_counter_constraints(routing, data, transit_callback_index):
         max_locations,  # maximum locations per vehicle [4,5,4,6]
         True,  # start cumul to zero
         dimension_name)
+
+
+def add_pickups_deliveries_constraints(routing, manager, data):
+    distance_dimension = routing.GetDimensionOrDie('Distance')
+    for request in data['pickups_deliveries']:
+        pickup_index = manager.NodeToIndex(request[0])
+        delivery_index = manager.NodeToIndex(request[1])
+        routing.AddPickupAndDelivery(pickup_index, delivery_index)
+        routing.solver().Add(
+            routing.VehicleVar(pickup_index) == routing.VehicleVar(
+                delivery_index))
+        routing.solver().Add(
+            distance_dimension.CumulVar(pickup_index) <=
+            distance_dimension.CumulVar(delivery_index))

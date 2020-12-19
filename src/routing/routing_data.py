@@ -12,6 +12,7 @@ def create_data_locations(adapter: ProblemAdapter):
     service_times = []
     starts = []
     ends = []
+    pickups_deliveries = []
 
     # Allowing arbitrary start and end locations
     # depot_location = create_problem_location('depot', {'lat': 0, 'lng': 0})
@@ -22,10 +23,12 @@ def create_data_locations(adapter: ProblemAdapter):
 
     for vehicle in adapter.vehicles:
         locations.append(vehicle.location)
-
         starts.append(len(locations) - 1)
         times.append((vehicle.start_time, vehicle.end_time))
         service_times.append(0)
+        for order_index in range(len(vehicle.order) - 1):
+            orders = vehicle.order
+            pickups_deliveries.append((orders[order_index], orders[order_index+1]))
 
     for visit in adapter.visits:
         locations.append(visit.location)
@@ -45,7 +48,7 @@ def create_data_locations(adapter: ProblemAdapter):
     return {
         'locations': locations, 'starts': starts, 'ends': ends,
         'service_times': service_times,
-        'times': times,
+        'times': times, 'pickups_deliveries': pickups_deliveries
     }
 
 

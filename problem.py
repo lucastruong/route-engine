@@ -8,9 +8,10 @@ from pprint import pprint
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
+from src.helper.measure_decorator import measure
 from src.problem.problem_adapter import ProblemAdapter
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
-    add_time_windows_constraints, add_counter_constraints
+    add_time_windows_constraints, add_counter_constraints, add_pickups_deliveries_constraints
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
     compute_time_windows
 from src.routing.routing_solution import format_solution
@@ -68,6 +69,9 @@ def create_data_model(problem_json):
     data['time_windows'] = compute_time_windows(data.get('times'))
     data['num_locations'] = len(data['locations'])
 
+    # Pickups and Deliveries
+    data['pickups_deliveries'] = data.get('pickups_deliveries')
+
     # Options
     data['balance'] = adapter.options.balance
     data['num_visits'] = len(adapter.visits)
@@ -123,6 +127,7 @@ def create_counter_evaluator(data):
     return counter_callback
 
 
+@measure
 def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
@@ -153,6 +158,9 @@ def main(problem_json):
     # Balance constraint.
     counter_evaluator_index = routing.RegisterUnaryTransitCallback(partial(create_counter_evaluator(data), manager))
     add_counter_constraints(routing, data, counter_evaluator_index)
+
+    # Define Transportation Requests.
+    add_pickups_deliveries_constraints(routing, manager, data)
 
     # Allow to drop nodes.
     allow_drop_nodes(routing, manager, data)
