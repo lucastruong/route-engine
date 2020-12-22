@@ -181,6 +181,7 @@ import requests
 #             requests.post(output['callback_url'], json={"output": output})
 #         except:
 #             print("Callback URL have a problem!")
+from src.helper.mapbox_api import mapbox_directions
 from src.problem.problem_helper import seconds_to_hhmm
 from src.problem.problem_location import ProblemLocation
 
@@ -311,6 +312,25 @@ def get_route_times(time_steps, data, routes):
     return times
 
 
+def get_route_polyline(routes, data):
+    polyline = data['polyline']
+    access_token = data['mapbox']
+    locations = data['locations']
+    geometry = []
+
+    if not polyline:
+        return geometry
+
+    for route in routes:
+        route_locations = []
+        for index in route[1:]:
+            route_locations.append(locations[index])
+
+        polyline = mapbox_directions(route_locations, access_token)
+        geometry.append(polyline)
+    return geometry
+
+
 def get_dimensions(data, routing):
     capacities = data['capacities']
     capacities_dimension = {}
@@ -439,12 +459,16 @@ def format_solution(data, manager, routing, assignment):
     times = get_cumul_data(assignment, routing, time_dimension)
     times = get_route_times(times, data, routes)
 
+    # Display polyline
+    polyline = get_route_polyline(routes, data)
+
     # Display solution
     solution = {
         'objective': assignment.ObjectiveValue(),
         'routes': routes, 'new_routes': new_routes, 'distances': distances,
         'dropped_nodes': dropped_nodes,
-        'times': times
+        'times': times,
+        'polyline': polyline
     }
     pprint(solution)
 

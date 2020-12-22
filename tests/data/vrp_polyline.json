@@ -1,0 +1,28 @@
+{
+    "options": {
+        "polylines": true,
+        "mapbox": "pk.eyJ1IjoibHVjYXN0cnVvbmciLCJhIjoiY2p4c2RjZDA1MGlsajNjbnRubzRxYmR5biJ9.mtZmtqJlWN341Coxbyj0iQ"
+    },
+    "fleet": {
+        "vehicle_1": {
+            "start_location": {
+                "lat": 10.829012,
+                "lng": 106.774783
+            }
+        }
+    },
+    "visits": {
+        "location_1": {
+            "location": {
+                "lat": 10.794825,
+                "lng": 106.721362
+            }
+        },
+        "location_2": {
+            "location": {
+                "lat": 10.79753993119405,
+                "lng": 106.67339848433336
+            }
+        }
+    }
+}

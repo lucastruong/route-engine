@@ -76,6 +76,10 @@ def create_data_model(problem_json):
     data['balance'] = adapter.options.balance
     data['num_visits'] = len(adapter.visits)
 
+    # Mapbox
+    data['polyline'] = adapter.options.polyline
+    data['mapbox'] = adapter.options.mapbox
+
     return data
 
 

@@ -114,5 +114,16 @@ class VrpTest(unittest.TestCase):
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
 
+    def testPolyline(self):
+        problem_json = read_problem_json('vrp_polyline.json')
+        solution = main(problem_json)
+
+        expected_polyline = ['an{`A}|jjS|AbCyFnEoHuIJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk@ho@w'
+                             '^vt@iBKNiC|Bko@xHkE|w@_gAib@oa@ek@ij@_JeRq@i['
+                             'pPad@z@gAn@oBPeBmJkdAiNsxAeL_a@sPuQaIkDos@gKgEi@gg@mJaIiEOmUpIy\\_PvAa@oLoLaOnAmA_CoC'
+                             '~B[']
+
+        self.assertEqual(expected_polyline, solution.get('polyline'))
+
 if __name__ == '__main__':
     unittest.main()
