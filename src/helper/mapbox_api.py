@@ -6,6 +6,7 @@ from polyline.codec import PolylineCodec
 
 MAX_ELEMENTS_DIRECTIONS = 25
 
+
 def send_request(locations: list[ProblemLocation], api_key):
     # Remove duplicates from list
     # coordinates = []
@@ -31,24 +32,20 @@ def send_request(locations: list[ProblemLocation], api_key):
 def send_request_step_by_step(locations: list[ProblemLocation], access_token: str):
     max_elements = MAX_ELEMENTS_DIRECTIONS
     num_addresses = len(locations)
-    max_rows = max_elements
-    q, r = divmod(num_addresses, max_rows)
     geometries = []
 
-    def get_geometry(start, end):
-        addresses = locations[start: end]
+    def get_geometry(start_index, end_index):
+        addresses = locations[start_index: end_index]
         response = send_request(addresses, access_token)
         return response.get('geometry')
 
-    # Send q requests, returning max_rows rows per request.
-    for i in range(q):
-        geometry = get_geometry(i * max_rows, (i + 1) * max_rows)
+    i = 0
+    while i < num_addresses - 1:
+        start = i
+        end = start + max_elements
+        geometry = get_geometry(start, end)
         geometries.append(geometry)
-
-    # Get the remaining remaining r rows, if necessary.
-    if r > 0:
-        geometry = get_geometry(q * max_rows, q * max_rows + r)
-        geometries.append(geometry)
+        i += max_elements - 1
 
     return geometries
 
