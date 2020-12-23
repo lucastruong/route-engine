@@ -4,7 +4,7 @@
 python3 --version
 pip list
 pip install wheel six ortools 
-pip install polyline requests
+pip install polyline requests numpy
 
 # Running
 python3 problem.py
@@ -14,6 +14,7 @@ https://www.programiz.com/python-programming/online-compiler/
 https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
 https://www.tools4noobs.com/online_tools/seconds_to_hh_mm_ss/
 https://developers.google.com/maps/documentation/utilities/polylineutility
+https://www.geodatasource.com/distance-calculator
 
 # Refs
 https://developers.google.com/optimization/routing/vrp

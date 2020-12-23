@@ -3,6 +3,7 @@ import os
 import unittest
 
 from problem import main
+from src.helper.routific_format import routific_format_solution
 
 
 def read_problem_json(file_name):
@@ -82,11 +83,11 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_time_windows.json')
         solution = main(problem_json)
 
-        expected_times = [
-            [('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05'), ('09:26', '09:26')]
-        ]
+        expected_times = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05'), ('09:26', '09:26')]]
+        expected_travel_times = [[0, 783, 1306, 0]]
 
         self.assertEqual(expected_times, solution.get('times'))
+        self.assertEqual(expected_travel_times, solution.get('travel_times'))
 
     def testBalance(self):
         problem_json = read_problem_json('vrp_balance.json')
@@ -124,6 +125,21 @@ class VrpTest(unittest.TestCase):
                              '~B[']
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
+
+    def testRoutificFormat(self):
+        problem_json = read_problem_json('vrp_time_windows.json')
+        solution = main(problem_json)
+        out = routific_format_solution(solution)
+
+        expected_out = {
+            'status': 'success',
+            'total_travel_time': 2089,
+            'total_idle_time': 0,
+            'num_unserved': 0,
+            'unserved': [],
+        }
+
+        self.assertEqual(expected_out, out)
 
 if __name__ == '__main__':
     unittest.main()

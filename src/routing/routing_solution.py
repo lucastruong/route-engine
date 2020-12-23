@@ -312,6 +312,29 @@ def get_route_times(time_steps, data, routes):
     return times
 
 
+def get_travel_times(time_steps, data, routes):
+    distance_matrix = data['distance_matrix']
+    vehicle_speed = data['vehicle_speed']
+    times = []
+
+    def cal_travel_time(from_index, to_index):
+        return int(distance_matrix[from_index][to_index] / vehicle_speed)
+
+    for i in range(len(time_steps)):
+        time_window = time_steps[i]
+        route_step = routes[i]
+        vehicle_index = route_step[0]
+
+        route_time = []
+        for index in range(len(time_window)):
+            step_index = route_step[index]
+            travel_time = cal_travel_time(vehicle_index, step_index)
+            route_time.append(travel_time)
+
+        times.append(route_time)
+    return times
+
+
 def get_route_polyline(routes, data):
     polyline = data['polyline']
     access_token = data['mapbox']
@@ -456,8 +479,11 @@ def format_solution(data, manager, routing, assignment):
 
     # Display times
     time_dimension = routing.GetDimensionOrDie('Time')
-    times = get_cumul_data(assignment, routing, time_dimension)
-    times = get_route_times(times, data, routes)
+    data_times = get_cumul_data(assignment, routing, time_dimension)
+    times = get_route_times(data_times, data, routes)
+
+    # Display travel times
+    travel_times = get_travel_times(data_times, data, routes)
 
     # Display polyline
     polyline = get_route_polyline(routes, data)
@@ -467,9 +493,9 @@ def format_solution(data, manager, routing, assignment):
         'objective': assignment.ObjectiveValue(),
         'routes': routes, 'new_routes': new_routes, 'distances': distances,
         'dropped_nodes': dropped_nodes,
-        'times': times,
+        'times': times, 'travel_times': travel_times,
         'polyline': polyline
     }
-    # pprint(solution)
+    pprint(solution)
 
     return solution

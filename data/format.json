@@ -1,0 +1,39 @@
+{
+  "status": "success",
+  "total_travel_time": 31.983334,
+  "total_idle_time": 0,
+  "num_unserved": 0,
+  "unserved": null,
+  "solution": {
+    "vehicle_1": [
+      {
+        "location_id": "depot",
+        "location_name": "800 Kingsway",
+        "arrival_time": "08:00"
+      },
+      {
+        "location_id": "order_3",
+        "location_name": "800 Robson",
+        "arrival_time": "08:10",
+        "finish_time": "08:20"
+      },
+      {
+        "location_id": "order_2",
+        "location_name": "3780 Arbutus",
+        "arrival_time": "08:29",
+        "finish_time": "09:10"
+      },
+      {
+        "location_id": "order_1",
+        "location_name": "6800 Cambie",
+        "arrival_time": "09:19",
+        "finish_time": "09:29"
+      },
+      {
+        "location_id": "depot",
+        "location_name": "800 Kingsway",
+        "arrival_time": "09:39"
+      }
+    ]
+  }
+}
