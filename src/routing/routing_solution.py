@@ -427,7 +427,7 @@ def get_dimensions(data, routing):
 
 def format_solution(data, manager, routing, assignment):
     """Prints assignment on console."""
-    print('Objective: {} meters'.format(assignment.ObjectiveValue()))
+    # print('Objective: {} meters'.format(assignment.ObjectiveValue()))
 
     # print('Breaks:')
     # intervals = assignment.IntervalVarContainer()
@@ -470,6 +470,6 @@ def format_solution(data, manager, routing, assignment):
         'times': times,
         'polyline': polyline
     }
-    pprint(solution)
+    # pprint(solution)
 
     return solution
