@@ -5,7 +5,7 @@ def create_options(options: dict):
     speed = create_speed(options.get('traffic', 'normal'))
     balance = options.get('balance', False)
     polyline = options.get('polylines', False)
-    mapbox = options.get('mapbox')
+    mapbox = options.get('mapbox_key')
     return ProblemOptions(speed, balance, polyline, mapbox)
 
 
