@@ -1,14 +1,12 @@
-import datetime
 import json
 import os
 import sys
-import time
 from functools import partial
 from pprint import pprint
 
+import requests
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
-from src.helper.measure_decorator import measure
 from src.problem.problem_adapter import ProblemAdapter
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
     add_time_windows_constraints, add_counter_constraints, add_pickups_deliveries_constraints
@@ -185,10 +183,12 @@ def main(problem_json):
 
 
 if __name__ == '__main__':
-    start_time = time.time()
-    print("--- ROUTE-ENGINE: ---")
     json = read_in()
-    main(json)
-    end_time = int(time.time() - start_time)
-    end_time = str(datetime.timedelta(seconds=end_time))
-    print("--- END: %s ---" % end_time)
+    callback_url = json.get('callback_url')
+    output = main(json)
+
+    if callback_url:
+        try:
+            requests.post(callback_url, json={"output": output})
+        except:
+            print("Callback URL have a problem!")

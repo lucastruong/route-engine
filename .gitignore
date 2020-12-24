@@ -1,2 +1,2 @@
-src/problem/__pycache__
+*.pyc
 venv
