@@ -23,11 +23,15 @@ class VrpTest(unittest.TestCase):
         expected_routes = [[0, 1, 2, 0]]
         expected_new_routes = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1']]
         expected_distances = [[0, 6965, 5249, 11616]]
+        expected_travel_times = [[0, 783, 1306, 0]]
+        expected_service_times = [[0, 300, 600, 0]]
 
         self.assertEqual(expected_objective, solution.get('objective'))
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_new_routes, solution.get('new_routes'))
         self.assertEqual(expected_distances, solution.get('distances'))
+        self.assertEqual(expected_travel_times, solution.get('travel_times'))
+        self.assertEqual(expected_service_times, solution.get('service_times'))
 
     def testVehicleEndLocation(self):
         problem_json = read_problem_json('vrp_vehicle_end_location.json')
@@ -83,10 +87,10 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_time_windows.json')
         solution = main(problem_json)
 
-        expected_times = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05'), ('09:26', '09:26')]]
+        expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05'), ('09:26', '09:26')]]
         expected_travel_times = [[0, 783, 1306, 0]]
 
-        self.assertEqual(expected_times, solution.get('times'))
+        self.assertEqual(expected_time_windows, solution.get('time_windows'))
         self.assertEqual(expected_travel_times, solution.get('travel_times'))
 
     def testBalance(self):
@@ -137,9 +141,36 @@ class VrpTest(unittest.TestCase):
             'total_idle_time': 0,
             'num_unserved': 0,
             'unserved': [],
+            'solution': {
+                'vehicle_1': [{'arrival_time': '08:00',
+                               'distance': 0,
+                               'duration': 0,
+                               'finish_time': '08:00',
+                               'location_id': 'vehicle_1',
+                               'minutes': 0},
+                              {'arrival_time': '08:13',
+                               'distance': 6965,
+                               'duration': 10,
+                               'finish_time': '08:23',
+                               'location_id': 'location_1',
+                               'minutes': 13},
+                              {'arrival_time': '09:00',
+                               'distance': 5249,
+                               'duration': 5,
+                               'finish_time': '09:05',
+                               'location_id': 'location_2',
+                               'minutes': 21},
+                              {'arrival_time': '09:26',
+                               'distance': 11616,
+                               'duration': 0,
+                               'finish_time': '09:26',
+                               'location_id': 'vehicle_1',
+                               'minutes': 0}],
+            }
         }
 
         self.assertEqual(expected_out, out)
+
 
 if __name__ == '__main__':
     unittest.main()

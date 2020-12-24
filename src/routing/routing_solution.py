@@ -335,6 +335,20 @@ def get_travel_times(time_steps, data, routes):
     return times
 
 
+def get_service_times(data, routes):
+    service_times = data['service_times']
+    times = []
+
+    for route in routes:
+        route_time = [0]
+        for index in route[1:]:
+            service_time = service_times[index]
+            route_time.append(service_time)
+
+        times.append(route_time)
+    return times
+
+
 def get_route_polyline(routes, data):
     polyline = data['polyline']
     access_token = data['mapbox']
@@ -485,15 +499,18 @@ def format_solution(data, manager, routing, assignment):
     # Display travel times
     travel_times = get_travel_times(data_times, data, routes)
 
+    # Display service times
+    service_times = get_service_times(data, routes)
+
     # Display polyline
     polyline = get_route_polyline(routes, data)
 
     # Display solution
     solution = {
         'objective': assignment.ObjectiveValue(),
-        'routes': routes, 'new_routes': new_routes, 'distances': distances,
         'dropped_nodes': dropped_nodes,
-        'times': times, 'travel_times': travel_times,
+        'routes': routes, 'new_routes': new_routes, 'distances': distances,
+        'time_windows': times, 'travel_times': travel_times, 'service_times': service_times,
         'polyline': polyline
     }
     pprint(solution)
