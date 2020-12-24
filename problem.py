@@ -187,7 +187,8 @@ def main(problem_json):
 if __name__ == '__main__':
     start_time = time.time()
     print("--- ROUTE-ENGINE: ---")
-    main()
+    json = read_in()
+    main(json)
     end_time = int(time.time() - start_time)
     end_time = str(datetime.timedelta(seconds=end_time))
     print("--- END: %s ---" % end_time)
