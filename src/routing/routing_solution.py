@@ -331,6 +331,6 @@ def format_solution(data, manager, routing, assignment):
         'time_windows': times, 'travel_times': travel_times, 'service_times': service_times,
         'polyline': polyline
     }
-    pprint(solution)
+    # pprint(solution)
 
     return solution

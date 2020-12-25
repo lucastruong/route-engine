@@ -1,12 +1,14 @@
+import datetime
 import json
 import os
 import sys
 from functools import partial
-from pprint import pprint
+import numpy as np
 
 import requests
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
+from src.helper.routific_format import routific_format_solution
 from src.problem.problem_adapter import ProblemAdapter
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
     add_time_windows_constraints, add_counter_constraints, add_pickups_deliveries_constraints
@@ -134,7 +136,7 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
-    pprint(data['distance_matrix'])
+    # pprint(data['distance_matrix'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
@@ -183,12 +185,37 @@ def main(problem_json):
 
 
 if __name__ == '__main__':
-    json = read_in()
-    callback_url = json.get('callback_url')
-    output = main(json)
+    def json_converter(obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, datetime.datetime):
+            return obj.__str__()
 
-    if callback_url:
-        try:
-            requests.post(callback_url, json={"output": output})
-        except:
-            print("Callback URL have a problem!")
+    # Read json
+    json_string = read_in()
+    json_obj = json.loads(json_string)
+
+    # Format data
+    job_id = json_obj.get('job_id')
+    problem = json_obj.get('problem')
+    callback_url = problem.get('callback_url')
+
+    # Optimize problem
+    solution = main(problem)
+    out = routific_format_solution(solution)
+    output = {
+        'id': job_id,
+        'output': out
+    }
+    body = json.dumps(output, default=json_converter)
+
+    # Request the callback url
+    header = {"content-type": "application/json"}
+    try:
+        requests.post(callback_url, data=body, headers=header, verify=False)
+    except:
+        print("Callback URL have a problem!")

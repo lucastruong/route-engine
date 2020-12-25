@@ -6,15 +6,17 @@ pip list
 pip install wheel six ortools 
 pip install polyline requests numpy
 
+python -m pip install polyline requests numpy
+
 # Running
 python3 problem.py
 
 # Tools
-https://www.programiz.com/python-programming/online-compiler/
-https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
-https://www.tools4noobs.com/online_tools/seconds_to_hh_mm_ss/
-https://developers.google.com/maps/documentation/utilities/polylineutility
-https://www.geodatasource.com/distance-calculator
+Python Online: https://www.programiz.com/python-programming/online-compiler/
+Calculator: https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
+HHMMSS: https://www.tools4noobs.com/online_tools/seconds_to_hh_mm_ss/
+Polyline Decode: https://developers.google.com/maps/documentation/utilities/polylineutility
+Distance: https://www.geodatasource.com/distance-calculator
 
 # Refs
 https://developers.google.com/optimization/routing/vrp
