@@ -1,9 +1,10 @@
 # Route engine
 
-# venv
-python3 --version
+# For Developer
+brew install python
+python3 -V
 pip list
-pip install wheel six ortools 
+pip install wheel six ortools
 pip install polyline requests numpy
 
 # Running
@@ -18,17 +19,18 @@ Distance: https://www.geodatasource.com/distance-calculator
 
 # Deploy on Ubuntu
 sudo apt update
-sudo apt-get -y upgrade
-sudo apt-get install -y python3-pip
+sudo apt install software-properties-common 
+sudo add-apt-repository ppa:deadsnakes/ppa 
+sudo apt update 
+sudo apt install python3.9 
+python3.9 -V
 
-python3 -V
-pip3 -V
-pip3 install polyline requests numpy
-pip3 list
-
-vi ~/.bashrc
-alias python=python3
-source ~/.bashrc
+sudo apt-get install python3.9-distutils
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.9 get-pip.py
+python3.9 -m pip install wheel six ortools
+python3.9 -m pip install polyline requests numpy
+python3.9 -m pip list
 
 # Refs
 https://developers.google.com/optimization/routing/vrp

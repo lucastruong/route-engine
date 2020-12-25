@@ -146,7 +146,7 @@ class VrpTest(unittest.TestCase):
                                'distance': 0,
                                'duration': 0,
                                'finish_time': '08:00',
-                               'location_id': 'vehicle_1',
+                               'location_id': 'vehicle_1_start',
                                'minutes': 0},
                               {'arrival_time': '08:13',
                                'distance': 6965,

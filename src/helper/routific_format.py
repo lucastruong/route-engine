@@ -23,8 +23,9 @@ def routific_format_solution(solution: dict):
         solution[vehicle_id] = []
 
         for step_index in range(len(route)):
+            location_id = new_route[step_index] if step_index > 0 else new_route[step_index] + '_start'
             solution[vehicle_id].append({
-                "location_id": new_route[step_index],
+                "location_id": location_id,
                 "arrival_time": time_window[step_index][0],
                 "finish_time": time_window[step_index][1],
                 "distance": distance[step_index],
@@ -38,7 +39,8 @@ def routific_format_solution(solution: dict):
         'total_idle_time': 0,
         'num_unserved': len(dropped_nodes),
         'unserved': dropped_nodes,
-        'solution': solution
+        'solution': solution,
+        # 'polylines': {}
     }
 
     return out
