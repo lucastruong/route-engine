@@ -37,7 +37,7 @@ def add_capacities_constraint(routing, manager, data):
 
 def allow_drop_nodes(routing, manager, data):
     # Allow to drop nodes.
-    penalty = 99000  # meters
+    penalty = 990000  # meters
     for node in range(1, len(data['distance_matrix'])):
         index = manager.NodeToIndex(node)
         if index < 0:
@@ -71,6 +71,8 @@ def add_time_windows_constraints(routing, manager, data, time_evaluator_index):
         if location_idx < data['num_vehicles']:
             continue
         index = manager.NodeToIndex(location_idx)
+        if index < 0:
+            continue
         time_dimension.CumulVar(index).SetRange(time_window[0], time_window[1])
 
     # Add time window constraints for each vehicle start node.

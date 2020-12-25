@@ -1,0 +1,51 @@
+{
+    "options": {
+        "polylines": false,
+        "mapbox_key": "pk.eyJ1IjoibHVjYXN0cnVvbmciLCJhIjoiY2p4c2RjZDA1MGlsajNjbnRubzRxYmR5biJ9.mtZmtqJlWN341Coxbyj0iQ",
+        "solver": "or-tools"
+    },
+    "fleet": {
+        "cheska": {
+            "start_location": {
+                "id": "cheska_start",
+                "name": "Merchandise Mart, Chicago, IL, United States",
+                "address": "Merchandise Mart, Chicago, IL, United States",
+                "lat": 41.8886536,
+                "lng": -87.6355137
+            },
+            "end_location": {
+                "id": "cheska_end",
+                "name": "Merchandise Mart, Chicago, IL, United States",
+                "address": "Merchandise Mart, Chicago, IL, United States",
+                "lat": 41.8886536,
+                "lng": -87.6355137
+            },
+            "shift_start": "09:00",
+            "shift_end": "15:00",
+            "type": "Refrigerated",
+            "capacity": 100
+        }
+    },
+    "visits": {
+        "lake_district": {
+            "location": {
+                "name": "1321 W Lake St, Chicago, IL, United States",
+                "address": "1321 W Lake St, Chicago, IL, United States",
+                "lat": 41.88506539999999,
+                "lng": -87.6596914
+            },
+            "start": "09:00",
+            "end": "12:00"
+        },
+        "marilyn_monroe": {
+            "location": {
+                "name": "525 W Monroe, chicago, il",
+                "address": "525 W Monroe, chicago, il",
+                "lat": 41.8803304,
+                "lng": -87.6403457
+            },
+            "start": "09:00",
+            "end": "12:00"
+        }
+    }
+}

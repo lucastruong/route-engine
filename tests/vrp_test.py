@@ -171,6 +171,12 @@ class VrpTest(unittest.TestCase):
 
         self.assertEqual(expected_out, out)
 
+    def testComplexData(self):
+        problem_json = read_problem_json('vrp_complex_data.json')
+        solution = main(problem_json)
+        out = routific_format_solution(solution)
+        print(out)
+        self.assertEqual(1, 1)
 
 if __name__ == '__main__':
     unittest.main()

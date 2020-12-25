@@ -3,6 +3,8 @@ import json
 import os
 import sys
 from functools import partial
+from pprint import pprint
+
 import numpy as np
 
 import requests
@@ -136,7 +138,7 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
-    # pprint(data['distance_matrix'])
+    # pprint(data['time_windows'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
