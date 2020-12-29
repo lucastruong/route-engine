@@ -11,12 +11,12 @@ from src.problem.problem_time import ProblemTime
 def create_problem_vehicle(key: str, fleet: dict, options: ProblemOptions):
     start_location = fleet.get('start_location')
     key_start = start_location.get('id', key)
-    start_location = create_problem_location(key_start, start_location)
+    start_location = create_problem_location(key, key_start, start_location)
 
     end_location = fleet.get('end_location', None)
     if end_location is not None:
         key_end = end_location.get('id', key + '_end')
-        end_location = create_problem_location(key_end, end_location)
+        end_location = create_problem_location(key, key_end, end_location)
 
     start_time = ProblemTime(fleet.get('shift_start'))
     end_time = ProblemTime(fleet.get('shift_end'), '99:99')

@@ -4,11 +4,13 @@ import numpy as np
 def routific_format_solution(solution: dict):
     dropped_nodes = solution.get('dropped_nodes')
     routes = solution.get('routes')
-    new_routes = solution.get('new_routes')
+    route_root_ids = solution.get('route_root_ids')
+    route_ids = solution.get('route_ids')
     time_windows = solution.get('time_windows')
     service_times = solution.get('service_times')
     travel_times = solution.get('travel_times')
     distances = solution.get('distances')
+    polyline = solution.get('polyline')
 
     solution = {}
     for route_index in range(len(routes)):
@@ -17,13 +19,14 @@ def routific_format_solution(solution: dict):
         distance = distances[route_index]
         service_time = service_times[route_index]
         travel_time = travel_times[route_index]
-        new_route = new_routes[route_index]
+        route_root_id = route_root_ids[route_index]
+        route_id = route_ids[route_index]
 
-        vehicle_id = new_route[0]
+        vehicle_id = route_root_id[0]
         solution[vehicle_id] = []
 
         for step_index in range(len(route)):
-            location_id = new_route[step_index]
+            location_id = route_id[step_index]
             location_id_sub = '_start' if step_index == 0 and '_start' not in location_id else ''
             solution[vehicle_id].append({
                 "location_id": location_id + location_id_sub,
@@ -34,6 +37,13 @@ def routific_format_solution(solution: dict):
                 "minutes": int(travel_time[step_index] / 60)
             })
 
+    polylines = {}
+    for polyline_index in range(len(polyline)):
+        polyline_route = polyline[polyline_index]
+        route_root_id = route_root_ids[polyline_index]
+        vehicle_id = route_root_id[0]
+        polylines[vehicle_id] = [polyline_route]
+
     out = {
         'status': 'success',
         'total_travel_time': np.sum(np.array(travel_times)),
@@ -41,7 +51,7 @@ def routific_format_solution(solution: dict):
         'num_unserved': len(dropped_nodes),
         'unserved': dropped_nodes,
         'solution': solution,
-        # 'polylines': {}
+        'polylines': polylines
     }
 
     return out

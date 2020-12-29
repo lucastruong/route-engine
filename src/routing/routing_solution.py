@@ -44,6 +44,17 @@ def reformat_routes(routes, locations: list[ProblemLocation]):
     return visits
 
 
+def reformat_routes_with_root_id(routes, locations: list[ProblemLocation]):
+    visits = []
+    for i, route in enumerate(routes):
+        steps = []
+        for index in route:
+            location = locations[index]
+            steps.append(location.id_root)
+        visits.append(steps)
+    return visits
+
+
 def get_route_distances(routes, distance_matrix):
     distances = []
     for i, route in enumerate(routes):
@@ -303,7 +314,10 @@ def format_solution(data, manager, routing, assignment):
     routes = get_routes(assignment, routing, manager)
 
     # Reformat routes
-    new_routes = reformat_routes(routes, data['locations'])
+    route_ids = reformat_routes(routes, data['locations'])
+
+    # Reformat routes with root_id
+    route_root_ids = reformat_routes_with_root_id(routes, data['locations'])
 
     # Display distances
     # distances = get_route_distances(routes, data['distance_matrix'])
@@ -327,8 +341,10 @@ def format_solution(data, manager, routing, assignment):
     solution = {
         'objective': assignment.ObjectiveValue(),
         'dropped_nodes': dropped_nodes,
-        'routes': routes, 'new_routes': new_routes, 'distances': distances,
-        'time_windows': times, 'travel_times': travel_times, 'service_times': service_times,
+        'routes': routes,
+        'route_ids': route_ids, 'route_root_ids': route_root_ids,
+        'distances': distances, 'time_windows': times,
+        'travel_times': travel_times, 'service_times': service_times,
         'polyline': polyline
     }
     # pprint(solution)
