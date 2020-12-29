@@ -11,14 +11,14 @@ pip install Flask
 # Running
 export FLASK_ENV=development
 export FLASK_APP=app.py
-python -m flask run -h 0.0.0.0  -p 5000
+python -m flask run -h 0.0.0.0 -p 5000
 
 # Deploy on Ubuntu
 sudo apt update
 sudo apt install software-properties-common 
 sudo add-apt-repository ppa:deadsnakes/ppa 
-sudo apt update 
-sudo apt install python3.9 
+sudo apt update
+sudo apt install python3.9
 python3.9 -V
 
 sudo apt-get install python3.9-distutils
