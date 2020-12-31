@@ -1,3 +1,4 @@
+from waitress import serve
 from flask import Flask, request
 from problem import main
 from src.helper.callback_request import send_callback_request
@@ -40,3 +41,8 @@ def vrp_long():
         mimetype='application/json'
     )
     return response
+
+
+if __name__ == "__main__":
+    # app.run('0.0.0.0',port=server_port)
+    serve(app, host='0.0.0.0', port=5000)

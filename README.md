@@ -7,13 +7,20 @@ pip list
 pip install wheel six ortools
 pip install polyline requests numpy
 pip install Flask
+pip install waitress
+pip freeze > requirements.txt
 
 # Running
 export FLASK_ENV=development
 export FLASK_APP=app.py
 python -m flask run -h 0.0.0.0 -p 5000
 
+# Deploy to vercel
+npm i -g vercel
+cd venv  && vercel --prod
+
 # Deploy on Ubuntu
+wget -qO - https://raw.githubusercontent.com/yarnpkg/releases/gh-pages/debian/pubkey.gpg | sudo apt-key add -
 sudo apt update
 sudo apt install software-properties-common 
 sudo add-apt-repository ppa:deadsnakes/ppa 
@@ -25,12 +32,22 @@ sudo apt-get install python3.9-distutils
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3.9 get-pip.py
 
-mkdir routeEngine && cd routeEngine
-python3.9 -m venv venv
+git clone https://github.com/lucastruong/route-engine.git
+cd route-engine
 
-python3.9 -m pip install wheel six ortools
-python3.9 -m pip install polyline requests numpy
-python3.9 -m pip list
+sudo apt-get install python3.9-venv
+python3.9 -m venv ./venv
+tree venv
+
+source ./venv/bin/activate
+deactivate
+pip install wheel six ortools
+pip install polyline requests numpy
+pip install Flask
+pip list
+
+pip install waitress
+waitress-serve --port=5000 app:app
 
 # Tools
 Python Online: https://www.programiz.com/python-programming/online-compiler/
@@ -44,3 +61,4 @@ https://developers.google.com/optimization/routing/vrp
 https://github.com/google/or-tools/blob/stable/ortools/constraint_solver/doc/VRP.md#drop-nodes-constraints
 https://stackoverflow.com/questions/63112611/vehicle-routing-with-different-vehicle-speed-google-or-tools
 https://stackoverflow.com/questions/62756122/how-to-limit-number-of-locations-for-each-vehicle-in-google-or-tools-route-optim
+https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
