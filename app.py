@@ -19,9 +19,6 @@ def vrp_long():
 
     problem = json_obj
     job_id = json_obj.get('job_id')
-    if job_id is not None:
-        problem = json_obj.get('problem')
-
     callback_url = problem.get('callback_url')
 
     # Optimize problem
@@ -44,5 +41,5 @@ def vrp_long():
 
 
 if __name__ == "__main__":
-    # app.run('0.0.0.0',port=server_port)
+    # app.run('0.0.0.0', port=server_port)
     serve(app, host='0.0.0.0', port=5000)

@@ -6,8 +6,7 @@ python3 -V
 pip list
 pip install wheel six ortools
 pip install polyline requests numpy
-pip install Flask
-pip install waitress
+pip install Flask waitress
 pip freeze > requirements.txt
 
 # Running
@@ -43,11 +42,16 @@ source ./venv/bin/activate
 deactivate
 pip install wheel six ortools
 pip install polyline requests numpy
-pip install Flask
+pip install Flask waitress
 pip list
 
-pip install waitress
-waitress-serve --port=5000 app:app
+# Running on Ubuntu
+cd route-engine
+source ./venv/bin/activate
+python app.py &
+
+ps -ef | grep app.py
+kill 25071
 
 # Tools
 Python Online: https://www.programiz.com/python-programming/online-compiler/
