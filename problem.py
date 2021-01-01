@@ -138,7 +138,7 @@ def main(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
-    pprint(data['service_times'])
+    # pprint(data['distance_matrix'])
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
@@ -175,8 +175,11 @@ def main(problem_json):
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
-    # search_parameters.time_limit.seconds = 30
+    # search_parameters.local_search_metaheuristic = (
+    #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
+    search_parameters.time_limit.seconds = 30
     search_parameters.solution_limit = 180
+    search_parameters.log_search = False
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
