@@ -175,11 +175,13 @@ def main(problem_json):
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
-    search_parameters.time_limit.seconds = 30
-    # search_parameters.solution_limit = 100
+    # search_parameters.time_limit.seconds = 30
+    search_parameters.solution_limit = 180
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
+    # initial_solution = routing.ReadAssignmentFromRoutes(data['initial_routes'], True)
+    # assignment = routing.SolveFromAssignmentWithParameters(initial_solution, search_parameters)
 
     # Print solution on console.
     if assignment:
