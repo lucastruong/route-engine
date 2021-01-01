@@ -10,7 +10,7 @@ def add_distance_constraint(routing, transit_callback_index):
         99000,  # vehicle maximum travel distance (meters)
         True,  # start cumul to zero
         dimension_name)
-    distance_dimension = routing.GetDimensionOrDie(dimension_name)
+    # distance_dimension = routing.GetDimensionOrDie(dimension_name)
     # distance_dimension.SetGlobalSpanCostCoefficient(100)
 
 
@@ -134,8 +134,8 @@ def add_pickups_deliveries_constraints(routing, manager, data):
         delivery_index = manager.NodeToIndex(request[1])
         routing.AddPickupAndDelivery(pickup_index, delivery_index)
         routing.solver().Add(
-            routing.VehicleVar(pickup_index) == routing.VehicleVar(
-                delivery_index))
+            routing.VehicleVar(pickup_index) ==
+            routing.VehicleVar(delivery_index))
         routing.solver().Add(
             distance_dimension.CumulVar(pickup_index) <=
             distance_dimension.CumulVar(delivery_index))

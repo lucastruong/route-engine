@@ -5,7 +5,7 @@
                 "lat": 10.829012,
                 "lng": 106.774783
             },
-            "order": [2, 3, 1]
+            "order": ["location_2", "location_3", "location_1"]
         }
     },
     "visits": {

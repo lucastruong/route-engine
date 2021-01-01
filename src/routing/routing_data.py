@@ -8,6 +8,7 @@ from src.problem.problem_time import ProblemTime
 
 def create_data_locations(adapter: ProblemAdapter):
     locations = []
+    location_ids = []
     times = []
     service_times = []
     starts = []
@@ -23,15 +24,16 @@ def create_data_locations(adapter: ProblemAdapter):
 
     for vehicle in adapter.vehicles:
         locations.append(vehicle.location)
+        location_ids.append(vehicle.location.id)
+
         starts.append(len(locations) - 1)
         times.append((vehicle.start_time, vehicle.end_time))
         service_times.append(0)
-        for order_index in range(len(vehicle.order) - 1):
-            orders = vehicle.order
-            pickups_deliveries.append((orders[order_index], orders[order_index+1]))
 
     for visit in adapter.visits:
         locations.append(visit.location)
+        location_ids.append(visit.location.id)
+
         times.append((visit.start_time, visit.end_time))
         service_times.append(visit.duration.seconds)
 
@@ -39,11 +41,21 @@ def create_data_locations(adapter: ProblemAdapter):
         vehicle = adapter.vehicles[vehicle_index]
         if vehicle.end_location is not None:
             locations.append(vehicle.end_location)
+            location_ids.append(vehicle.end_location.id)
+
             service_times.append(0)
             times.append((start_time, end_time))
             ends.append(len(locations) - 1)
         else:
             ends.append(vehicle_index)  # End same as Start
+
+    # For vehicle orders
+    for vehicle in adapter.vehicles:
+        for order_index in range(len(vehicle.order) - 1):
+            orders = vehicle.order
+            start_location_index = location_ids.index(orders[order_index])
+            end_location_index = location_ids.index(orders[order_index + 1])
+            pickups_deliveries.append([start_location_index, end_location_index])
 
     return {
         'locations': locations, 'starts': starts, 'ends': ends,

@@ -123,8 +123,8 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_polyline.json')
         solution = main(problem_json)
 
-        expected_polyline = ['an{`A}|jjS|AbCyFnEoHuIJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk@ho@w'
-                             '^vt@iBKNiC|Bko@xHkE|w@_gAib@oa@ek@ij@_JeRq@i['
+        expected_polyline = ['ol{`Ay~jjSy@n@dBnCyFnEoHuIJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk'
+                             '@ho@w^vt@iBKNiC|Bko@xHkE|w@_gAib@oa@ek@ij@_JeRq@i['
                              'pPad@z@gAn@oBPeBmJkdAiNsxAeL_a@sPuQaIkDos@gKgEi@gg@mJaIiEOmUpIy\\_PvAa@oLoLaOnAmA_CoC'
                              '~B[']
 
@@ -167,11 +167,13 @@ class VrpTest(unittest.TestCase):
                                'location_id': 'vehicle_1_start',
                                'minutes': 0}],
             },
-            'polylines': {'vehicle_1': ['an{`A}|jjS|AbCyFnEoHuIJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk@ho@w^vt@iBKNiC|Bko@xHkE|w@_gAib@oa@ek@ij@_JeRq@i[pPad@z@gAn@oBPeBmJkdAiNsxAeL_a@sPuQaIkDos@gKgEi@gg@mJaIiEOmUpIy\\_PvAa@oLoLaOnAmA_CoC~B[']},
+            'polylines': {'vehicle_1': ['ol{`Ay~jjSy@n@dBnCyFnEoHuIJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf'
+                                        '@rf@v@zBgk@ho@w^vt@iBKNiC|Bko@xHkE|w@_gAib@oa@ek@ij@_JeRq@i['
+                                        'pPad@z@gAn@oBPeBmJkdAiNsxAeL_a@sPuQaIkDos@gKgEi@gg@mJaIiEOmUpIy\\_PvAa'
+                                        '@oLoLaOnAmA_CoC~B[']},
         }
 
         self.assertEqual(expected_out, out)
-
 
     def testComplexData(self):
         problem_json = read_problem_json('vrp_complex_data.json')
