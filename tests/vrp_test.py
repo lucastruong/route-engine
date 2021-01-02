@@ -19,12 +19,14 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_tsp.json')
         solution = main(problem_json)
 
+        expected_objective = 12214
         expected_routes = [[1, 2, 3]]
         expected_route_ids = [['vehicle_1', 'location_1', 'location_2']]
         expected_distances = [[0, 6965, 5249]]
         expected_travel_times = [[0, 783, 1306]]
         expected_service_times = [[0, 300, 600]]
 
+        self.assertEqual(expected_objective, solution.get('objective'))
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_route_ids, solution.get('route_ids'))
         self.assertEqual(expected_distances, solution.get('distances'))
