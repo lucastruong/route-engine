@@ -26,12 +26,12 @@ def create_data_locations(adapter: ProblemAdapter):
     # Allowing arbitrary start and end locations
     virtual_depot = create_problem_location('virtual_depot', 'virtual_depot', {'lat': 0, 'lng': 0})
     push_data(virtual_depot, (start_time, end_time), 0)
-    virtual_depot_index = len(locations) - 1
-    # ends = [virtual_depot_index if x == -1 else x for x in ends]
+    virtual_depot_index = 0
 
     for vehicle in adapter.vehicles:
         push_data(vehicle.location, (vehicle.start_time, vehicle.end_time), 0)
         starts.append(len(locations) - 1)
+
         if vehicle.end_location is not None:
             push_data(vehicle.end_location, (start_time, end_time), 0)
             ends.append(len(locations) - 1)
