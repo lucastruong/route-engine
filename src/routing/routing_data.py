@@ -16,12 +16,16 @@ def create_data_locations(adapter: ProblemAdapter):
     pickups_deliveries = []
     start_time = ProblemTime('00:00')
     end_time = ProblemTime('999:999')
+    force_order = False
 
     def push_data(location, time, service_time):
         locations.append(location)
         location_ids.append(location.id)
         times.append(time)
         service_times.append(service_time)
+
+    def push_pickups_deliveries(pickup_index, delivery_index):
+        pickups_deliveries.append([pickup_index, delivery_index])
 
     # Allowing arbitrary start and end locations
     virtual_depot = create_problem_location('virtual_depot', 'virtual_depot', {'lat': 0, 'lng': 0})
@@ -44,16 +48,18 @@ def create_data_locations(adapter: ProblemAdapter):
     # For vehicle orders
     for vehicle in adapter.vehicles:
         for order_index in range(len(vehicle.order) - 1):
+            force_order = True
             orders = vehicle.order
             start_location_index = location_ids.index(orders[order_index])
             end_location_index = location_ids.index(orders[order_index + 1])
-            pickups_deliveries.append([start_location_index, end_location_index])
+            push_pickups_deliveries(start_location_index, end_location_index)
 
     return {
         'virtual_depot_index': virtual_depot_index,
         'locations': locations, 'starts': starts, 'ends': ends,
         'service_times': service_times,
-        'times': times, 'pickups_deliveries': pickups_deliveries
+        'times': times,
+        'pickups_deliveries': pickups_deliveries, 'force_order': force_order
     }
 
 

@@ -51,6 +51,9 @@ def send_request_step_by_step(locations: list[ProblemLocation], access_token: st
 
 
 def mapbox_directions(locations: list[ProblemLocation], access_token: str):
+    if len(locations) < 2:
+        return None
+
     geometries = send_request_step_by_step(locations, access_token)
     polyline = []
     for geometry in geometries:
