@@ -2,7 +2,7 @@ import sys
 
 from src.problem.problem_adapter import ProblemAdapter
 from src.problem.problem_helper import distance_two_points
-from src.problem.problem_location import ProblemLocation
+from src.problem.problem_location import ProblemLocation, create_problem_location
 from src.problem.problem_time import ProblemTime
 
 
@@ -14,40 +14,32 @@ def create_data_locations(adapter: ProblemAdapter):
     starts = []
     ends = []
     pickups_deliveries = []
+    start_time = ProblemTime('00:00')
+    end_time = ProblemTime('999:999')
+
+    def push_data(location, time, service_time):
+        locations.append(location)
+        location_ids.append(location.id)
+        times.append(time)
+        service_times.append(service_time)
 
     # Allowing arbitrary start and end locations
-    # depot_location = create_problem_location('depot', {'lat': 0, 'lng': 0})
-    # locations.append(depot_location)
-
-    start_time = ProblemTime('00:00')
-    end_time = ProblemTime('99:99')
+    virtual_depot = create_problem_location('virtual_depot', 'virtual_depot', {'lat': 0, 'lng': 0})
+    push_data(virtual_depot, (start_time, end_time), 0)
+    virtual_depot_index = len(locations) - 1
+    # ends = [virtual_depot_index if x == -1 else x for x in ends]
 
     for vehicle in adapter.vehicles:
-        locations.append(vehicle.location)
-        location_ids.append(vehicle.location.id)
-
+        push_data(vehicle.location, (vehicle.start_time, vehicle.end_time), 0)
         starts.append(len(locations) - 1)
-        times.append((vehicle.start_time, vehicle.end_time))
-        service_times.append(0)
-
-    for visit in adapter.visits:
-        locations.append(visit.location)
-        location_ids.append(visit.location.id)
-
-        times.append((visit.start_time, visit.end_time))
-        service_times.append(visit.duration.seconds)
-
-    for vehicle_index in range(len(adapter.vehicles)):
-        vehicle = adapter.vehicles[vehicle_index]
         if vehicle.end_location is not None:
-            locations.append(vehicle.end_location)
-            location_ids.append(vehicle.end_location.id)
-
-            service_times.append(0)
-            times.append((start_time, end_time))
+            push_data(vehicle.end_location, (start_time, end_time), 0)
             ends.append(len(locations) - 1)
         else:
-            ends.append(vehicle_index)  # End same as Start
+            ends.append(0)  # End as virtual_depot
+
+    for visit in adapter.visits:
+        push_data(visit.location, (visit.start_time, visit.end_time), visit.duration.seconds)
 
     # For vehicle orders
     for vehicle in adapter.vehicles:
@@ -58,6 +50,7 @@ def create_data_locations(adapter: ProblemAdapter):
             pickups_deliveries.append([start_location_index, end_location_index])
 
     return {
+        'virtual_depot_index': virtual_depot_index,
         'locations': locations, 'starts': starts, 'ends': ends,
         'service_times': service_times,
         'times': times, 'pickups_deliveries': pickups_deliveries
@@ -88,8 +81,7 @@ def create_data_capacities(adapter: ProblemAdapter):
     demands = {}
     vehicle_capacities = {}
     for capacity_key in capacities:
-        sub_demands = []
-        # sub_demands.append(0)  # 0: For depot
+        sub_demands = [0]  # 0: For depot
         sub_vehicle_capacities = []
 
         for vehicle in adapter.vehicles:
@@ -127,7 +119,7 @@ def compute_data_matrix(locations: list[ProblemLocation]):
     for from_counter, from_node in enumerate(locations):
         distance_matrix[from_counter] = {}
         for to_counter, to_node in enumerate(locations):
-            if from_counter == to_counter or from_node.id == 'depot' or to_node.id == 'depot':
+            if from_counter == to_counter or from_node.id == 'virtual_depot' or to_node.id == 'virtual_depot':
                 distance_matrix[from_counter][to_counter] = 0
             else:
                 distance_km = distance_two_points(from_node, to_node)

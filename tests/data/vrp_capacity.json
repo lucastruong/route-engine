@@ -6,8 +6,7 @@
                 "lng": 106.774783
             },
             "capacity": {
-                "weight": 2,
-                "volume": 3
+                "weight": 2
             }
         }
     },
@@ -18,8 +17,7 @@
                 "lng": 106.721362
             },
             "load": {
-                "weight": 1,
-                "volume": 1
+                "weight": 1
             }
         },
         "location_2": {
@@ -28,8 +26,7 @@
                 "lng": 106.67339848433336
             },
             "load": {
-                "weight": 2,
-                "volume": 2
+                "weight": 2
             }
         }
     }

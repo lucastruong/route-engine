@@ -49,6 +49,7 @@ def create_data_model(problem_json):
     distance_matrix = compute_data_matrix(locations)
 
     """Stores the data for the problem."""
+    data['virtual_depot_index'] = data.get('virtual_depot_index')
     data['locations'] = locations
     data['distance_matrix'] = distance_matrix
     data['num_vehicles'] = len(adapter.vehicles)
@@ -141,7 +142,7 @@ def main(problem_json):
     # pprint(data['distance_matrix'])
 
     # Create the routing index manager.
-    manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'],
+    manager = pywrapcp.RoutingIndexManager(len(data['locations']), data['num_vehicles'],
                                            data['starts'], data['ends'])
 
     # Create Routing Model.
@@ -174,9 +175,9 @@ def main(problem_json):
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
-        routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
-    # search_parameters.local_search_metaheuristic = (
-    #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
+        routing_enums_pb2.FirstSolutionStrategy.FIRST_UNBOUND_MIN_VALUE)
+    search_parameters.local_search_metaheuristic = (
+        routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
     search_parameters.time_limit.seconds = 30
     search_parameters.solution_limit = 180
     search_parameters.log_search = False

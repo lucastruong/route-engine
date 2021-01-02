@@ -16,7 +16,7 @@ def format_dropped_nodes(data, manager, routing, assignment):
     return dropped_nodes
 
 
-def get_routes(solution, routing, manager):
+def get_routes(solution, routing, manager, virtual_depot_index: int):
     """Get vehicle routes from a solution and store them in an array."""
     # Get vehicle routes and store them in a two dimensional array whose
     # i,j entry is the jth location visited by vehicle i along its route.
@@ -27,7 +27,9 @@ def get_routes(solution, routing, manager):
         while not routing.IsEnd(index):
             index = solution.Value(routing.NextVar(index))
             route_index = manager.IndexToNode(index)
-            # if route_index == 0: continue  # Ignore depot
+            # Ignore virtual depot
+            if route_index == virtual_depot_index:
+                continue
             route.append(route_index)
         routes.append(route)
     return routes
@@ -67,7 +69,7 @@ def get_route_distances(routes, distance_matrix):
     return distances
 
 
-def get_route_distances2(solution, routing):
+def get_route_distances2(solution, routing, manager, virtual_depot_index: int):
     distances = []
     for route_nbr in range(routing.vehicles()):
         index = routing.Start(route_nbr)
@@ -75,13 +77,19 @@ def get_route_distances2(solution, routing):
         while not routing.IsEnd(index):
             previous_index = index
             index = solution.Value(routing.NextVar(index))
+
+            # Ignore virtual depot
+            route_index = manager.IndexToNode(index)
+            if route_index == virtual_depot_index:
+                continue
+
             distance = routing.GetArcCostForVehicle(previous_index, index, route_nbr)
             route_distances.append(distance)
         distances.append(route_distances)
     return distances
 
 
-def get_cumul_data(solution, routing, dimension):
+def get_cumul_data(solution, routing, manager, dimension, virtual_depot_index: int):
     """Get cumulative data from a dimension and store it in an array."""
     cumul_data = []
     for route_nbr in range(routing.vehicles()):
@@ -97,6 +105,12 @@ def get_cumul_data(solution, routing, dimension):
             index = solution.Value(routing.NextVar(index))
             dim_var = dimension.CumulVar(index)
             slack_var = dimension.SlackVar(index)
+
+            # Ignore virtual depot
+            route_index = manager.IndexToNode(index)
+            if route_index == virtual_depot_index:
+                continue
+
             route_data.append([
                 solution.Min(dim_var), solution.Max(dim_var),
                 # solution.Min(slack_var), solution.Max(slack_var),
@@ -210,87 +224,6 @@ def get_dimensions(data, routing):
     return {'time': time_dimension, 'capacities': capacities_dimension, 'route_load_init': route_load_init}
 
 
-# def format_routes(data, manager, routing, assignment):
-#     dimensions = get_dimensions(data, routing)
-#     capacities_dimension = dimensions.get('capacities')
-#     route_load_init = dimensions.get('route_load_init')
-#     time_dimension = dimensions.get('time')
-#     plan = {}
-#
-#     for vehicle_id in range(data['num_vehicles']):
-#         index = routing.Start(vehicle_id)
-#         vehicle_index = index
-#         plan_output = 'Route for vehicle {}:\n'.format(vehicle_id)
-#
-#         route = []
-#         route_distance = 0
-#         route_load = route_load_init.copy()
-#         distance_next = 0
-#         route_detail = {}
-#         while not routing.IsEnd(index):
-#             # For time windows
-#             time_var = time_dimension.CumulVar(index)
-#             plan_output += '{0} Time({1},{2}) -> '.format(manager.IndexToNode(index),
-#                                                           assignment.Min(time_var), assignment.Max(time_var))
-#
-#             time_min = int(assignment.Min(time_var))
-#             time_max = int(assignment.Max(time_var)) + data['service_times'][index]
-#             route_detail['time'] = [time_min, time_max]
-#
-#             # For route
-#             route_detail['index'] = index
-#
-#             # For capacities
-#             for capacity_key, capacity_dimension in capacities_dimension.items():
-#                 # load_var = capacity_dimension.CumulVar(node_index)
-#                 # load_value = assignment.Value(load_var)
-#                 load_value = data['demands'][capacity_key][index]
-#                 route_load[capacity_key] = load_value
-#             route_detail['loads'] = route_load
-#
-#             # Set next index
-#             previous_index = index
-#             index = assignment.Value(routing.NextVar(index))
-#
-#             # For distance
-#             route_detail['distance'] = distance_next
-#             if (index > data['num_visits']):
-#                 distance_next = data['distance_matrix'][previous_index][vehicle_index]
-#             else:
-#                 distance_next = data['distance_matrix'][previous_index][index]
-#
-#             # Set route detail
-#             route.append(route_detail)
-#
-#         # Set next index
-#         node_index = manager.IndexToNode(index)
-#
-#         # For route
-#         route_detail = {'index': vehicle_index}
-#
-#         # For capacities
-#         route_load = route_load_init.copy()
-#         for capacity_key, capacity_dimension in capacities_dimension.items():
-#             load_var = capacity_dimension.CumulVar(index)
-#             load_value = assignment.Value(load_var)
-#             route_load[capacity_key] = load_value
-#         route_detail['loads'] = route_load
-#
-#         # For time windows
-#         time_var = time_dimension.CumulVar(index)
-#         route_detail['time'] = [int(assignment.Min(time_var)), int(assignment.Max(time_var))]
-#
-#         # For distance
-#         route_detail['distance'] = distance_next
-#
-#         # Set route detail
-#         route.append(route_detail)
-#
-#         # Set vehicle detail
-#         plan[vehicle_id] = route
-#     return plan
-
-
 def format_solution(data, manager, routing, assignment):
     """Prints assignment on console."""
     # print('Objective: {} meters'.format(assignment.ObjectiveValue()))
@@ -311,7 +244,7 @@ def format_solution(data, manager, routing, assignment):
     dropped_nodes = format_dropped_nodes(data, manager, routing, assignment)
 
     # Display routes
-    routes = get_routes(assignment, routing, manager)
+    routes = get_routes(assignment, routing, manager, data['virtual_depot_index'])
 
     # Reformat routes
     route_ids = reformat_routes(routes, data['locations'])
@@ -320,12 +253,12 @@ def format_solution(data, manager, routing, assignment):
     route_root_ids = reformat_routes_with_root_id(routes, data['locations'])
 
     # Display distances
-    # distances = get_route_distances(routes, data['distance_matrix'])
-    distances = get_route_distances2(assignment, routing)
+    distances = get_route_distances(routes, data['distance_matrix'])
+    # distances = get_route_distances2(assignment, routing, manager, data['virtual_depot_index'])
 
     # Display times
     time_dimension = routing.GetDimensionOrDie('Time')
-    data_times = get_cumul_data(assignment, routing, time_dimension)
+    data_times = get_cumul_data(assignment, routing, manager, time_dimension, data['virtual_depot_index'])
     times = get_route_times(data_times, data, routes)
 
     # Display travel times

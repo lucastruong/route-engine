@@ -26,18 +26,18 @@ def add_capacities_constraint(routing, manager, data):
         demand_callback_index = routing.RegisterUnaryTransitCallback(
             partial(create_demand_callback(sub_demands), manager))
 
-        capacity = 'Capacity' + capacity_key
+        dimension_name = 'Capacity' + capacity_key
         routing.AddDimensionWithVehicleCapacity(
             demand_callback_index,
             0,  # null capacity slack
             sub_vehicle_capacities,  # vehicle maximum capacities
             True,  # start cumul to zero
-            capacity)
+            dimension_name)
 
 
 def allow_drop_nodes(routing, manager, data):
     # Allow to drop nodes.
-    penalty = 990000  # meters
+    penalty = 999000  # meters
     for node in range(1, len(data['distance_matrix'])):
         index = manager.NodeToIndex(node)
         if index < 0:
