@@ -6,7 +6,7 @@ python3 -V
 pip list
 pip install wheel six ortools
 pip install polyline requests numpy
-pip install Flask waitress
+pip install Flask waitress gunicorn
 pip freeze > requirements.txt
 
 # Running
