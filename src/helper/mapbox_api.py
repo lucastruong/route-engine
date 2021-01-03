@@ -1,5 +1,5 @@
 import json
-import urllib
+import urllib.request
 from typing import List
 from src.problem.problem_location import ProblemLocation
 from polyline.codec import PolylineCodec

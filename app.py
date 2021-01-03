@@ -1,9 +1,9 @@
 from waitress import serve
 from flask import Flask, request
-from problem import main
 from src.helper.callback_request import send_callback_request
 from src.helper.json_helper import convert_jsonify
 from src.helper.routific_format import routific_format_solution
+from src.routing.routing_problem import optimize_problem
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def vrp_long():
     callback_url = problem.get('callback_url')
 
     # Optimize problem
-    solution = main(problem)
+    solution = optimize_problem(problem)
     out = routific_format_solution(solution)
     output = {
         'id': job_id,

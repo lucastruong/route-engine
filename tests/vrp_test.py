@@ -2,7 +2,7 @@ import json
 import os
 import unittest
 
-from problem import main
+from src.routing.routing_problem import optimize_problem
 from src.helper.routific_format import routific_format_solution
 
 
@@ -17,7 +17,7 @@ def read_problem_json(file_name):
 class VrpTest(unittest.TestCase):
     def testTSP(self):
         problem_json = read_problem_json('vrp_tsp.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_objective = 12214
         expected_routes = [[1, 2, 3]]
@@ -35,7 +35,7 @@ class VrpTest(unittest.TestCase):
 
     def testVehicleEndLocation(self):
         problem_json = read_problem_json('vrp_vehicle_end_location.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_routes = [[1, 3, 4, 2]]
         expected_route_ids = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1_end']]
@@ -47,7 +47,7 @@ class VrpTest(unittest.TestCase):
 
     def testVehicleCapacity(self):
         problem_json = read_problem_json('vrp_capacity.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_dropped_nodes = ['location_2']
         expected_routes = [[1, 2]]
@@ -59,7 +59,7 @@ class VrpTest(unittest.TestCase):
 
     def testVehicleCapacityIsString(self):
         problem_json = read_problem_json('vrp_capacity_is_string.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_dropped_nodes = ['location_2']
         expected_routes = [[1, 2]]
@@ -71,7 +71,7 @@ class VrpTest(unittest.TestCase):
 
     def testVehicleSkill(self):
         problem_json = read_problem_json('vrp_skill.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_dropped_nodes = ['location_3']
         expected_routes = [[1, 2, 3]]
@@ -83,7 +83,7 @@ class VrpTest(unittest.TestCase):
 
     def testTimeWindows(self):
         problem_json = read_problem_json('vrp_time_windows.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05')]]
         expected_travel_times = [[0, 783, 1306]]
@@ -93,7 +93,7 @@ class VrpTest(unittest.TestCase):
 
     def testBalance(self):
         problem_json = read_problem_json('vrp_balance.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_routes = [
             [1, 3],
@@ -109,7 +109,7 @@ class VrpTest(unittest.TestCase):
 
     def testOrder(self):
         problem_json = read_problem_json('vrp_order.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_routes = [[1, 3, 4, 2]]
         expected_route_ids = [['vehicle_1', 'location_2', 'location_3', 'location_1']]
@@ -119,7 +119,7 @@ class VrpTest(unittest.TestCase):
 
     def testPolyline(self):
         problem_json = read_problem_json('vrp_polyline.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
 
         expected_polyline = ['ol{`Ay~jjSy@n@dBnCyFnEoHuIf@}A['
                              'gO_FmAkAdFXlGnA`EIdEmKlW}CzNMlLhApLfJpRth@pg@PjAlLtIyGlHrf@rf@v@zBgk@ho@w^vt@iBKNiC']
@@ -128,7 +128,7 @@ class VrpTest(unittest.TestCase):
 
     def testRoutificFormat(self):
         problem_json = read_problem_json('vrp_routific_format.json')
-        solution = main(problem_json)
+        solution = optimize_problem(problem_json)
         out = routific_format_solution(solution)
 
         expected_out = {

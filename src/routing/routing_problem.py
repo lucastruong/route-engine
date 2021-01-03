@@ -1,38 +1,13 @@
-import datetime
-import json
-import os
-import sys
 from functools import partial
 from pprint import pprint
-
-import numpy as np
-
-import requests
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
-from src.helper.routific_format import routific_format_solution
 from src.problem.problem_adapter import ProblemAdapter
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
     add_time_windows_constraints, add_counter_constraints, add_pickups_deliveries_constraints
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
     compute_time_windows
 from src.routing.routing_solution import format_solution
-
-
-def read_in():
-    lines = sys.stdin.readlines()
-    # Since our input would only be having one line, parse our JSON data from that
-    return json.loads(lines[0])
-
-
-def read_problem_json():
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    f = open(dir_path + "/data/problem.json", "r")
-    json_obj = json.loads(f.read())
-    f.close()
-    # Get our data as an array from read_in()
-    # json_obj = read_in()
-    return json_obj
 
 
 def prepare_adapter(problem_json):
@@ -136,7 +111,7 @@ def create_counter_evaluator(data):
 
 
 # @measure
-def main(problem_json):
+def optimize_problem(problem_json):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
