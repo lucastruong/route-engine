@@ -16,7 +16,7 @@ python -m flask run -h 0.0.0.0 -p 5000
 
 # Deploy to vercel
 npm i -g vercel
-cd venv  && vercel --prod
+vercel --prod
 
 # Deploy on Ubuntu
 wget -qO - https://raw.githubusercontent.com/yarnpkg/releases/gh-pages/debian/pubkey.gpg | sudo apt-key add -
