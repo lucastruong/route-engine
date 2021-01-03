@@ -1,4 +1,5 @@
 from pprint import pprint
+from typing import List
 from src.helper.mapbox_api import mapbox_directions
 from src.problem.problem_helper import seconds_to_hhmm
 from src.problem.problem_location import ProblemLocation
@@ -35,7 +36,7 @@ def get_routes(solution, routing, manager, virtual_depot_index: int):
     return routes
 
 
-def reformat_routes(routes, locations: list[ProblemLocation]):
+def reformat_routes(routes, locations: List[ProblemLocation]):
     visits = []
     for i, route in enumerate(routes):
         steps = []
@@ -46,7 +47,7 @@ def reformat_routes(routes, locations: list[ProblemLocation]):
     return visits
 
 
-def reformat_routes_with_root_id(routes, locations: list[ProblemLocation]):
+def reformat_routes_with_root_id(routes, locations: List[ProblemLocation]):
     visits = []
     for i, route in enumerate(routes):
         steps = []

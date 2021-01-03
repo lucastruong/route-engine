@@ -1,5 +1,5 @@
 import sys
-
+from typing import List, Tuple
 from src.problem.problem_adapter import ProblemAdapter
 from src.problem.problem_helper import distance_two_points
 from src.problem.problem_location import ProblemLocation, create_problem_location
@@ -119,7 +119,7 @@ def create_data_capacities(adapter: ProblemAdapter):
     return {'capacities': capacities, 'demands': demands, 'vehicle_capacities': vehicle_capacities}
 
 
-def compute_data_matrix(locations: list[ProblemLocation]):
+def compute_data_matrix(locations: List[ProblemLocation]):
     """Creates callback to return time between points."""
     distance_matrix = {}
     for from_counter, from_node in enumerate(locations):
@@ -134,7 +134,7 @@ def compute_data_matrix(locations: list[ProblemLocation]):
     return distance_matrix
 
 
-def compute_time_windows(times: list[tuple[ProblemTime, ProblemTime]]):
+def compute_time_windows(times: List[Tuple[ProblemTime, ProblemTime]]):
     windows = []
     for counter, node in enumerate(times):
         start_time = node[0]

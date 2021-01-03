@@ -1,5 +1,6 @@
 import json
 import urllib
+from typing import List
 from src.problem.problem_location import ProblemLocation
 from polyline.codec import PolylineCodec
 
@@ -7,7 +8,7 @@ from polyline.codec import PolylineCodec
 MAX_ELEMENTS_DIRECTIONS = 25
 
 
-def send_request(locations: list[ProblemLocation], api_key):
+def send_request(locations: List[ProblemLocation], api_key):
     # Remove duplicates from list
     # coordinates = []
     # [coordinates.append(x) for x in visits if x not in coordinates]
@@ -29,7 +30,7 @@ def send_request(locations: list[ProblemLocation], api_key):
     return {'geometry': geometry}
 
 
-def send_request_step_by_step(locations: list[ProblemLocation], access_token: str):
+def send_request_step_by_step(locations: List[ProblemLocation], access_token: str):
     max_elements = MAX_ELEMENTS_DIRECTIONS
     num_addresses = len(locations)
     geometries = []
@@ -50,7 +51,7 @@ def send_request_step_by_step(locations: list[ProblemLocation], access_token: st
     return geometries
 
 
-def mapbox_directions(locations: list[ProblemLocation], access_token: str):
+def mapbox_directions(locations: List[ProblemLocation], access_token: str):
     if len(locations) < 2:
         return None
 
