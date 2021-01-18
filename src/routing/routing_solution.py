@@ -204,7 +204,7 @@ def get_route_polyline(routes, data):
 
     for route in routes:
         route_locations = []
-        for index in route[1:]:
+        for index in route:
             route_locations.append(locations[index])
 
         polyline = mapbox_directions(route_locations, access_token)

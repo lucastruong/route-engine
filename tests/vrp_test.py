@@ -121,8 +121,9 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_polyline.json')
         solution = optimize_problem(problem_json)
 
-        expected_polyline = ['ol{`Ay~jjSy@n@dBnCyFnEoHuIf@}A['
-                             'gO_FmAkAdFXlGnA`EIdEmKlW}CzNMlLhApLfJpRth@pg@PjAlLtIyGlHrf@rf@v@zBgk@ho@w^vt@iBKNiC']
+        expected_polyline = ['y`baAgmujS_CZ~BnCoAlAnL`O`@nL~OwAaGfRuDz_@bf@dOzdApM|PrIxLrPfF~RhRpcBnJjaAoCMw@}KKy'
+                             '@rEqBnOdKgBnDrB|Cd@m@e@l@tAzBiFbF_IiJJeR_FmAkAdFXlGnA`EwKr]}CzNz@~YfJpRth@pg@{'
+                             'AXJj\\oHrCRdGmEfIhEnVuLnIjKt@jGiGpD`@nBjCe@~LbDrHdAoB^a@mHdHw^vt@iBKNiC']
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
 
@@ -157,9 +158,10 @@ class VrpTest(unittest.TestCase):
                                'location_id': 'location_2_id',
                                'minutes': 21}],
             },
-            'polylines': {'vehicle_1': ['ol{`Ay~jjSy@n@dBnCyFnEoHuIf@}A['
-                                        'gO_FmAkAdFXlGnA`EIdEmKlW}CzNMlLhApLfJpRth@pg@PjAlLtIyGlHrf@rf@v@zBgk@ho@w^vt'
-                                        '@iBKNiC']},
+            'polylines': {'vehicle_1': ['y`baAgmujS_CZ~BnCoAlAnL`O`@nL~OwAaGfRuDz_@bf@dOzdApM|PrIxLrPfF'
+                                        '~RhRpcBnJjaAoCMw@}KKy@rEqBnOdKgBnDrB|Cd@m@e@l@tAzBiFbF_IiJJeR_FmAkAdFXlGnA'
+                                        '`EwKr]}CzNz@~YfJpRth@pg@{'
+                                        'AXJj\\oHrCRdGmEfIhEnVuLnIjKt@jGiGpD`@nBjCe@~LbDrHdAoB^a@mHdHw^vt@iBKNiC']},
         }
 
         self.assertEqual(expected_out, out)
