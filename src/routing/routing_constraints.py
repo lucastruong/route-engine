@@ -9,7 +9,7 @@ def add_distance_constraint(routing, transit_callback_index):
     routing.AddDimension(
         transit_callback_index,
         0,  # no slack
-        99000,  # vehicle maximum travel distance (meters)
+        999000,  # vehicle maximum travel distance (meters)
         True,  # start cumul to zero
         dimension_name)
     # distance_dimension = routing.GetDimensionOrDie(dimension_name)
