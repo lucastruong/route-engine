@@ -52,6 +52,7 @@ def create_data_model(problem_json):
     data['force_order'] = data.get('force_order')
 
     # Options
+    data['max_running_time'] = adapter.options.max_running_time
     data['balance'] = adapter.options.balance
     data['num_visits'] = len(adapter.visits)
 
@@ -150,16 +151,19 @@ def optimize_problem(problem_json):
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-    search_parameters.first_solution_strategy = (
-        routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
+    search_parameters.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+    # search_parameters.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.AUTOMATIC
+
     # search_parameters.local_search_metaheuristic = (
     #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-    search_parameters.time_limit.seconds = 10  # Limit in seconds to the time spent in the search.
-    search_parameters.solution_limit = 99  # The number of solutions generated during the search.
-    search_parameters.log_search = False
+    # search_parameters.time_limit.seconds = 30  # Limit in seconds to the time spent in the search.
+    search_parameters.solution_limit = data['max_running_time']  # The number of solutions generated during the search.
+    search_parameters.log_search = True
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
+    # print("Solver status: ", routing.solver.status())
+
     # initial_solution = routing.ReadAssignmentFromRoutes(data['initial_routes'], True)
     # assignment = routing.SolveFromAssignmentWithParameters(initial_solution, search_parameters)
 

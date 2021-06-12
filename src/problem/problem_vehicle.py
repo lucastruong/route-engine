@@ -19,7 +19,7 @@ def create_problem_vehicle(key: str, fleet: dict, options: ProblemOptions):
         end_location = create_problem_location(key, key_end, end_location)
 
     start_time = ProblemTime(fleet.get('shift_start'))
-    end_time = ProblemTime(fleet.get('shift_end'), '99:99')
+    end_time = ProblemTime(fleet.get('shift_end'), '99999:99')
     capacities = ProblemCapacity(fleet.get('capacity'), sys.maxsize)
     skills = ProblemSkill(fleet.get('type'))
     speed = create_speed(fleet.get('speed', options.speed.traffic))

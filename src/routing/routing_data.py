@@ -15,7 +15,7 @@ def create_data_locations(adapter: ProblemAdapter):
     ends = []
     pickups_deliveries = []
     start_time = ProblemTime('00:00')
-    end_time = ProblemTime('999:999')
+    end_time = ProblemTime('99999:99')
     force_order = False
 
     def push_data(location, time, service_time):

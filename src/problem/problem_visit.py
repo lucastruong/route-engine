@@ -11,7 +11,7 @@ def create_problem_visit(key: str, visit: dict):
     location = create_problem_location(key, key_start, start_location)
 
     start_time = ProblemTime(visit.get('start'))
-    end_time = ProblemTime(visit.get('end'), '99:99')
+    end_time = ProblemTime(visit.get('end'), '99999:99')
     duration = ProblemDuration(visit.get('duration'))
     capacities = ProblemCapacity(visit.get('load'))
     skills = ProblemSkill(visit.get('type'))
