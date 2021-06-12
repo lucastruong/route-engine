@@ -28,7 +28,7 @@ def kmph_to_mps(kmph):
 
 
 def seconds_to_hhmm(seconds):
-    seconds = seconds % (24 * 3600)
+    # seconds = seconds % (24 * 3600)
     hour = seconds // 3600
     seconds %= 3600
     minutes = seconds // 60

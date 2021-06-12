@@ -22,7 +22,7 @@ def vrp_long():
     callback_url = problem.get('callback_url')
 
     # Optimize problem
-    solution = optimize_problem(problem)
+    solution = optimize_problem(problem, True)
     out = routific_format_solution(solution)
     output = {
         'id': job_id,

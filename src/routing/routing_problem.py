@@ -112,7 +112,7 @@ def create_counter_evaluator(data):
 
 
 # @measure
-def optimize_problem(problem_json):
+def optimize_problem(problem_json, log_search: bool = False):
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     data = create_data_model(problem_json)
@@ -156,9 +156,9 @@ def optimize_problem(problem_json):
 
     # search_parameters.local_search_metaheuristic = (
     #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-    # search_parameters.time_limit.seconds = 30  # Limit in seconds to the time spent in the search.
+    search_parameters.time_limit.seconds = 99  # Limit in seconds to the time spent in the search.
     search_parameters.solution_limit = data['max_running_time']  # The number of solutions generated during the search.
-    search_parameters.log_search = True
+    search_parameters.log_search = log_search
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)

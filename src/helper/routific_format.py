@@ -1,4 +1,3 @@
-import numpy as np
 
 
 def routific_format_solution(solution: dict):
@@ -11,6 +10,7 @@ def routific_format_solution(solution: dict):
     travel_times = solution.get('travel_times')
     distances = solution.get('distances')
     polyline = solution.get('polyline')
+    total_travel_time = 0
 
     solution = {}
     for route_index in range(len(routes)):
@@ -36,6 +36,7 @@ def routific_format_solution(solution: dict):
                 "duration": int(service_time[step_index] / 60),
                 "minutes": int(travel_time[step_index] / 60)
             })
+            total_travel_time += travel_time[step_index]
 
     polylines = {}
     for polyline_index in range(len(polyline)):
@@ -46,7 +47,7 @@ def routific_format_solution(solution: dict):
 
     out = {
         'status': 'success',
-        'total_travel_time': np.sum(np.array(travel_times)),
+        'total_travel_time': total_travel_time,
         'total_idle_time': 0,
         'num_unserved': len(dropped_nodes),
         'unserved': dropped_nodes,
