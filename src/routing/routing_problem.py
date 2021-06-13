@@ -60,6 +60,10 @@ def create_data_model(problem_json):
     data['polyline'] = adapter.options.polyline
     data['mapbox'] = adapter.options.mapbox
 
+    # Input data
+    data['vehicles'] = adapter.vehicles
+    data['visits'] = adapter.visits
+
     return data
 
 
@@ -156,8 +160,10 @@ def optimize_problem(problem_json, log_search: bool = False):
     # search_parameters.local_search_metaheuristic = (
     #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
 
-    search_parameters.time_limit.seconds = 99  # Limit in seconds to the time spent in the search.
-    search_parameters.solution_limit = data['max_running_time']  # The number of solutions generated during the search.
+    # Limit in seconds to the time spent in the search.
+    search_parameters.time_limit.seconds = 99
+    # The number of solutions generated during the search.
+    search_parameters.solution_limit = data['max_running_time'] * 60
     search_parameters.log_search = log_search
 
     # Solve the problem.

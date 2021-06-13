@@ -279,7 +279,9 @@ def format_solution(data, manager, routing, assignment):
         'route_ids': route_ids, 'route_root_ids': route_root_ids,
         'distances': distances, 'time_windows': times,
         'travel_times': travel_times, 'service_times': service_times,
-        'polyline': polyline
+        'polyline': polyline,
+        'vehicles': data['vehicles'],
+        'visits': data['visits'],
     }
     # pprint(solution)
 

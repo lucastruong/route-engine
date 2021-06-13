@@ -12,9 +12,9 @@ def create_options(options: dict):
 
 class ProblemOptions:
     def __init__(self, speed: ProblemSpeed, balance: bool = False, polyline: bool = False,
-                 mapbox: str = '', max_running_time: int = 100):
+                 mapbox: str = '', max_running_time: int = 2):
         self.speed = speed
         self.balance = balance
         self.polyline = polyline
         self.mapbox = mapbox
-        self.max_running_time = max_running_time
+        self.max_running_time = max_running_time  # By minutes

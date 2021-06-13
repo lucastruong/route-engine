@@ -56,3 +56,14 @@ def routific_format_solution(solution: dict):
     }
 
     return out
+
+
+def routific_callback_solution(job_id: str, out, solution: dict):
+    output = {
+        'id': job_id,
+        'output': out,
+        'fleet': len(solution.get('vehicles')),
+        'visits': len(solution.get('visits')),
+    }
+
+    return output
