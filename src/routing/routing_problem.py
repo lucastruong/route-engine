@@ -28,12 +28,11 @@ def create_data_model(problem_json):
     data['locations'] = locations
     data['distance_matrix'] = distance_matrix
     data['num_vehicles'] = len(adapter.vehicles)
+    data['num_visits'] = len(adapter.visits)
 
     # Start and end locations for routes
-    starts = data.get('starts')
-    ends = data.get('ends')
-    data['starts'] = starts
-    data['ends'] = ends
+    data['starts'] = data.get('starts')
+    data['ends'] = data.get('ends')
 
     # Capacity constraint.
     capacities = create_data_capacities(adapter)
@@ -54,7 +53,6 @@ def create_data_model(problem_json):
     # Options
     data['max_running_time'] = adapter.options.max_running_time
     data['balance'] = adapter.options.balance
-    data['num_visits'] = len(adapter.visits)
 
     # Mapbox
     data['polyline'] = adapter.options.polyline

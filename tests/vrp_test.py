@@ -157,6 +157,7 @@ class VrpTest(unittest.TestCase):
                                'finish_time': '09:05',
                                'location_id': 'location_2_id',
                                'minutes': 21}],
+                'vehicle_2': [],
             },
             'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF'
                                         '~RhRpcBnJjaAoCMw@}KQm@vEsBpOzJgBnDrB|Cd@m@e@l@tAzBiFbFkGoHGcBYgPsHD@|BXlGnA'

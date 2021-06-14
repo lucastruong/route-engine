@@ -24,8 +24,14 @@ def routific_format_solution(solution: dict):
 
         vehicle_id = route_root_id[0]
         solution[vehicle_id] = []
+        route_len = len(route)
 
-        for step_index in range(len(route)):
+        # Check route is empty solution
+        location_id_last = route_id[-1]
+        if route_len <= 2 and vehicle_id in location_id_last:
+            continue
+
+        for step_index in range(route_len):
             location_id = route_id[step_index]
             location_id_sub = '_start' if step_index == 0 and '_start' not in location_id else ''
             solution[vehicle_id].append({
@@ -42,7 +48,17 @@ def routific_format_solution(solution: dict):
     for polyline_index in range(len(polyline)):
         polyline_route = polyline[polyline_index]
         route_root_id = route_root_ids[polyline_index]
+        route_id = route_ids[polyline_index]
+        route = routes[polyline_index]
+
         vehicle_id = route_root_id[0]
+        route_len = len(route)
+
+        # Check route is empty solution
+        location_id_last = route_id[-1]
+        if route_len <= 2 and vehicle_id in location_id_last:
+            continue
+
         polylines[vehicle_id] = [polyline_route]
 
     out = {
