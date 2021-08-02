@@ -8,6 +8,7 @@ def routific_format_solution(solution: dict):
     time_windows = solution.get('time_windows')
     service_times = solution.get('service_times')
     travel_times = solution.get('travel_times')
+    waiting_times = solution.get('waiting_times')
     distances = solution.get('distances')
     polyline = solution.get('polyline')
     total_travel_time = 0
@@ -19,6 +20,7 @@ def routific_format_solution(solution: dict):
         distance = distances[route_index]
         service_time = service_times[route_index]
         travel_time = travel_times[route_index]
+        waiting_time = waiting_times[route_index]
         route_root_id = route_root_ids[route_index]
         route_id = route_ids[route_index]
 
@@ -40,7 +42,9 @@ def routific_format_solution(solution: dict):
                 "finish_time": time_window[step_index][1],
                 "distance": distance[step_index],
                 "duration": int(service_time[step_index] / 60),
-                "minutes": int(travel_time[step_index] / 60)
+                "travel_mins": int(travel_time[step_index] / 60),
+                "waiting_mins": int(waiting_time[step_index] / 60),
+                # "type": "",
             })
             total_travel_time += travel_time[step_index]
 

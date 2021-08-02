@@ -23,7 +23,7 @@ class VrpTest(unittest.TestCase):
         expected_routes = [[1, 2, 3]]
         expected_route_ids = [['vehicle_1', 'location_1', 'location_2']]
         expected_distances = [[0, 6965, 5249]]
-        expected_travel_times = [[0, 783, 1306]]
+        expected_travel_times = [[0, 783, 590]]
         expected_service_times = [[0, 300, 600]]
 
         self.assertEqual(expected_objective, solution.get('objective'))
@@ -86,10 +86,14 @@ class VrpTest(unittest.TestCase):
         solution = optimize_problem(problem_json)
 
         expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05')]]
-        expected_travel_times = [[0, 783, 1306]]
+        expected_travel_times = [[0, 783, 590]]
+        expected_service_times = [[0, 600, 300]]
+        expected_waiting_times = [[0, 0, 1627]]
 
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
         self.assertEqual(expected_travel_times, solution.get('travel_times'))
+        self.assertEqual(expected_service_times, solution.get('service_times'))
+        self.assertEqual(expected_waiting_times, solution.get('waiting_times'))
 
     def testBalance(self):
         problem_json = read_problem_json('vrp_balance.json')
@@ -121,11 +125,21 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_polyline.json')
         solution = optimize_problem(problem_json)
 
-        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF~RhRpcBnJjaAoCMw@}KQm'
-                             '@vEsBpOzJgBnDrB|Cd@m@e@l@tAzBiFbFkGoHGcBYgPsHD@|BXlGnA`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW'
-                             '`IvG~r@}Yha@yHjE}Bjo@']
+        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi@pFyBvN'
+                             '`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW`IvG'
+                             '~r@}Yha@yHjE}Bjo@']
+        expected_time_windows = [[('08:00', '08:00'), ('08:17', '08:27'), ('09:00', '09:05')]]
+        expected_distances = [[0, 9381, 7496]]
+        expected_travel_times = [[0, 1055, 843]]
+        expected_service_times = [[0, 600, 300]]
+        expected_waiting_times = [[0, 0, 1102]]
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
+        self.assertEqual(expected_time_windows, solution.get('time_windows'))
+        self.assertEqual(expected_distances, solution.get('distances'))
+        self.assertEqual(expected_travel_times, solution.get('travel_times'))
+        self.assertEqual(expected_service_times, solution.get('service_times'))
+        self.assertEqual(expected_waiting_times, solution.get('waiting_times'))
 
     def testRoutificFormat(self):
         problem_json = read_problem_json('vrp_routific_format.json')
@@ -134,7 +148,7 @@ class VrpTest(unittest.TestCase):
 
         expected_out = {
             'status': 'success',
-            'total_travel_time': 2089,
+            'total_travel_time': 1898,
             'total_idle_time': 0,
             'num_unserved': 0,
             'unserved': [],
@@ -144,24 +158,29 @@ class VrpTest(unittest.TestCase):
                                'duration': 0,
                                'finish_time': '08:00',
                                'location_id': 'vehicle_1_start',
-                               'minutes': 0},
-                              {'arrival_time': '08:13',
-                               'distance': 6965,
+                               'travel_mins': 0,
+                               'waiting_mins': 0
+                               },
+                              {'arrival_time': '08:17',
+                               'distance': 9381,
                                'duration': 10,
-                               'finish_time': '08:23',
+                               'finish_time': '08:27',
                                'location_id': 'location_1_id',
-                               'minutes': 13},
+                               'travel_mins': 17,
+                               'waiting_mins': 0
+                               },
                               {'arrival_time': '09:00',
-                               'distance': 5249,
+                               'distance': 7496,
                                'duration': 5,
                                'finish_time': '09:05',
                                'location_id': 'location_2_id',
-                               'minutes': 21}],
+                               'travel_mins': 14,
+                               'waiting_mins': 18}],
                 'vehicle_2': [],
             },
-            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF'
-                                        '~RhRpcBnJjaAoCMw@}KQm@vEsBpOzJgBnDrB|Cd@m@e@l@tAzBiFbFkGoHGcBYgPsHD@|BXlGnA'
-                                        '`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW`IvG~r@}Yha@yHjE}Bjo@']},
+            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw'
+                                        '@aLQi@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz'
+                                        '@~YfJpRth@pg@`EdEsD`EW`IvG~r@}Yha@yHjE}Bjo@']},
         }
 
         self.assertEqual(expected_out, out)

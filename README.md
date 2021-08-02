@@ -58,6 +58,7 @@ Python Online: https://www.programiz.com/python-programming/online-compiler/
 Calculator: https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php
 HHMMSS: https://www.tools4noobs.com/online_tools/seconds_to_hh_mm_ss/
 Polyline Decode: https://developers.google.com/maps/documentation/utilities/polylineutility
+Polyline Decode: https://open-polyline-decoder.60devs.com/
 Distance: https://www.geodatasource.com/distance-calculator
 
 # Refs

@@ -125,23 +125,32 @@ def get_route_times(time_steps, data, routes):
     distance_matrix = data['distance_matrix']
     service_times = data['service_times']
     vehicle_speed = data['vehicle_speed']
-    times = []
+    route_time_windows = []
+    route_travel_times = []
+    route_service_times = []
+    route_waiting_times = []
 
     for i in range(len(time_steps)):
         time_window = time_steps[i]
         route_step = routes[i]
 
-        route_time = []
+        route_time_window = []
+        route_travel_time = []
+        route_service_time = []
+        route_waiting_time = []
+
         pre_time = time_window[0]
         pre_step_index = route_step[0]
 
         for index in range(0, len(time_window)):
             time = time_window[index]
             step_index = route_step[index]
+            waiting_time = 0
 
             travel_time = int(distance_matrix[pre_step_index][step_index] / vehicle_speed)
             start_seconds = pre_time[1] + travel_time
             if start_seconds < time_windows[step_index][0]:
+                waiting_time = 0 if travel_time <= 0 else time_windows[step_index][0] - start_seconds
                 start_seconds = time_windows[step_index][0]
             start = seconds_to_hhmm(start_seconds)
 
@@ -149,67 +158,50 @@ def get_route_times(time_steps, data, routes):
             end_seconds = start_seconds + service_time
             end = seconds_to_hhmm(end_seconds)
 
-            route_time.append((start, end))
+            route_time_window.append((start, end))
+            route_travel_time.append(travel_time)
+            route_service_time.append(service_time)
+            route_waiting_time.append(waiting_time)
+
             pre_time = (start_seconds, end_seconds)
             pre_step_index = step_index
-        times.append(route_time)
-    return times
 
+        route_time_windows.append(route_time_window)
+        route_travel_times.append(route_travel_time)
+        route_service_times.append(route_service_time)
+        route_waiting_times.append(route_waiting_time)
 
-def get_travel_times(time_steps, data, routes):
-    distance_matrix = data['distance_matrix']
-    vehicle_speed = data['vehicle_speed']
-    times = []
-
-    def cal_travel_time(from_index, to_index):
-        return int(distance_matrix[from_index][to_index] / vehicle_speed)
-
-    for i in range(len(time_steps)):
-        time_window = time_steps[i]
-        route_step = routes[i]
-        vehicle_index = route_step[0]
-
-        route_time = []
-        for index in range(len(time_window)):
-            step_index = route_step[index]
-            travel_time = cal_travel_time(vehicle_index, step_index)
-            route_time.append(travel_time)
-
-        times.append(route_time)
-    return times
-
-
-def get_service_times(data, routes):
-    service_times = data['service_times']
-    times = []
-
-    for route in routes:
-        route_time = [0]
-        for index in route[1:]:
-            service_time = service_times[index]
-            route_time.append(service_time)
-
-        times.append(route_time)
-    return times
+    return {
+        'time_windows': route_time_windows,
+        'travel_times': route_travel_times,
+        'service_times': route_service_times,
+        'waiting_times': route_waiting_times
+    }
 
 
 def get_route_polyline(routes, data):
     polyline = data['polyline']
     access_token = data['mapbox']
     locations = data['locations']
-    geometry = []
+    geometries = []
+    distances = []
+    travel_times = []
 
     if not polyline:
-        return geometry
+        return {'geometries': geometries, 'distances': distances, 'travel_times': travel_times}
 
     for route in routes:
         route_locations = []
         for index in route:
             route_locations.append(locations[index])
 
-        polyline = mapbox_directions(route_locations, access_token)
-        geometry.append(polyline)
-    return geometry
+        result = mapbox_directions(route_locations, access_token)
+        if result is not None:
+            geometries.append(result.get('geometry'))
+            distances.append(result.get('distances'))
+            travel_times.append(result.get('travel_times'))
+
+    return {'geometries': geometries, 'distances': distances, 'travel_times': travel_times}
 
 
 def get_dimensions(data, routing):
@@ -253,6 +245,19 @@ def format_solution(data, manager, routing, assignment):
     # Reformat routes with root_id
     route_root_ids = reformat_routes_with_root_id(routes, data['locations'])
 
+    # Display polyline
+    polyline_extra = get_route_polyline(routes, data)
+    polyline = polyline_extra.get('geometries')
+
+    # Modify distances from polyline service
+    distances_extra = polyline_extra.get('distances')
+    if len(distances_extra):
+        for i, route in enumerate(routes):
+            pre_index = route[0]
+            for order_stop, index in enumerate(route[1:]):
+                data['distance_matrix'][pre_index][index] = distances_extra[i][order_stop + 1]
+                pre_index = index
+
     # Display distances
     distances = get_route_distances(routes, data['distance_matrix'])
     # distances = get_route_distances2(assignment, routing, manager, data['virtual_depot_index'])
@@ -261,15 +266,10 @@ def format_solution(data, manager, routing, assignment):
     time_dimension = routing.GetDimensionOrDie('Time')
     data_times = get_cumul_data(assignment, routing, manager, time_dimension, data['virtual_depot_index'])
     times = get_route_times(data_times, data, routes)
-
-    # Display travel times
-    travel_times = get_travel_times(data_times, data, routes)
-
-    # Display service times
-    service_times = get_service_times(data, routes)
-
-    # Display polyline
-    polyline = get_route_polyline(routes, data)
+    time_windows = times.get('time_windows')
+    travel_times = times.get('travel_times')
+    service_times = times.get('service_times')
+    waiting_times = times.get('waiting_times')
 
     # Display solution
     solution = {
@@ -277,8 +277,8 @@ def format_solution(data, manager, routing, assignment):
         'dropped_nodes': dropped_nodes,
         'routes': routes,
         'route_ids': route_ids, 'route_root_ids': route_root_ids,
-        'distances': distances, 'time_windows': times,
-        'travel_times': travel_times, 'service_times': service_times,
+        'distances': distances, 'time_windows': time_windows,
+        'travel_times': travel_times, 'service_times': service_times, 'waiting_times': waiting_times,
         'polyline': polyline,
         'vehicles': data['vehicles'],
         'visits': data['visits'],

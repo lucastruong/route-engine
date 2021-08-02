@@ -1,0 +1,63 @@
+{
+    "options": {
+        "polylines": true,
+        "mapbox_key": "pk.eyJ1IjoibHVjYXN0cnVvbmciLCJhIjoiY2p4c2RjZDA1MGlsajNjbnRubzRxYmR5biJ9.mtZmtqJlWN341Coxbyj0iQ"
+    },
+    "fleet": {
+        "vehicle_1": {
+            "start_location": {
+                "id": "vehicle_1_start",
+                "lat": 10.829012,
+                "lng": 106.774783
+            },
+            "shift_start": "08:00",
+            "shift_end": "17:00"
+        },
+        "vehicle_2": {
+            "start_location": {
+                "lat": 10.869411110325627,
+                "lng": 106.82467208381954
+            },
+            "end_location": {
+                "lat": 10.819022010349565,
+                "lng": 106.66032777467514
+            }
+        }
+    },
+    "visits": {
+        "order_1": {
+             "pickup": {
+                "location": {
+                    "lat": 10.794825,
+                    "lng": 106.721362
+                },
+                "start": "00:00",
+                "end": "23:59",
+                "duration": 10
+            },
+            "dropoff": {
+                "location": {
+                    "lat": 10.79753993119405,
+                    "lng": 106.67339848433336
+                },
+                "start": "09:00",
+                "end": "12:00",
+                "duration": 5
+            }
+        },
+        "order_2": {
+            "pickup": {
+                "location": {
+                    "lat": 10.78992432651131,
+                    "lng": 106.71846521208735
+                }
+            },
+            "dropoff": {
+                "location": {
+                    "lat": 10.79272772788043,
+                    "lng": 106.71138418035783
+                }
+            }
+        }
+    }
+}
