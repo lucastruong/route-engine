@@ -1,7 +1,8 @@
 import sys
 
 from src.problem.problem_capacity import ProblemCapacity
-from src.problem.problem_location import ProblemLocation, create_problem_location
+from src.problem.problem_location import ProblemLocation, create_problem_location, PROBLEM_LOCATION_PICKUP, \
+    PROBLEM_LOCATION_VEHICLE
 from src.problem.problem_options import ProblemOptions
 from src.problem.problem_skill import ProblemSkill
 from src.problem.problem_speed import create_speed, ProblemSpeed

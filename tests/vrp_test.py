@@ -125,14 +125,14 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_polyline.json')
         solution = optimize_problem(problem_json)
 
-        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi@pFyBvN'
-                             '`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW`IvG'
-                             '~r@}Yha@yHjE}Bjo@']
+        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi'
+                             '@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@~L'
+                             '`LyGlHrf@rf@v@zBgk@ho@gXni@oEfJiBKNiC']
         expected_time_windows = [[('08:00', '08:00'), ('08:17', '08:27'), ('09:00', '09:05')]]
-        expected_distances = [[0, 9381, 7496]]
-        expected_travel_times = [[0, 1055, 843]]
+        expected_distances = [[0, 9380, 8297]]
+        expected_travel_times = [[0, 1055, 933]]
         expected_service_times = [[0, 600, 300]]
-        expected_waiting_times = [[0, 0, 1102]]
+        expected_waiting_times = [[0, 0, 1012]]
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
@@ -148,7 +148,7 @@ class VrpTest(unittest.TestCase):
 
         expected_out = {
             'status': 'success',
-            'total_travel_time': 1898,
+            'total_travel_time': 1988,
             'total_idle_time': 0,
             'num_unserved': 0,
             'unserved': [],
@@ -162,7 +162,7 @@ class VrpTest(unittest.TestCase):
                                'waiting_mins': 0
                                },
                               {'arrival_time': '08:17',
-                               'distance': 9381,
+                               'distance': 9380,
                                'duration': 10,
                                'finish_time': '08:27',
                                'location_id': 'location_1_id',
@@ -170,17 +170,17 @@ class VrpTest(unittest.TestCase):
                                'waiting_mins': 0
                                },
                               {'arrival_time': '09:00',
-                               'distance': 7496,
+                               'distance': 8297,
                                'duration': 5,
                                'finish_time': '09:05',
                                'location_id': 'location_2_id',
-                               'travel_mins': 14,
-                               'waiting_mins': 18}],
+                               'travel_mins': 15,
+                               'waiting_mins': 16}],
                 'vehicle_2': [],
             },
-            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw'
-                                        '@aLQi@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz'
-                                        '@~YfJpRth@pg@`EdEsD`EW`IvG~r@}Yha@yHjE}Bjo@']},
+            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF'
+                                        '~RhRpcBnJjaAoCMw@aLQi@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC'
+                                        '^~InA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk@ho@gXni@oEfJiBKNiC']},
         }
 
         self.assertEqual(expected_out, out)

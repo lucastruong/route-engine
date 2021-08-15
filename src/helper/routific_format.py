@@ -36,6 +36,10 @@ def routific_format_solution(solution: dict):
         for step_index in range(route_len):
             location_id = route_id[step_index]
             location_id_sub = '_start' if step_index == 0 and '_start' not in location_id else ''
+
+            # stop_type = 'driver' if step_index == 0 else 'pickup'
+            # location_id_arr = location_id.split('_')
+
             solution[vehicle_id].append({
                 "location_id": location_id + location_id_sub,
                 "arrival_time": time_window[step_index][0],
@@ -44,7 +48,7 @@ def routific_format_solution(solution: dict):
                 "duration": int(service_time[step_index] / 60),
                 "travel_mins": int(travel_time[step_index] / 60),
                 "waiting_mins": int(waiting_time[step_index] / 60),
-                # "type": "",
+                # "type": stop_type,
             })
             total_travel_time += travel_time[step_index]
 

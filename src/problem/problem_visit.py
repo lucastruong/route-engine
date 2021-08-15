@@ -5,10 +5,10 @@ from src.problem.problem_time import ProblemTime
 from src.problem.problem_duration import ProblemDuration
 
 
-def create_problem_visit(key: str, visit: dict):
+def create_problem_visit(key: str, visit: dict, location_key: str, location_type: str):
     start_location = visit.get('location')
-    key_start = start_location.get('id', key)
-    location = create_problem_location(key, key_start, start_location)
+    key_start = start_location.get('id', location_key)
+    location = create_problem_location(key, key_start, start_location, location_type)
 
     start_time = ProblemTime(visit.get('start'))
     end_time = ProblemTime(visit.get('end'), '99999:99')
