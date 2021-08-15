@@ -131,19 +131,20 @@ def add_counter_constraints(routing, data, transit_callback_index):
 
 def add_pickups_deliveries_constraints(routing, manager, data):
     force_order = data['force_order']
-    distance_dimension = routing.GetDimensionOrDie('Distance')
+    time_dimension = routing.GetDimensionOrDie('Time')
 
     for request in data['pickups_deliveries']:
         pickup_index = manager.NodeToIndex(request[0])
         delivery_index = manager.NodeToIndex(request[1])
-        routing.AddPickupAndDelivery(pickup_index, delivery_index)
+        if not force_order:
+            routing.AddPickupAndDelivery(pickup_index, delivery_index)
         routing.solver().Add(
             routing.VehicleVar(pickup_index) ==
             routing.VehicleVar(delivery_index))
         routing.solver().Add(
-            distance_dimension.CumulVar(pickup_index) <=
-            distance_dimension.CumulVar(delivery_index))
+            time_dimension.CumulVar(pickup_index) <=
+            time_dimension.CumulVar(delivery_index))
 
-    if force_order:
-        routing.SetPickupAndDeliveryPolicyOfAllVehicles(
-            pywrapcp.RoutingModel.PICKUP_AND_DELIVERY_FIFO)
+    # if force_order:
+    #     routing.SetPickupAndDeliveryPolicyOfAllVehicles(
+    #         pywrapcp.RoutingModel.PICKUP_AND_DELIVERY_FIFO)
