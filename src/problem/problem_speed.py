@@ -11,7 +11,7 @@ costs = {
 def create_speed(setting: str):
     traffic = 'normal'
     if setting in costs:
-        traffic = traffic
+        traffic = setting
 
     return ProblemSpeed(traffic)
 

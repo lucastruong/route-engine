@@ -60,13 +60,14 @@ def create_demand_callback(demands):
 
 def add_time_windows_constraints(routing, manager, data, time_evaluator_index):
     dimension_name = 'Time'
-    routing.AddDimension(
+    routing.AddDimensionWithVehicleTransits(
         time_evaluator_index,
-        24 * 3600 * 30,  # allow waiting time
+        0,  # allow waiting time
         24 * 3600 * 30,  # maximum time per vehicle
         False,  # Don't force start cumul to zero.
         dimension_name)
     time_dimension = routing.GetDimensionOrDie(dimension_name)
+    time_dimension.SetGlobalSpanCostCoefficient(100)
 
     # Add time window constraints for each location except depot.
     for location_idx, time_window in enumerate(data['time_windows']):

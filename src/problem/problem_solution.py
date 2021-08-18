@@ -48,6 +48,9 @@ class ProblemSolution:
             if len(steps) == 2 and steps[0].id_root == steps[1].id_root:
                 steps = []
 
+            if len(steps) == 1:
+                steps = []
+
             # Add new a route for vehicle
             visits[vehicle_location.id_root] = {
                 'steps': steps

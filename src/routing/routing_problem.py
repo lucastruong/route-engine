@@ -3,6 +3,7 @@ from pprint import pprint
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
 from src.problem.problem_adapter import ProblemAdapter
+from src.problem.problem_vehicle import ProblemVehicle
 from src.routing.routing_constraints import add_distance_constraint, add_capacities_constraint, allow_drop_nodes, \
     add_time_windows_constraints, add_counter_constraints, add_pickups_deliveries_constraints
 from src.routing.routing_data import create_data_locations, create_data_capacities, compute_data_matrix, \
@@ -72,18 +73,18 @@ def create_time_evaluator(data):
         """Gets the service time for the specified location."""
         return data['service_times'][from_node]
 
-    def travel_time(from_node, to_node):
+    def travel_time(vehicle, from_node, to_node):
         """Gets the travel times between two locations."""
         travel_time_from_to = 0
         if from_node != to_node:
-            travel_time_from_to = int(data['distance_matrix'][from_node][to_node] / data['vehicle_speed'])
+            travel_time_from_to = int(data['distance_matrix'][from_node][to_node] / vehicle.speed.mps)
         return travel_time_from_to
 
-    def time_evaluator(manager, from_index, to_index):
+    def time_evaluator(manager, vehicle: ProblemVehicle, from_index, to_index):
         """Returns the total time between the two nodes"""
         from_node = manager.IndexToNode(from_index)
         to_node = manager.IndexToNode(to_index)
-        return travel_time(from_node, to_node) + service_time(to_node)
+        return travel_time(vehicle, from_node, to_node) + service_time(to_node)
 
     return time_evaluator
 
@@ -128,21 +129,32 @@ def optimize_problem(problem_json, log_search: bool = False):
     routing = pywrapcp.RoutingModel(manager)
 
     # Define weight of each edge
-    distance_evaluator_index = routing.RegisterTransitCallback(partial(create_distance_evaluator(data), manager))
-    routing.SetArcCostEvaluatorOfAllVehicles(distance_evaluator_index)
+    # distance_evaluator_index = routing.RegisterTransitCallback(partial(create_distance_evaluator(data), manager))
+    # routing.SetArcCostEvaluatorOfAllVehicles(distance_evaluator_index)
     # routing.SetArcCostEvaluatorOfVehicle(transit_callback_index_arr[vehicle_id], vehicle_id)
     # https://github.com/google/or-tools/issues/479
     # https://github.com/google/or-tools/issues/1061
 
     # Add Distance constraint.
-    add_distance_constraint(routing, distance_evaluator_index)
+    # add_distance_constraint(routing, distance_evaluator_index)
+
+    # Keep transit callback alive
+    transit_callback = []
+    transit_callback_index_arr = []
+    for vehicle_id in range(data['num_vehicles']):
+        vehicle = data['vehicles'][vehicle_id]
+        transit_callback.append(partial(create_time_evaluator(data), manager, vehicle))
+        time_evaluator_index = routing.RegisterTransitCallback(transit_callback[-1])
+        transit_callback_index_arr.append(time_evaluator_index)
+        routing.SetArcCostEvaluatorOfVehicle(time_evaluator_index, vehicle_id)
+
+    # Add Time Window constraint.
+    # time_evaluator_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
+    # add_time_windows_constraints(routing, manager, data, time_evaluator_index)
+    add_time_windows_constraints(routing, manager, data, transit_callback_index_arr)
 
     # Creates capacities constraints for each vehicle.
     add_capacities_constraint(routing, manager, data)
-
-    # Add Time Window constraint.
-    time_evaluator_index = routing.RegisterTransitCallback(partial(create_time_evaluator(data), manager))
-    add_time_windows_constraints(routing, manager, data, time_evaluator_index)
 
     # Balance constraint.
     counter_evaluator_index = routing.RegisterUnaryTransitCallback(partial(create_counter_evaluator(data), manager))

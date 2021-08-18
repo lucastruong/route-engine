@@ -1,0 +1,31 @@
+{
+    "options": {
+        "speed": "normal"
+    },
+    "fleet": {
+        "vehicle_1": {
+            "start_location": {
+                "lat": 10.829012,
+                "lng": 106.774783
+            },
+            "speed": "fast"
+        },
+        "vehicle_2": {
+            "start_location": {
+                "lat": 10.829012,
+                "lng": 106.774783
+            },
+            "speed": "faster"
+        }
+    },
+    "visits": {
+        "location_1": {
+            "location": {
+                "name": "QPVC+WG Binh Thanh, Ho Chi Minh City, Vietnam",
+                "lat": 10.794825,
+                "lng": 106.721362
+            },
+            "duration": 10
+        }
+    }
+}
