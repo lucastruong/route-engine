@@ -1,8 +1,4 @@
 {
-    "options": {
-        "polylines": true,
-        "mapbox_key": "pk.eyJ1IjoibHVjYXN0cnVvbmciLCJhIjoiY2p4c2RjZDA1MGlsajNjbnRubzRxYmR5biJ9.mtZmtqJlWN341Coxbyj0iQ"
-    },
     "fleet": {
         "vehicle_1": {
             "start_location": {
