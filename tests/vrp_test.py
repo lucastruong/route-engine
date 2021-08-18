@@ -38,12 +38,19 @@ class VrpTest(unittest.TestCase):
         solution = optimize_problem(problem_json)
 
         expected_routes = [[1, 3, 4, 2]]
-        expected_route_ids = [['vehicle_1', 'location_1', 'location_2', 'vehicle_1_end']]
+        expected_route_ids = [['vehicle_1', 'location_1', 'location_2', 'vehicle_01_end']]
         expected_distances = [[0, 6965, 5249, 2854]]
 
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_route_ids, solution.get('route_ids'))
         self.assertEqual(expected_distances, solution.get('distances'))
+
+    def testLocationIds(self):
+        problem_json = read_problem_json('vrp_location_ids.json')
+        solution = optimize_problem(problem_json)
+
+        expected_route_ids = [['vehicle_1', 'location_01_start', 'location_2', 'vehicle_01_end']]
+        self.assertEqual(expected_route_ids, solution.get('route_ids'))
 
     def testVehicleCapacity(self):
         problem_json = read_problem_json('vrp_capacity.json')
@@ -84,7 +91,6 @@ class VrpTest(unittest.TestCase):
     def testTimeWindows(self):
         problem_json = read_problem_json('vrp_time_windows.json')
         solution = optimize_problem(problem_json)
-
         expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05')]]
         expected_travel_times = [[0, 783, 590]]
         expected_service_times = [[0, 600, 300]]
@@ -121,18 +127,18 @@ class VrpTest(unittest.TestCase):
         self.assertEqual(expected_routes, solution.get('routes'))
         self.assertEqual(expected_route_ids, solution.get('route_ids'))
 
-    def testPolyline(self):
+    def testPolylineByMapbox(self):
         problem_json = read_problem_json('vrp_polyline.json')
         solution = optimize_problem(problem_json)
 
-        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi'
-                             '@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@~L'
-                             '`LyGlHrf@rf@v@zBgk@ho@gXni@oEfJiBKNiC']
+        expected_polyline = ['q`baA_mujSnA`AgDnDnL`O|BfVaQhJjSvV}@pCrZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi@pFyBvN'
+                             '`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW`IvG'
+                             '~r@}Yha@yHjE}Bjo@']
         expected_time_windows = [[('08:00', '08:00'), ('08:17', '08:27'), ('09:00', '09:05')]]
-        expected_distances = [[0, 9380, 8297]]
-        expected_travel_times = [[0, 1055, 933]]
+        expected_distances = [[0, 9313, 7496]]
+        expected_travel_times = [[0, 1047, 843]]
         expected_service_times = [[0, 600, 300]]
-        expected_waiting_times = [[0, 0, 1012]]
+        expected_waiting_times = [[0, 0, 1110]]
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
@@ -148,7 +154,7 @@ class VrpTest(unittest.TestCase):
 
         expected_out = {
             'status': 'success',
-            'total_travel_time': 1988,
+            'total_travel_time': 1890,
             'total_idle_time': 0,
             'num_unserved': 0,
             'unserved': [],
@@ -159,67 +165,36 @@ class VrpTest(unittest.TestCase):
                                'finish_time': '08:00',
                                'location_id': 'vehicle_1_start',
                                'travel_mins': 0,
-                               'waiting_mins': 0
+                               'waiting_mins': 0,
+                               'type': 'VEHICLE',
                                },
                               {'arrival_time': '08:17',
-                               'distance': 9380,
+                               'distance': 9313,
                                'duration': 10,
                                'finish_time': '08:27',
                                'location_id': 'location_1_id',
                                'travel_mins': 17,
-                               'waiting_mins': 0
+                               'waiting_mins': 0,
+                               'type': 'PICKUP',
                                },
                               {'arrival_time': '09:00',
-                               'distance': 8297,
+                               'distance': 7496,
                                'duration': 5,
                                'finish_time': '09:05',
                                'location_id': 'location_2_id',
-                               'travel_mins': 15,
-                               'waiting_mins': 16}],
+                               'travel_mins': 14,
+                               'waiting_mins': 18,
+                               'type': 'PICKUP',
+                               }
+                              ],
                 'vehicle_2': [],
             },
-            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O`@nL~OwAaGfRuDz_@rZtLnJnA~~@lKhQ|GhRlTfF'
-                                        '~RhRpcBnJjaAoCMw@aLQi@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC'
-                                        '^~InA`EwKr]}CzNz@~YfJpRth@pg@~L`LyGlHrf@rf@v@zBgk@ho@gXni@oEfJiBKNiC']},
+            'polylines': {'vehicle_1': ['q`baA_mujSnA`AgDnDnL`O|BfVaQhJjSvV}@pCrZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw'
+                                        '@aLQi@pFyBvN`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz'
+                                        '@~YfJpRth@pg@`EdEsD`EW`IvG~r@}Yha@yHjE}Bjo@']},
         }
 
         self.assertEqual(expected_out, out)
-
-    # def testLargeLocations(self):
-    #     problem_json = read_problem_json('vrp_large_locations.json')
-    #     solution = optimize_problem(problem_json)
-    #     out = routific_format_solution(solution)
-    #
-    #     expected_out = {
-    #         'status': 'success',
-    #         'total_travel_time': 2089,
-    #         'total_idle_time': 0,
-    #         'num_unserved': 0,
-    #         'unserved': [],
-    #         'solution': {
-    #             'vehicle_1': [{'arrival_time': '08:00',
-    #                            'distance': 0,
-    #                            'duration': 0,
-    #                            'finish_time': '08:00',
-    #                            'location_id': 'vehicle_1_start',
-    #                            'minutes': 0},
-    #                           {'arrival_time': '08:13',
-    #                            'distance': 6965,
-    #                            'duration': 10,
-    #                            'finish_time': '08:23',
-    #                            'location_id': 'location_1_id',
-    #                            'minutes': 13},
-    #                           {'arrival_time': '09:00',
-    #                            'distance': 5249,
-    #                            'duration': 5,
-    #                            'finish_time': '09:05',
-    #                            'location_id': 'location_2_id',
-    #                            'minutes': 21}],
-    #         },
-    #         'polylines': {},
-    #     }
-    #
-    #     self.assertEqual(expected_out, out)
 
 
 if __name__ == '__main__':

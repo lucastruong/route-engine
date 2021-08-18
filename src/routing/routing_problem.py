@@ -130,6 +130,9 @@ def optimize_problem(problem_json, log_search: bool = False):
     # Define weight of each edge
     distance_evaluator_index = routing.RegisterTransitCallback(partial(create_distance_evaluator(data), manager))
     routing.SetArcCostEvaluatorOfAllVehicles(distance_evaluator_index)
+    # routing.SetArcCostEvaluatorOfVehicle(transit_callback_index_arr[vehicle_id], vehicle_id)
+    # https://github.com/google/or-tools/issues/479
+    # https://github.com/google/or-tools/issues/1061
 
     # Add Distance constraint.
     add_distance_constraint(routing, distance_evaluator_index)

@@ -1,0 +1,102 @@
+{
+    "options": {
+        "polylines": false
+    },
+    "fleet": {
+        "6101455edd60f107d7963382": {
+            "start_location": {
+                "id": "6101455edd60f107d7963382_DRIVER_START",
+                "name": "Chợ Lớn, Phường 11, Quận 6, Ho Chi Minh City, Vietnam",
+                "lat": 10.7452972,
+                "lng": 106.6303629
+            },
+            "shift_start": "08:00",
+            "shift_end": "23:00",
+            "type": [
+                "6101455edd60f107d7963382"
+            ],
+            "order": [
+                "60f7944ab4c821dbe7ed2b35_PICKUP",
+                "60f7944ab4c821dbe7ed2b35_DELIVERY",
+                "60f7944ab4c821dbe7ed2b30_PICKUP",
+                "60f7944ab4c821dbe7ed2b30_DELIVERY",
+                "60f7944ab4c821dbe7ed2b32_PICKUP",
+                "60f7944ab4c821dbe7ed2b32_DELIVERY"
+            ]
+        }
+    },
+    "visits": {
+        "60f7944ab4c821dbe7ed2b35_PICKUP": {
+            "location": {
+                "name": "Cho Lon",
+                "lat": 10.7452972,
+                "lng": 106.6303629,
+                "id": "60f7944ab4c821dbe7ed2b35_PICKUP"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        },
+        "60f7944ab4c821dbe7ed2b35_DELIVERY": {
+            "location": {
+                "name": "Kinh Duong Vuong",
+                "lat": 10.7343723,
+                "lng": 106.6127402,
+                "id": "60f7944ab4c821dbe7ed2b35_DELIVERY"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        },
+        "60f7944ab4c821dbe7ed2b30_PICKUP": {
+            "location": {
+                "name": "300 Nguyen Trai",
+                "lat": 10.756988,
+                "lng": 106.6788738,
+                "id": "60f7944ab4c821dbe7ed2b30_PICKUP"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        },
+        "60f7944ab4c821dbe7ed2b30_DELIVERY": {
+            "location": {
+                "name": "418 Tran Phu",
+                "lat": 10.7529543,
+                "lng": 106.6680044,
+                "id": "60f7944ab4c821dbe7ed2b30_DELIVERY"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        },
+        "60f7944ab4c821dbe7ed2b32_PICKUP": {
+            "location": {
+                "name": "Tran Phu",
+                "lat": 10.755504,
+                "lng": 106.6727815,
+                "id": "60f7944ab4c821dbe7ed2b32_PICKUP"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        },
+        "60f7944ab4c821dbe7ed2b32_DELIVERY": {
+            "location": {
+                "name": "Nguyen Trai",
+                "lat": 10.7560803,
+                "lng": 106.675889,
+                "id": "60f7944ab4c821dbe7ed2b32_DELIVERY"
+            },
+            "start": "08:00",
+            "end": "12:00",
+            "duration": 10,
+            "type": []
+        }
+    }
+}

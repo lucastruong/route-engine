@@ -1,73 +1,39 @@
+from typing import List
+
+from src.problem.problem_helper import seconds_to_hhmm
+from src.problem.problem_location import ProblemLocation
 
 
 def routific_format_solution(solution: dict):
+    problem_solution = solution.get('solution')
     dropped_nodes = solution.get('dropped_nodes')
-    routes = solution.get('routes')
-    route_root_ids = solution.get('route_root_ids')
-    route_ids = solution.get('route_ids')
-    time_windows = solution.get('time_windows')
-    service_times = solution.get('service_times')
-    travel_times = solution.get('travel_times')
-    waiting_times = solution.get('waiting_times')
-    distances = solution.get('distances')
-    polyline = solution.get('polyline')
     total_travel_time = 0
 
     solution = {}
-    for route_index in range(len(routes)):
-        route = routes[route_index]
-        time_window = time_windows[route_index]
-        distance = distances[route_index]
-        service_time = service_times[route_index]
-        travel_time = travel_times[route_index]
-        waiting_time = waiting_times[route_index]
-        route_root_id = route_root_ids[route_index]
-        route_id = route_ids[route_index]
-
-        vehicle_id = route_root_id[0]
-        solution[vehicle_id] = []
-        route_len = len(route)
-
-        # Check route is empty solution
-        location_id_last = route_id[-1]
-        if route_len <= 2 and vehicle_id in location_id_last:
-            continue
-
-        for step_index in range(route_len):
-            location_id = route_id[step_index]
-            location_id_sub = '_start' if step_index == 0 and '_start' not in location_id else ''
-
-            # stop_type = 'driver' if step_index == 0 else 'pickup'
-            # location_id_arr = location_id.split('_')
-
-            solution[vehicle_id].append({
-                "location_id": location_id + location_id_sub,
-                "arrival_time": time_window[step_index][0],
-                "finish_time": time_window[step_index][1],
-                "distance": distance[step_index],
-                "duration": int(service_time[step_index] / 60),
-                "travel_mins": int(travel_time[step_index] / 60),
-                "waiting_mins": int(waiting_time[step_index] / 60),
-                # "type": stop_type,
-            })
-            total_travel_time += travel_time[step_index]
-
     polylines = {}
-    for polyline_index in range(len(polyline)):
-        polyline_route = polyline[polyline_index]
-        route_root_id = route_root_ids[polyline_index]
-        route_id = route_ids[polyline_index]
-        route = routes[polyline_index]
 
-        vehicle_id = route_root_id[0]
-        route_len = len(route)
+    for vehicle_id, vehicle_route in problem_solution.routes.items():
+        locations: List[ProblemLocation] = vehicle_route.get('steps')
+        geometry = vehicle_route.get('geometry')
+        solution[vehicle_id] = []
 
-        # Check route is empty solution
-        location_id_last = route_id[-1]
-        if route_len <= 2 and vehicle_id in location_id_last:
-            continue
+        # For polyline
+        if geometry is not None:
+            polylines[vehicle_id] = [geometry]
 
-        polylines[vehicle_id] = [polyline_route]
+        # For steps
+        for idx, location in enumerate(locations):
+            solution[vehicle_id].append({
+                'location_id': location.id,
+                'arrival_time': seconds_to_hhmm(location.arrival_time),
+                'finish_time': seconds_to_hhmm(location.finish_time),
+                'distance': location.distance,
+                'duration': int(location.service_time / 60),
+                'travel_mins': int(location.travel_time / 60),
+                'waiting_mins': int(location.waiting_time/ 60),
+                'type': location.type,
+            })
+            total_travel_time += location.travel_time
 
     out = {
         'status': 'success',

@@ -1,8 +1,7 @@
 import sys
 
 from src.problem.problem_capacity import ProblemCapacity
-from src.problem.problem_location import ProblemLocation, create_problem_location, PROBLEM_LOCATION_PICKUP, \
-    PROBLEM_LOCATION_VEHICLE
+from src.problem.problem_location import ProblemLocation, create_problem_location
 from src.problem.problem_options import ProblemOptions
 from src.problem.problem_skill import ProblemSkill
 from src.problem.problem_speed import create_speed, ProblemSpeed
@@ -10,21 +9,25 @@ from src.problem.problem_time import ProblemTime
 
 
 def create_problem_vehicle(key: str, fleet: dict, options: ProblemOptions):
-    start_location = fleet.get('start_location')
-    key_start = start_location.get('id', key)
-    start_location = create_problem_location(key, key_start, start_location)
-
-    end_location = fleet.get('end_location', None)
-    if end_location is not None:
-        key_end = end_location.get('id', key + '_end')
-        end_location = create_problem_location(key, key_end, end_location)
-
     start_time = ProblemTime(fleet.get('shift_start'))
     end_time = ProblemTime(fleet.get('shift_end'), '99999:99')
     capacities = ProblemCapacity(fleet.get('capacity'), sys.maxsize)
     skills = ProblemSkill(fleet.get('type'))
     speed = create_speed(fleet.get('speed', options.speed.traffic))
     order = fleet.get('order', [])
+
+    # For start location
+    start_location = fleet.get('start_location')
+    key_start = start_location.get('id', key)
+    start_location = create_problem_location(key, key_start, start_location)
+    start_location.set_time_window(start_time.seconds, end_time.seconds)
+
+    # For end location
+    end_location = fleet.get('end_location', None)
+    if end_location is not None:
+        key_end = end_location.get('id', key + '_end')
+        end_location = create_problem_location(key, key_end, end_location)
+        end_location.set_time_window(start_time.seconds, end_time.seconds)
 
     return ProblemVehicle(
         key, start_location, end_location,

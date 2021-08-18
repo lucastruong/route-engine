@@ -1,8 +1,6 @@
-from pprint import pprint
-from typing import List
 from src.helper.mapbox_api import mapbox_directions
 from src.problem.problem_helper import seconds_to_hhmm
-from src.problem.problem_location import ProblemLocation
+from src.problem.problem_solution import ProblemSolution
 
 
 def format_dropped_nodes(data, manager, routing, assignment):
@@ -34,28 +32,6 @@ def get_routes(solution, routing, manager, virtual_depot_index: int):
             route.append(route_index)
         routes.append(route)
     return routes
-
-
-def reformat_routes(routes, locations: List[ProblemLocation]):
-    visits = []
-    for i, route in enumerate(routes):
-        steps = []
-        for index in route:
-            location = locations[index]
-            steps.append(location.id)
-        visits.append(steps)
-    return visits
-
-
-def reformat_routes_with_root_id(routes, locations: List[ProblemLocation]):
-    visits = []
-    for i, route in enumerate(routes):
-        steps = []
-        for index in route:
-            location = locations[index]
-            steps.append(location.id_root)
-        visits.append(steps)
-    return visits
 
 
 def get_route_distances(routes, distance_matrix):
@@ -233,55 +209,54 @@ def format_solution(data, manager, routing, assignment):
     #     else:
     #         print('{}: Unperformed'.format(brk.Var().Name()))
 
+    # New a solution
+    problem_solution = ProblemSolution(
+        data['locations'], data['distance_matrix'], data['service_times'],
+        data['vehicle_speed']
+    )
+
     # Display dropped nodes.
     dropped_nodes = format_dropped_nodes(data, manager, routing, assignment)
+    problem_solution.set_unserved(dropped_nodes)
 
     # Display routes
     routes = get_routes(assignment, routing, manager, data['virtual_depot_index'])
-
-    # Reformat routes
-    route_ids = reformat_routes(routes, data['locations'])
-
-    # Reformat routes with root_id
-    route_root_ids = reformat_routes_with_root_id(routes, data['locations'])
+    problem_solution.set_routes(routes)
 
     # Display polyline
     polyline_extra = get_route_polyline(routes, data)
     polyline = polyline_extra.get('geometries')
-
-    # Modify distances from polyline service
     distances_extra = polyline_extra.get('distances')
-    if len(distances_extra):
-        for i, route in enumerate(routes):
-            pre_index = route[0]
-            for order_stop, index in enumerate(route[1:]):
-                data['distance_matrix'][pre_index][index] = distances_extra[i][order_stop + 1]
-                pre_index = index
+    problem_solution.modify_distances(polyline, distances_extra)
 
     # Display distances
-    distances = get_route_distances(routes, data['distance_matrix'])
+    # distances = get_route_distances(routes, data['distance_matrix'])
     # distances = get_route_distances2(assignment, routing, manager, data['virtual_depot_index'])
 
     # Display times
-    time_dimension = routing.GetDimensionOrDie('Time')
-    data_times = get_cumul_data(assignment, routing, manager, time_dimension, data['virtual_depot_index'])
-    times = get_route_times(data_times, data, routes)
+    # time_dimension = routing.GetDimensionOrDie('Time')
+    # data_times = get_cumul_data(assignment, routing, manager, time_dimension, data['virtual_depot_index'])
+    # times = get_route_times(data_times, data, routes)
+
+    times = problem_solution.get_times()
     time_windows = times.get('time_windows')
     travel_times = times.get('travel_times')
     service_times = times.get('service_times')
     waiting_times = times.get('waiting_times')
+    distances = times.get('distances')
+    route_ids = times.get('ids')
 
     # Display solution
     solution = {
         'objective': assignment.ObjectiveValue(),
         'dropped_nodes': dropped_nodes,
-        'routes': routes,
-        'route_ids': route_ids, 'route_root_ids': route_root_ids,
+        'routes': routes, 'route_ids': route_ids,
         'distances': distances, 'time_windows': time_windows,
         'travel_times': travel_times, 'service_times': service_times, 'waiting_times': waiting_times,
         'polyline': polyline,
-        'vehicles': data['vehicles'],
-        'visits': data['visits'],
+        # 'vehicles': data['vehicles'],
+        # 'visits': data['visits'],
+        'solution': problem_solution,
     }
     # pprint(solution)
 

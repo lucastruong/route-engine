@@ -15,6 +15,7 @@
     "visits": {
         "location_1": {
             "location": {
+                "id": "location_01_start",
                 "lat": 10.794825,
                 "lng": 106.721362
             }
