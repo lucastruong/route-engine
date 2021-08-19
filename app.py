@@ -4,7 +4,7 @@ from src.helper.json_helper import convert_jsonify
 from src.helper.routific_format import routific_format_solution, routific_callback_solution
 from src.routing.routing_problem import optimize_problem
 
-app = Flask(__name__)
+app = Flask("ROUTE_ENGINE")
 
 
 @app.route('/')

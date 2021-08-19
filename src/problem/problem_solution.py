@@ -2,6 +2,7 @@ from typing import List
 
 from src.problem.problem_helper import seconds_to_hhmm
 from src.problem.problem_location import ProblemLocation
+from src.problem.problem_vehicle import ProblemVehicle
 
 
 def cal_time_for_location(location: ProblemLocation, start_seconds, distance, speed):
@@ -16,11 +17,11 @@ def cal_time_for_location(location: ProblemLocation, start_seconds, distance, sp
 
 
 class ProblemSolution:
-    def __init__(self, locations: List[ProblemLocation], distance_matrix, service_times, vehicle_speed):
+    def __init__(self, vehicles: List[ProblemVehicle], locations: List[ProblemLocation], distance_matrix, service_times):
+        self.vehicles = vehicles
         self.locations = locations
         self.distance_matrix = distance_matrix
         self.service_times = service_times
-        self.vehicle_speed = vehicle_speed
         # Data of solution
         self.unserved = []
         self.routes = {}
@@ -33,13 +34,14 @@ class ProblemSolution:
         for i, route in enumerate(routes):
             steps = []
             pre_index = route[0]
-            vehicle_location = self.locations[pre_index]
-            start_seconds = vehicle_location.time_window_start
+            vehicle = self.vehicles[i]
+            vehicle_speed = vehicle.speed.mps
+            start_seconds = vehicle.start_time.seconds
 
             for index in route:
                 location = self.locations[index]
                 distance = self.distance_matrix[pre_index][index]
-                location = cal_time_for_location(location, start_seconds, distance, self.vehicle_speed)
+                location = cal_time_for_location(location, start_seconds, distance, vehicle_speed)
                 # Repaired for next
                 steps.append(location)
                 pre_index = index
@@ -52,8 +54,9 @@ class ProblemSolution:
                 steps = []
 
             # Add new a route for vehicle
-            visits[vehicle_location.id_root] = {
-                'steps': steps
+            visits[vehicle.id] = {
+                'steps': steps,
+                'speed': vehicle_speed,  # To meters per seconds
             }
         self.routes = visits
 
@@ -68,13 +71,14 @@ class ProblemSolution:
                 continue
 
             self.routes[vehicle_id_root]['geometry'] = geometries[i]
+            vehicle_speed = vehicle_route.get('speed')
             route_distance = distances[i]
             vehicle_location = locations[0]
             start_seconds = vehicle_location.time_window_start
 
             for idx, location in enumerate(locations):
                 distance = route_distance[idx]
-                location = cal_time_for_location(location, start_seconds, distance, self.vehicle_speed)
+                location = cal_time_for_location(location, start_seconds, distance, vehicle_speed)
                 # Repaired for next
                 start_seconds = location.finish_time
 

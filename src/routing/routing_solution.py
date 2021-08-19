@@ -211,8 +211,8 @@ def format_solution(data, manager, routing, assignment):
 
     # New a solution
     problem_solution = ProblemSolution(
-        data['locations'], data['distance_matrix'], data['service_times'],
-        data['vehicle_speed']
+        data['vehicles'], data['locations'],
+        data['distance_matrix'], data['service_times'],
     )
 
     # Display dropped nodes.
@@ -254,6 +254,7 @@ def format_solution(data, manager, routing, assignment):
         'distances': distances, 'time_windows': time_windows,
         'travel_times': travel_times, 'service_times': service_times, 'waiting_times': waiting_times,
         'polyline': polyline,
+        'vehicles': data['vehicles'], 'visits': data['visits'],
         'solution': problem_solution,
     }
     # pprint(solution)

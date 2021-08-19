@@ -22,7 +22,7 @@ class VrpTest(unittest.TestCase):
         expected_routes = [[1, 2, 3]]
         expected_route_ids = [['vehicle_1', 'location_1', 'location_2']]
         expected_distances = [[0, 6965, 5249]]
-        expected_travel_times = [[0, 783, 590]]
+        expected_travel_times = [[0, 835, 629]]
         expected_service_times = [[0, 300, 600]]
 
         self.assertEqual(expected_routes, solution.get('routes'))
@@ -90,9 +90,9 @@ class VrpTest(unittest.TestCase):
         problem_json = read_problem_json('vrp_time_windows.json')
         solution = optimize_problem(problem_json)
         expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05')]]
-        expected_travel_times = [[0, 783, 590]]
+        expected_travel_times = [[0, 835, 629]]
         expected_service_times = [[0, 600, 300]]
-        expected_waiting_times = [[0, 0, 1627]]
+        expected_waiting_times = [[0, 0, 1536]]
 
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
         self.assertEqual(expected_travel_times, solution.get('travel_times'))
@@ -130,7 +130,10 @@ class VrpTest(unittest.TestCase):
         solution = optimize_problem(problem_json)
 
         expected_route_ids = [[], ['vehicle_2', 'location_1']]
+        expected_time_windows = [[], [('00:00', '00:00'), ('00:09', '00:19')]]
+
         self.assertEqual(expected_route_ids, solution.get('route_ids'))
+        self.assertEqual(expected_time_windows, solution.get('time_windows'))
 
     def testPolylineByMapbox(self):
         problem_json = read_problem_json('vrp_polyline.json')
@@ -139,11 +142,11 @@ class VrpTest(unittest.TestCase):
         expected_polyline = ['q`baA_mujSnA`AgDnDnL`O|BfVaQhJjSvV}@pCrZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi@pFyBvN'
                              '`KgBnDrB|Cd@m@e@l@tAzBiFbFkGoHIeCaAoQwDSuAnC^~InA`EwKr]}CzNz@~YfJpRth@pg@`EdEsD`EW`IvG'
                              '~r@}Yha@yHjE}Bjo@']
-        expected_time_windows = [[('08:00', '08:00'), ('08:17', '08:27'), ('09:00', '09:05')]]
+        expected_time_windows = [[('08:00', '08:00'), ('08:18', '08:28'), ('09:00', '09:05')]]
         expected_distances = [[0, 9313, 7496]]
-        expected_travel_times = [[0, 1047, 843]]
+        expected_travel_times = [[0, 1117, 899]]
         expected_service_times = [[0, 600, 300]]
-        expected_waiting_times = [[0, 0, 1110]]
+        expected_waiting_times = [[0, 0, 984]]
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
@@ -159,7 +162,7 @@ class VrpTest(unittest.TestCase):
 
         expected_out = {
             'status': 'success',
-            'total_travel_time': 1890,
+            'total_travel_time': 2016,
             'total_idle_time': 0,
             'num_unserved': 0,
             'unserved': [],
@@ -173,12 +176,12 @@ class VrpTest(unittest.TestCase):
                                'waiting_mins': 0,
                                'type': 'VEHICLE',
                                },
-                              {'arrival_time': '08:17',
+                              {'arrival_time': '08:18',
                                'distance': 9313,
                                'duration': 10,
-                               'finish_time': '08:27',
+                               'finish_time': '08:28',
                                'location_id': 'location_1_id',
-                               'travel_mins': 17,
+                               'travel_mins': 18,
                                'waiting_mins': 0,
                                'type': 'PICKUP',
                                },
@@ -188,7 +191,7 @@ class VrpTest(unittest.TestCase):
                                'finish_time': '09:05',
                                'location_id': 'location_2_id',
                                'travel_mins': 14,
-                               'waiting_mins': 18,
+                               'waiting_mins': 16,
                                'type': 'PICKUP',
                                }
                               ],

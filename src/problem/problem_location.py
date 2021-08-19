@@ -25,7 +25,7 @@ class ProblemLocation:
         self.travel_time = 0
         self.service_time = 0
         self.waiting_time = 0
-        # For window
+        # For time windows
         self.arrival_time = 0
         self.finish_time = 0
 

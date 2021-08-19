@@ -15,7 +15,7 @@ def create_speed(setting: str):
 
 class ProblemSpeed:
     def __init__(self, traffic: str):
-        speed_base = 32  # 32 km/h
+        speed_base = 30  # 30 km/h
         self.traffic = traffic
         self.cost = costs.get(self.traffic)
         self.kmh = speed_base * self.cost
