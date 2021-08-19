@@ -67,3 +67,18 @@ https://github.com/google/or-tools/blob/stable/ortools/constraint_solver/doc/VRP
 https://stackoverflow.com/questions/63112611/vehicle-routing-with-different-vehicle-speed-google-or-tools
 https://stackoverflow.com/questions/62756122/how-to-limit-number-of-locations-for-each-vehicle-in-google-or-tools-route-optim
 https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+
+# Ubuntu 18.04
+sudo apt update
+python3 -V
+sudo apt install -y python3-pip
+sudo apt install -y python3-venv
+python3 -m venv ./venv
+source ./venv/bin/activate
+deactivate
+
+pip freeze | xargs pip uninstall -y
+pip install -r requirements.txt
+pip list
+
+python app.py &
