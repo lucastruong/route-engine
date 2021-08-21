@@ -81,4 +81,6 @@ pip freeze | xargs pip uninstall -y
 pip install -r requirements.txt
 pip list
 
+export FLASK_APP=app.py
+flask run
 python app.py &

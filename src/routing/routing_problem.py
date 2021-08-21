@@ -53,6 +53,7 @@ def create_data_model(problem_json):
 
     # Options
     data['max_running_time'] = adapter.options.max_running_time
+    data['max_iterations'] = adapter.options.max_iterations
     data['balance'] = adapter.options.balance
 
     # Mapbox
@@ -174,9 +175,9 @@ def optimize_problem(problem_json, log_search: bool = False):
     #     routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
 
     # Limit in seconds to the time spent in the search.
-    search_parameters.time_limit.seconds = 99
+    search_parameters.time_limit.seconds = data['max_running_time'] * 60
     # The number of solutions generated during the search.
-    search_parameters.solution_limit = data['max_running_time'] * 60
+    search_parameters.solution_limit = data['max_iterations']
     search_parameters.log_search = log_search
 
     # Solve the problem.
