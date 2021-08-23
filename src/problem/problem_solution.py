@@ -71,8 +71,13 @@ class ProblemSolution:
                 continue
 
             self.routes[vehicle_id_root]['geometry'] = geometries[i]
-            vehicle_speed = vehicle_route.get('speed')
+
+            # Skip it when not have distances
             route_distance = distances[i]
+            if len(route_distance) <= 1:
+                continue
+
+            vehicle_speed = vehicle_route.get('speed')
             vehicle_location = locations[0]
             start_seconds = vehicle_location.time_window_start
 

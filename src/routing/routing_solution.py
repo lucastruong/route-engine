@@ -1,5 +1,7 @@
-from src.helper.mapbox_api import mapbox_directions
+from urllib.error import HTTPError
+
 from src.problem.problem_helper import seconds_to_hhmm
+from src.problem.problem_polyline import ProblemPolyline
 from src.problem.problem_solution import ProblemSolution
 
 
@@ -157,7 +159,10 @@ def get_route_times(time_steps, data, routes):
 
 def get_route_polyline(routes, data):
     polyline = data['polyline']
-    access_token = data['mapbox']
+    mapbox_token = data['mapbox']
+    graphhopper_url = data['graphhopper']
+    osrm_url = data['osrm']
+
     locations = data['locations']
     geometries = []
     distances = []
@@ -171,7 +176,12 @@ def get_route_polyline(routes, data):
         for index in route:
             route_locations.append(locations[index])
 
-        result = mapbox_directions(route_locations, access_token)
+        problem_polyline = ProblemPolyline(route_locations, mapbox_token, graphhopper_url, osrm_url)
+        try:
+            result = problem_polyline.directions()
+        except HTTPError as err:
+            result = None
+
         if result is not None:
             geometries.append(result.get('geometry'))
             distances.append(result.get('distances'))

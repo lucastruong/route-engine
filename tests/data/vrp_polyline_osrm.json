@@ -1,0 +1,36 @@
+{
+    "options": {
+        "polylines": true,
+        "osrm": "http://router.project-osrm.org/route/v1"
+    },
+    "fleet": {
+        "vehicle_1": {
+            "start_location": {
+                "lat": 10.829012,
+                "lng": 106.774783
+            },
+            "shift_start": "08:00",
+            "shift_end": "17:00"
+        }
+    },
+    "visits": {
+        "location_1": {
+            "location": {
+                "lat": 10.794825,
+                "lng": 106.721362
+            },
+            "start": "00:00",
+            "end": "23:59",
+            "duration": 10
+        },
+        "location_2": {
+            "location": {
+                "lat": 10.79753993119405,
+                "lng": 106.67339848433336
+            },
+            "start": "09:00",
+            "end": "12:00",
+            "duration": 5
+        }
+    }
+}

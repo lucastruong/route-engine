@@ -59,6 +59,8 @@ def create_data_model(problem_json):
     # Mapbox
     data['polyline'] = adapter.options.polyline
     data['mapbox'] = adapter.options.mapbox
+    data['graphhopper'] = adapter.options.graphhopper
+    data['osrm'] = adapter.options.osrm
 
     # Input data
     data['vehicles'] = adapter.vehicles

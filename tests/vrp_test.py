@@ -136,7 +136,7 @@ class VrpTest(unittest.TestCase):
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
 
     def testPolylineByMapbox(self):
-        problem_json = read_problem_json('vrp_polyline.json')
+        problem_json = read_problem_json('vrp_polyline_mapbox.json')
         solution = optimize_problem(problem_json)
 
         expected_polyline = ['q`baA_mujSnA`AgDnDnL`O|BfVaQhJjSvV}@pCrZtLnjA|MhQ|GhRlTfF~RhRpcBnJjaAoCMw@aLQi@pFyBvN'
@@ -147,6 +147,52 @@ class VrpTest(unittest.TestCase):
         expected_travel_times = [[0, 1117, 899]]
         expected_service_times = [[0, 600, 300]]
         expected_waiting_times = [[0, 0, 984]]
+
+        self.assertEqual(expected_polyline, solution.get('polyline'))
+        self.assertEqual(expected_time_windows, solution.get('time_windows'))
+        self.assertEqual(expected_distances, solution.get('distances'))
+        self.assertEqual(expected_travel_times, solution.get('travel_times'))
+        self.assertEqual(expected_service_times, solution.get('service_times'))
+        self.assertEqual(expected_waiting_times, solution.get('waiting_times'))
+
+    def testPolylineByGraphhopper(self):
+        problem_json = read_problem_json('vrp_polyline_graphhopper.json')
+        solution = optimize_problem(problem_json)
+
+        expected_polyline = ['y`baAgmujSq@SS@[J[`@~BnCqAlAx@z@`ArAdCxAVTT^hBtDVj@TrBDl@UdB@`@VdCpBM`Hk@lC]m@~Dm@bCSp'
+                             '@gBlCSd@W~@oAnIAl@HrGI~@['
+                             '|CIVSTSf@SrApIbEpCnA`FdBhA\\bB^j@B`IjA`Af@lGf@l@E~AL|KtAl^xDtCd@nAVlBh@vBr@tCpAPNjBbA'
+                             '`@\\bDdCjAfAfAhA`BvBvAtBRNbAzBXZd@hAbAxCZhAt@hDPrAAv@A`@x@rHPVP`BR\\~@fKzKpcA\\fC?h'
+                             '@pIvw@V|CL~@Wp@KNWNS@MAYMOMOUK_@Ia@OyAMgCAyBJw@JSRUPMl@Md@C`@HVLVPb@d@JVJt@?hDOxKDr'
+                             '@DTFNZ^hCxBxBrBx@|@pAd@jAVd@DjGB?k@cB?gDEiAOw@YUKcAaAe@o@bCgBJAtBuAkBuC'
+                             '|AbCqBvAAPcCfBgDwEECWCy@cAGe@Cg@HeKAcAKw@Mk@IUi@m@OKo@Ya@G}@Bc@JQLKJ['
+                             'x@En@RrGHpAJp@Tv@j@vAH\\Hh@Af@K|@IXy@`B]\\QZs@tAwA|C_BnEMnAk@zAaA|Dm@nCm@lDKRG'
+                             '`@MvBCvAGVGf@ITILi@d@c@PwBASFa@pKuArc@UbCcA|FD^rAzEtCjJ^fAFZ_@jHeBvXg@hHcBvWY`DAjBN~@L'
+                             '\\`ApAxIzIhN|NNd@Lf@UxHQrDpKQEfBSxDu@hP']
+        expected_time_windows = [[('08:00', '08:00'), ('08:13', '08:23'), ('09:00', '09:05')]]
+        expected_distances = [[0, 6965, 5249]]
+        expected_travel_times = [[0, 835, 629]]
+        expected_service_times = [[0, 600, 300]]
+        expected_waiting_times = [[0, 0, 1536]]
+
+        self.assertEqual(expected_polyline, solution.get('polyline'))
+        self.assertEqual(expected_time_windows, solution.get('time_windows'))
+        self.assertEqual(expected_distances, solution.get('distances'))
+        self.assertEqual(expected_travel_times, solution.get('travel_times'))
+        self.assertEqual(expected_service_times, solution.get('service_times'))
+        self.assertEqual(expected_waiting_times, solution.get('waiting_times'))
+
+    def testPolylineByOsrm(self):
+        problem_json = read_problem_json('vrp_polyline_osrm.json')
+        solution = optimize_problem(problem_json)
+
+        expected_polyline = ['q`baA_mujSlAhAeDfDnL`O`@lL~OuAaGfRuDx_@rZvL|nA~OdNhFdNpNjL~f@pZttCw@xBgBoAm@cNbFcAvN'
+                             '`KgBnDxCnBn@hDiFbF}DoFuBf@bN|Jp^|BfEjKiBlTpAzI|X|KbOtL_y@|~@nWdXeo@|{@yHjE}Bjo@']
+        expected_time_windows = [[('08:00', '08:00'), ('08:18', '08:28'), ('09:00', '09:05')]]
+        expected_distances = [[0, 9382, 7782]]
+        expected_travel_times = [[0, 1125, 933]]
+        expected_service_times = [[0, 600, 300]]
+        expected_waiting_times = [[0, 0, 942]]
 
         self.assertEqual(expected_polyline, solution.get('polyline'))
         self.assertEqual(expected_time_windows, solution.get('time_windows'))
